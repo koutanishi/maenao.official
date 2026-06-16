@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>前川尚志 | Futsal Player</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;700;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================
+   CSS VARIABLES & RESET
+   ============================ */
+:root {
+  --black: #0a0a0a;
+  --black-light: #141414;
+  --black-card: #1a1a1a;
+  --red: #e63946;
+  --red-dark: #c1121f;
+  --red-glow: rgba(230, 57, 70, 0.4);
+  --white: #f1f1f1;
+  --gray: #888;
+  --gray-dark: #333;
+  --font-display: 'Bebas Neue', 'Oswald', sans-serif;
+  --font-sub: 'Oswald', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) var(--black);
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ============================
+   LOADING SCREEN
+   ============================ */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.6s, visibility 0.6s;
+}
+#loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+#loader .loader-text {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--red);
+  letter-spacing: 8px;
+}
+#loader .loader-bar {
+  width: 200px;
+  height: 2px;
+  background: var(--gray-dark);
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+#loader .loader-bar::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  height: 100%; width: 0;
+  background: var(--red);
+  animation: loaderFill 1.8s ease-in-out forwards;
+}
+@keyframes loaderFill { to { width: 100%; } }
+
+/* ============================
+   NOISE OVERLAY
+   ============================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ============================
+   HEADER / NAVBAR
+   ============================ */
+header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s, padding 0.4s;
+}
+header.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 12px 40px;
+  border-bottom: 1px solid rgba(230, 57, 70, 0.2);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 4px;
+  color: var(--white);
+  position: relative;
+  z-index: 1001;
+}
+.logo span { color: var(--red); }
+
+/* Hamburger */
+.hamburger {
+  width: 36px;
+  height: 24px;
+  position: relative;
+  cursor: pointer;
+  z-index: 1001;
+}
+.hamburger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--white);
+  transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); width: 60%; margin-left: 40%; }
+.hamburger span:nth-child(3) { bottom: 0; }
+
+.hamburger.active span:nth-child(1) {
+  top: 50%; transform: translateY(-50%) rotate(45deg); background: var(--red);
+}
+.hamburger.active span:nth-child(2) { opacity: 0; width: 0; }
+.hamburger.active span:nth-child(3) {
+  bottom: 50%; transform: translateY(50%) rotate(-45deg); background: var(--red);
+}
+
+/* Fullscreen Nav Overlay */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: circle(0% at calc(100% - 58px) 32px);
+  transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.nav-overlay.open {
+  clip-path: circle(150% at calc(100% - 58px) 32px);
+}
+
+.nav-overlay nav { text-align: center; }
+.nav-overlay nav a {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  letter-spacing: 6px;
+  color: var(--gray-dark);
+  padding: 10px 0;
+  transition: color 0.3s, transform 0.3s, letter-spacing 0.3s;
+  position: relative;
+}
+.nav-overlay nav a:hover {
+  color: var(--red);
+  transform: translateX(10px);
+  letter-spacing: 12px;
+}
+.nav-overlay nav a::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 5px;
+  width: 0; height: 2px;
+  background: var(--red);
+  transform: translateX(-50%);
+  transition: width 0.4s;
+}
+.nav-overlay nav a:hover::after { width: 60%; }
+
+.nav-overlay .nav-number {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--red);
+  margin-right: 12px;
+  vertical-align: super;
+}
+
+.nav-overlay .nav-sns {
+  margin-top: 50px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+.nav-overlay .nav-sns a {
+  font-family: var(--font-sub);
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  color: var(--gray);
+  transition: color 0.3s;
+}
+.nav-overlay .nav-sns a:hover { color: var(--red); }
+
+/* ============================
+   HERO SECTION
+   ============================ */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://i.postimg.cc/RFrR4bCZ/IMG-3979.jpg') center center / cover no-repeat;
+  z-index: 0;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.9) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 0 8%;
+}
+
+.hero-label {
+  font-family: var(--font-sub);
+  font-size: 0.85rem;
+  letter-spacing: 6px;
+  color: var(--red);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s 2.2s forwards;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: 8px;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s 2.4s forwards;
+}
+
+.hero-name-jp {
+  font-family: var(--font-body);
+  font-weight: 900;
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  letter-spacing: 14px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s 2.6s forwards;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  font-family: var(--font-sub);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: var(--gray);
+  opacity: 0;
+  animation: fadeSlideUp 0.8s 2.8s forwards;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s 3.2s forwards;
+}
+.hero-scroll span {
+  font-family: var(--font-sub);
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+.hero-scroll .scroll-line {
+  width: 1px; height: 50px;
+  background: var(--gray-dark);
+  position: relative;
+  overflow: hidden;
+}
+.hero-scroll .scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%; width: 100%; height: 100%;
+  background: var(--red);
+  animation: scrollDown 1.8s ease-in-out infinite;
+}
+@keyframes scrollDown {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+/* ============================
+   SECTION COMMONS
+   ============================ */
+section { position: relative; }
+
+.section-padding { padding: 120px 8%; }
+
+.section-label {
+  font-family: var(--font-sub);
+  font-size: 0.75rem;
+  letter-spacing: 6px;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: 4px;
+  margin-bottom: 50px;
+  line-height: 1.1;
+}
+.section-title .accent { color: var(--red); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================
+   ABOUT SECTION
+   ============================ */
+#about {
+  background: var(--black-light);
+  border-top: 1px solid var(--gray-dark);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-photo-area { position: relative; }
+.about-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: var(--black-card);
+  border: 1px solid var(--gray-dark);
+  position: relative;
+  overflow: hidden;
+}
+.about-photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about-photo-placeholder::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px; right: -1px;
+  height: 3px;
+  background: var(--red);
+  z-index: 1;
+}
+
+.about-red-block {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  width: 120px; height: 120px;
+  background: var(--red);
+  z-index: -1;
+}
+
+.about-text p {
+  font-size: 0.95rem;
+  line-height: 2;
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+.about-text strong { color: var(--white); font-weight: 700; }
+
+/* ============================
+   CAREER SECTION
+   ============================ */
+#career { background: var(--black); }
+
+.timeline {
+  position: relative;
+  padding-left: 60px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--red), var(--gray-dark));
+}
+
+.timeline-era { margin-bottom: 60px; }
+.timeline-era-label {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 6px;
+  color: var(--red);
+  margin-bottom: 30px;
+  padding-left: 10px;
+  position: relative;
+}
+.timeline-era-label::before {
+  content: '';
+  position: absolute;
+  left: -49px; top: 50%;
+  width: 18px; height: 18px;
+  border: 2px solid var(--red);
+  background: var(--black);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 24px;
+  padding: 24px 30px;
+  background: var(--black-card);
+  border-left: 3px solid transparent;
+  transition: all 0.4s ease;
+}
+.timeline-item:hover {
+  border-left-color: var(--red);
+  transform: translateX(8px);
+  box-shadow: -4px 0 30px var(--red-glow);
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -42px; top: 50%;
+  transform: translateY(-50%);
+  width: 10px; height: 10px;
+  background: var(--red);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--red-glow);
+}
+
+.timeline-item .team-name {
+  font-family: var(--font-sub);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--white);
+}
+
+/* ============================
+   GALLERY PLACEHOLDER
+   ============================ */
+#gallery { border-top: 1px solid var(--gray-dark); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 400px;
+  gap: 8px;
+}
+.gallery-grid .g-item {
+  background: var(--black-card);
+  border: 1px solid var(--gray-dark);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+.gallery-grid .g-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-grid .g-item:hover img {
+  transform: scale(1.05);
+}
+.gallery-grid .g-item:hover { border-color: var(--red); }
+.gallery-grid .g-item:hover::after { opacity: 1; }
+.gallery-grid .g-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(230,57,70,0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+/* ============================
+   SPONSOR SECTION
+   ============================ */
+#sponsor {
+  background: var(--black-light);
+  border-top: 1px solid var(--gray-dark);
+}
+
+.sponsor-intro {
+  max-width: 700px;
+  margin-bottom: 60px;
+}
+.sponsor-intro p {
+  font-size: 0.95rem;
+  line-height: 2;
+  color: var(--gray);
+}
+
+.sponsor-plan {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.plan-card {
+  background: var(--black);
+  border: 1px solid var(--gray-dark);
+  padding: 50px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
+}
+.plan-card:hover {
+  border-color: var(--red);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 50px rgba(230, 57, 70, 0.1);
+}
+.plan-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--red), var(--red-dark));
+}
+.plan-card .plan-number {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: rgba(230, 57, 70, 0.1);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.plan-card .plan-badge {
+  display: inline-block;
+  padding: 4px 16px;
+  background: var(--red);
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  margin-bottom: 24px;
+}
+.plan-card .plan-price {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.plan-card .plan-price .yen {
+  font-size: 1.3rem;
+  color: var(--gray);
+  margin-right: 4px;
+}
+.plan-card .plan-price .unit {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-left: 4px;
+  letter-spacing: 1px;
+}
+.plan-card .plan-desc {
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin-bottom: 30px;
+  line-height: 1.8;
+}
+
+.plan-benefits { list-style: none; }
+.plan-benefits li {
+  padding: 12px 0 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.8;
+  position: relative;
+}
+.plan-benefits li::before {
+  content: '✦';
+  color: var(--red);
+  font-size: 0.7rem;
+  position: absolute;
+  left: 0;
+  top: 15px;
+}
+.plan-benefits li .benefit-highlight {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.sponsor-cta {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.contact-btn {
+  display: inline-block;
+  padding: 20px 60px;
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--red);
+  font-family: var(--font-sub);
+  font-size: 1rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.contact-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+.contact-btn:hover {
+  color: var(--white);
+  transform: scale(1.03);
+  box-shadow: 0 0 40px var(--red-glow);
+}
+.contact-btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ============================
+   PROFILE TABLE
+   ============================ */
+#profile { border-top: 1px solid var(--gray-dark); }
+.profile-table-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.profile-row {
+  display: flex;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.3s;
+}
+.profile-row:hover { background: rgba(230, 57, 70, 0.03); }
+.profile-row .row-label {
+  width: 140px;
+  flex-shrink: 0;
+  padding: 16px 20px;
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: var(--red);
+  text-transform: uppercase;
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+.profile-row .row-value {
+  padding: 16px 20px;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+/* ============================
+   CONTACT OVERLAY (フルスクリーン)
+   ============================ */
+#contactOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  overflow-y: auto;
+}
+#contactOverlay.open {
+  transform: translateY(0);
+}
+
+.contact-header {
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--gray-dark);
+  flex-shrink: 0;
+}
+
+.back-btn {
+  font-family: var(--font-sub);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.3s;
+}
+.back-btn:hover { color: var(--red); }
+.back-btn svg {
+  width: 18px; height: 18px;
+  stroke: currentColor;
+  fill: none; stroke-width: 2;
+}
+
+.contact-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 8%;
+}
+
+.contact-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.contact-info { padding-top: 20px; }
+
+.contact-label {
+  font-family: var(--font-sub);
+  font-size: 0.75rem;
+  letter-spacing: 6px;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.contact-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5rem);
+  letter-spacing: 4px;
+  line-height: 1.05;
+  margin-bottom: 30px;
+}
+.contact-title .accent { color: var(--red); }
+
+.contact-desc {
+  font-size: 0.9rem;
+  line-height: 2;
+  color: var(--gray);
+  margin-bottom: 40px;
+}
+
+.contact-sns-links {
+  display: flex;
+  gap: 16px;
+}
+.contact-sns-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; height: 48px;
+  border: 1px solid var(--gray-dark);
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--gray);
+  transition: all 0.3s;
+}
+.contact-sns-links a:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(230, 57, 70, 0.05);
+  transform: translateY(-3px);
+}
+
+.contact-form-card {
+  background: var(--black-card);
+  border: 1px solid var(--gray-dark);
+  padding: 50px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.contact-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--red), var(--red-dark));
+}
+
+.form-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 4px;
+  margin-bottom: 36px;
+}
+
+.form-group { margin-bottom: 24px; }
+.form-group label {
+  display: block;
+  font-family: var(--font-sub);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: var(--gray);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.form-group .required {
+  color: var(--red);
+  font-size: 0.65rem;
+  margin-left: 6px;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--black);
+  border: 1px solid var(--gray-dark);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 20px rgba(230, 57, 70, 0.15);
+}
+.form-group textarea { height: 140px; resize: vertical; }
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23888'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-sub);
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 8px;
+}
+.submit-btn:hover { background: var(--red-dark); transform: scale(1.02); }
+.submit-btn:active { transform: scale(0.98); }
+.submit-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+.submit-btn:hover::after { transform: translateX(100%); }
+
+.contact-footer {
+  padding: 20px 40px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  text-align: center;
+  flex-shrink: 0;
+}
+.contact-footer p {
+  font-size: 0.7rem;
+  color: var(--gray-dark);
+  letter-spacing: 2px;
+  font-family: var(--font-sub);
+}
+
+/* ============================
+   FOOTER
+   ============================ */
+footer {
+  background: var(--black);
+  border-top: 1px solid var(--gray-dark);
+  padding: 80px 8% 40px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 60px;
+}
+
+.footer-brand .footer-logo {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+}
+.footer-brand .footer-logo span { color: var(--red); }
+.footer-brand p {
+  font-size: 0.8rem;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+
+.footer-sns {
+  display: flex;
+  gap: 20px;
+}
+.footer-sns a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; height: 48px;
+  border: 1px solid var(--gray-dark);
+  transition: all 0.3s;
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--gray);
+}
+.footer-sns a:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(230, 57, 70, 0.05);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-bottom p {
+  font-size: 0.7rem;
+  color: var(--gray-dark);
+  letter-spacing: 2px;
+  font-family: var(--font-sub);
+}
+
+/* ============================
+   ANIMATIONS
+   ============================ */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 1024px) {
+  .about-grid { gap: 40px; }
+  .sponsor-plan { gap: 30px; }
+  .contact-wrapper { gap: 50px; }
+}
+
+@media (max-width: 768px) {
+  header { padding: 16px 24px; }
+  header.scrolled { padding: 10px 24px; }
+  .section-padding { padding: 80px 6%; }
+
+  .hero-content { max-width: 100%; padding: 0 6%; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 300px 300px;
+  }
+
+  .sponsor-plan { grid-template-columns: 1fr; }
+  .profile-table-wrapper { grid-template-columns: 1fr; }
+
+  .footer-top { flex-direction: column; gap: 30px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+  .contact-header { padding: 16px 24px; }
+  .contact-main { padding: 40px 6%; }
+  .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+  .contact-form-card { padding: 30px 24px; }
+}
+
+@media (max-width: 480px) {
+  .hero-name { letter-spacing: 3px; }
+  .hero-meta { flex-wrap: wrap; gap: 12px; }
+  .plan-card { padding: 30px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div class="loader-text">MAENAO</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <a href="#top" class="logo">MAE<span>NAO</span></a>
+  <div class="hamburger" id="hamburger" aria-label="メニューを開く">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- NAV OVERLAY -->
+<div class="nav-overlay" id="navOverlay">
+  <nav>
+    <a href="#about" class="nav-link"><span class="nav-number">01</span>ABOUT</a>
+    <a href="#career" class="nav-link"><span class="nav-number">02</span>CAREER</a>
+    <a href="#gallery" class="nav-link"><span class="nav-number">03</span>GALLERY</a>
+    <a href="#sponsor" class="nav-link"><span class="nav-number">04</span>SPONSOR</a>
+    <a href="#events" class="nav-link"><span class="nav-number">05</span>EVENTS</a>
+    <a href="#profile" class="nav-link"><span class="nav-number">06</span>PROFILE</a>
+    <a href="#" class="nav-link" onclick="openContact();return false;"><span class="nav-number">07</span>CONTACT</a>
+    <div class="nav-sns">
+      <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">INSTAGRAM</a>
+      <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X / TWITTER</a>
+    </div>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-label">Futsal Player ─ Pivo</div>
+    <h1 class="hero-name">NAOYUKI<br>MAEKAWA</h1>
+    <p class="hero-name-jp">前川 尚志</p>
+    <div class="hero-meta">
+      <div>ボアルース長野</div>
+      <div>2026 —</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section-padding">
+  <div class="reveal">
+    <div class="section-label">01 — About</div>
+    <h2 class="section-title">WHO IS <span class="accent">MAEKAWA</span></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-photo-area reveal">
+      <div class="about-photo-placeholder">
+        <img src="https://i.postimg.cc/fL4KDgWT/IMG-3978.jpg" alt="前川尚志" loading="lazy">
+      </div>
+      <div class="about-red-block"></div>
+    </div>
+    <div class="about-text reveal">
+      <ul class="plan-benefits">
+        <li>兵庫県神戸市出身</li>
+        <li>本庄FC</li>
+        <li>西宮SS</li>
+        <li>報徳学園高校 サッカー部</li>
+        <li>摂南大学（FC大阪楽笑）</li>
+        <li>摂南大学（カンカンボーイズ）</li>
+        <li>S.B.F.C. LONDRINA</li>
+        <li>湘南ベルマーレ フットサルクラブ</li>
+        <li><span class="benefit-highlight">ボアルース長野（2026–）</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="career" class="section-padding">
+  <div class="reveal">
+    <div class="section-label">02 — Career</div>
+    <h2 class="section-title">THE <span class="accent">JOURNEY</span></h2>
+  </div>
+  <div class="career-wrapper reveal">
+    <div class="timeline">
+      <div class="timeline-era">
+        <div class="timeline-era-label">FOOTBALL ERA</div>
+        <div class="timeline-item"><div class="team-name">本庄FC</div></div>
+        <div class="timeline-item"><div class="team-name">西宮SS</div></div>
+        <div class="timeline-item"><div class="team-name">報徳学園高校 サッカー部</div></div>
+      </div>
+      <div class="timeline-era">
+        <div class="timeline-era-label">FUTSAL ERA</div>
+        <div class="timeline-item"><div class="team-name">摂南大学（FC大阪楽笑）</div></div>
+        <div class="timeline-item"><div class="team-name">摂南大学（カンカンボーイズ）</div></div>
+        <div class="timeline-item"><div class="team-name">S.B.F.C. LONDRINA</div></div>
+        <div class="timeline-item"><div class="team-name">湘南ベルマーレ フットサルクラブ</div></div>
+        <div class="timeline-item" style="border-left: 3px solid var(--red); box-shadow: -4px 0 30px var(--red-glow);">
+          <div class="team-name" style="color: var(--red);">ボアルース長野</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section-padding">
+  <div class="reveal">
+    <div class="section-label">03 — Gallery</div>
+    <h2 class="section-title">IN <span class="accent">ACTION</span></h2>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="g-item"><img src="https://i.postimg.cc/ydqPsr1M/IMG-3980.jpg" alt="前川尚志" loading="lazy"></div>
+    <div class="g-item"><img src="https://i.postimg.cc/nz8kpwVL/IMG-3981.jpg" alt="前川尚志" loading="lazy"></div>
+    <div class="g-item"><img src="https://i.postimg.cc/4dC5sF4d/IMG-3982.jpg" alt="前川尚志" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- SPONSOR -->
+<section id="sponsor" class="section-padding">
+  <div class="reveal">
+    <div class="section-label">04 — Sponsor</div>
+    <h2 class="section-title">SUPPORT <span class="accent">MAEKAWA</span></h2>
+  </div>
+  <div class="sponsor-intro reveal">
+    <p>前川尚志の挑戦を、あなたの力で後押ししてください。個人スポンサーとして支援いただいた方には、感謝の気持ちを込めて特典をお届けします。一緒に戦ってくれる仲間を募集しています。</p>
+  </div>
+  <div class="sponsor-plan">
+    <div class="plan-card reveal">
+      <div class="plan-number">01</div>
+      <div class="plan-badge">MONTHLY MEMBER</div>
+      <p class="plan-desc">月額制で前川尚志の活動を継続的にサポートいただけます。</p>
+      <ul class="plan-benefits">
+        <li>10ヶ月以上の継続で<span class="benefit-highlight">サイン入り着用シューズ</span>をプレゼント</li>
+        <li>SNSでのスポンサー紹介</li>
+        <li>シーズン活動報告</li>
+      </ul>
+    </div>
+    <div class="plan-card reveal">
+      <div class="plan-number">02</div>
+      <div class="plan-badge">SHOES SPONSOR</div>
+      <p class="plan-desc">シューズをご提供いただいたスポンサー様への特典です。</p>
+      <ul class="plan-benefits">
+        <li>着用後のシューズに<span class="benefit-highlight">サインを入れてお返し</span>します</li>
+        <li>SNSでのスポンサー紹介</li>
+        <li>シーズン活動報告</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sponsor-cta reveal">
+    <button class="contact-btn" onclick="openContact()">CONTACT US</button>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="section-padding" style="background: var(--black);">
+  <div class="reveal">
+    <div class="section-label">05 — Events</div>
+    <h2 class="section-title">FAN <span class="accent">EVENTS</span></h2>
+  </div>
+  <div class="sponsor-plan">
+    <div class="plan-card reveal">
+      <div class="plan-number">01</div>
+      <div class="plan-badge">GAME EVENT</div>
+      <div class="plan-price" style="font-size: 2rem;">ゲーム会</div>
+      <p class="plan-desc">前川尚志と一緒にゲームを楽しめるファンイベント。選手との距離がぐっと縮まる特別な時間です。</p>
+      <ul class="plan-benefits">
+        <li>詳細・開催日程は<span class="benefit-highlight">SNSにて告知</span></li>
+      </ul>
+    </div>
+    <div class="plan-card reveal">
+      <div class="plan-number">02</div>
+      <div class="plan-badge">PRIVATE LESSON</div>
+      <div class="plan-price" style="font-size: 2rem;">個別レッスン</div>
+      <p class="plan-desc">前川尚志による個別フットサルレッスン。レベルや目的に合わせたマンツーマン指導を受けられます。</p>
+      <ul class="plan-benefits">
+        <li>詳細・お申し込みは<span class="benefit-highlight">お問い合わせ</span>より</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile" class="section-padding">
+  <div class="reveal">
+    <div class="section-label">06 — Profile</div>
+    <h2 class="section-title">PLAYER <span class="accent">DATA</span></h2>
+  </div>
+  <div class="profile-table-wrapper reveal">
+    <div>
+      <div class="profile-row"><div class="row-label">Name</div><div class="row-value">前川 尚志（まえかわ なおゆき）</div></div>
+      <div class="profile-row"><div class="row-label">Born</div><div class="row-value">2001年1月22日</div></div>
+      <div class="profile-row"><div class="row-label">From</div><div class="row-value">兵庫県神戸市</div></div>
+      <div class="profile-row"><div class="row-label">Position</div><div class="row-value">FP（ピヴォ）</div></div>
+    </div>
+    <div>
+      <div class="profile-row"><div class="row-label">Height</div><div class="row-value">170cm</div></div>
+      <div class="profile-row"><div class="row-label">Weight</div><div class="row-value">73kg</div></div>
+      <div class="profile-row"><div class="row-label">Foot</div><div class="row-value">右足</div></div>
+      <div class="profile-row"><div class="row-label">Blood</div><div class="row-value">A型</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">MAE<span>NAO</span></div>
+      <p>前川尚志 ─ Futsal Player</p>
+    </div>
+    <div class="footer-sns">
+      <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">IG</a>
+      <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 NAOYUKI MAEKAWA. ALL RIGHTS RESERVED.</p>
+    <p>DESIGNED WITH PASSION</p>
+  </div>
+</footer>
+
+<!-- ============================
+     CONTACT OVERLAY (別画面風)
+     ============================ -->
+<div id="contactOverlay">
+  <div class="contact-header">
+    <div class="logo">MAE<span>NAO</span></div>
+    <button class="back-btn" onclick="closeContact()">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5m0 0l7 7m-7-7l7-7"/></svg>
+      BACK TO TOP
+    </button>
+  </div>
+  <div class="contact-main">
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <div class="contact-label">Contact</div>
+        <h2 class="contact-title">GET IN <span class="accent">TOUCH</span></h2>
+        <p class="contact-desc">スポンサーに関するお問い合わせ、取材依頼、その他ご質問がございましたら、お気軽にご連絡ください。内容を確認のうえ、折り返しご連絡いたします。</p>
+        <div class="contact-sns-links">
+          <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">IG</a>
+          <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X</a>
+        </div>
+      </div>
+      <div class="contact-form-card">
+        <div class="form-title">CONTACT FORM</div>
+        <div class="form-group">
+          <label>お名前<span class="required">*必須</span></label>
+          <input type="text" placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス<span class="required">*必須</span></label>
+          <input type="email" placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label>電話番号</label>
+          <input type="tel" placeholder="090-0000-0000">
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ種別<span class="required">*必須</span></label>
+          <select>
+            <option value="">選択してください</option>
+            <option>月額会員について</option>
+            <option>靴提供スポンサーについて</option>
+            <option>ゲーム会について</option>
+            <option>個別レッスンについて</option>
+            <option>取材・メディア関連</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>メッセージ<span class="required">*必須</span></label>
+          <textarea placeholder="お問い合わせ内容をご記入ください"></textarea>
+        </div>
+        <button class="submit-btn" type="button" onclick="alert('フォーム送信機能は現在準備中です。\nお問い合わせはSNSのDMよりお願いいたします。')">SEND MESSAGE</button>
+      </div>
+    </div>
+  </div>
+  <div class="contact-footer">
+    <p>&copy; 2026 NAOYUKI MAEKAWA. ALL RIGHTS RESERVED.</p>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 2000);
+});
+
+// Hamburger Menu
+const hamburger = document.getElementById('hamburger');
+const navOverlay = document.getElementById('navOverlay');
+const navLinks = document.querySelectorAll('.nav-link');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navOverlay.classList.toggle('open');
+  document.body.style.overflow = navOverlay.classList.contains('open') ? 'hidden' : '';
+});
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// Header scroll
+const headerEl = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  headerEl.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// Scroll Reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Timeline stagger animation
+document.querySelectorAll('.timeline-item').forEach((item, i) => {
+  item.style.opacity = '0';
+  item.style.transform = 'translateX(-30px)';
+  item.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-left-color 0.4s, box-shadow 0.4s';
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateX(0)';
+        }, i * 100);
+      }
+    });
+  }, { threshold: 0.2 });
+  obs.observe(item);
+});
+
+// Contact Overlay
+function openContact() {
+  document.getElementById('contactOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeContact() {
+  document.getElementById('contactOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ESCキーでコンタクト画面を閉じる
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeContact();
+});
+</script>
+</body>
+</html>
