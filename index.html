@@ -1056,13 +1056,13 @@ footer {
 
 <!-- LOADING SCREEN -->
 <div id="loader">
-  <div class="loader-text">MAENAO</div>
+  <div class="loader-text" style="font-size:clamp(1.5rem,5vw,3rem);letter-spacing:4px;">NAOYUKI MAEKAWA</div>
   <div class="loader-bar"></div>
 </div>
 
 <!-- HEADER -->
 <header id="header">
-  <a href="#top" class="logo">MAE<span>NAO</span></a>
+  <a href="#top" class="logo" style="font-size:1.1rem;letter-spacing:2px;">NAOYUKI <span>MAEKAWA</span></a>
   <div class="hamburger" id="hamburger" aria-label="メニューを開く">
     <span></span><span></span><span></span>
   </div>
@@ -1183,7 +1183,6 @@ footer {
       <p class="plan-desc">月額制で前川尚志の活動を継続的にサポートいただけます。</p>
       <ul class="plan-benefits">
         <li><span class="benefit-highlight">個別相談</span></li>
-        <li>シーズン活動報告</li>
       </ul>
     </div>
     <div class="plan-card reveal">
@@ -1192,7 +1191,6 @@ footer {
       <p class="plan-desc">シューズをご提供いただいたスポンサー様への特典です。</p>
       <ul class="plan-benefits">
         <li>着用後のシューズに<span class="benefit-highlight">サインを入れてお返し</span>します</li>
-        <li>シーズン活動報告</li>
       </ul>
     </div>
     <div class="plan-card reveal">
@@ -1201,7 +1199,6 @@ footer {
       <p class="plan-desc">活動に必要な物品をご提供いただけるスポンサー様を募集しています。</p>
       <ul class="plan-benefits">
         <li>サポート内容は<span class="benefit-highlight">個別にご相談</span>ください</li>
-        <li>シーズン活動報告</li>
       </ul>
     </div>
   </div>
@@ -1302,35 +1299,41 @@ footer {
       </div>
       <div class="contact-form-card">
         <div class="form-title">CONTACT FORM</div>
-        <div class="form-group">
-          <label>お名前<span class="required">*必須</span></label>
-          <input type="text" placeholder="山田 太郎">
-        </div>
-        <div class="form-group">
-          <label>メールアドレス<span class="required">*必須</span></label>
-          <input type="email" placeholder="example@email.com">
-        </div>
-        <div class="form-group">
-          <label>電話番号</label>
-          <input type="tel" placeholder="090-0000-0000">
-        </div>
-        <div class="form-group">
-          <label>お問い合わせ種別<span class="required">*必須</span></label>
-          <select>
-            <option value="">選択してください</option>
-            <option>月額会員について</option>
-            <option>靴提供スポンサーについて</option>
-            <option>ゲーム会について</option>
-            <option>個別レッスンについて</option>
-            <option>取材・メディア関連</option>
-            <option>その他</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>メッセージ<span class="required">*必須</span></label>
-          <textarea placeholder="お問い合わせ内容をご記入ください"></textarea>
-        </div>
-        <button class="submit-btn" type="button" onclick="alert('フォーム送信機能は現在準備中です。\nお問い合わせはSNSのDMよりお願いいたします。')">SEND MESSAGE</button>
+        <form action="https://formspree.io/f/maqzvryk" method="POST" id="contactForm">
+          <div class="form-group">
+            <label>お名前<span class="required">*必須</span></label>
+            <input type="text" name="name" placeholder="山田 太郎" required>
+          </div>
+          <div class="form-group">
+            <label>メールアドレス<span class="required">*必須</span></label>
+            <input type="email" name="email" placeholder="example@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>電話番号</label>
+            <input type="tel" name="phone" placeholder="090-0000-0000">
+          </div>
+          <div class="form-group">
+            <label>お問い合わせ種別<span class="required">*必須</span></label>
+            <select name="category" required>
+              <option value="">選択してください</option>
+              <option>月額会員について</option>
+              <option>靴提供スポンサーについて</option>
+              <option>物品サポートについて</option>
+              <option>ゲーム会について</option>
+              <option>個別レッスンについて</option>
+              <option>取材・メディア関連</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>メッセージ<span class="required">*必須</span></label>
+            <textarea name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+          </div>
+          <button class="submit-btn" type="submit">SEND MESSAGE</button>
+          <div id="formSuccess" style="display:none;margin-top:16px;padding:14px;border:1px solid var(--red);color:var(--white);font-family:var(--font-sub);font-size:0.8rem;letter-spacing:2px;text-align:center;">
+            送信完了しました。ありがとうございます。
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -1409,10 +1412,34 @@ function closeContact() {
   document.body.style.overflow = '';
 }
 
-// ESCキーでコンタクト画面を閉じる
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeContact();
-});
+// Formspree async submit
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('.submit-btn');
+    btn.textContent = 'SENDING...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        contactForm.reset();
+        document.getElementById('formSuccess').style.display = 'block';
+        btn.textContent = 'SENT ✓';
+      } else {
+        btn.textContent = 'ERROR — RETRY';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'ERROR — RETRY';
+      btn.disabled = false;
+    }
+  });
+}
 </script>
 </body>
 </html>
