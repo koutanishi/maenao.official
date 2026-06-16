@@ -717,6 +717,110 @@ section { position: relative; }
 }
 
 /* ============================
+   SPONSOR BLOCKS
+   ============================ */
+.sponsor-block {
+  border: 1px solid var(--gray-dark);
+  overflow: hidden;
+}
+.sponsor-block-header {
+  background: var(--black-card);
+  padding: 32px 40px;
+  border-bottom: 1px solid var(--gray-dark);
+  position: relative;
+}
+.sponsor-block-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--red-dark));
+}
+.sponsor-block-label {
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  letter-spacing: 5px;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+.sponsor-block-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: 4px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.sponsor-block-sub {
+  font-size: 0.85rem;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+.sponsor-block-body {
+  padding: 40px;
+  background: var(--black);
+}
+.banner-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+}
+.banner-slot {
+  aspect-ratio: 16/9;
+  border: 1px dashed var(--gray-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--black-card);
+  transition: border-color 0.3s;
+}
+.banner-slot:hover { border-color: var(--red); }
+.banner-slot-label {
+  font-family: var(--font-sub);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--gray-dark);
+}
+.banner-slot-size {
+  font-size: 0.75rem;
+  color: var(--gray-dark);
+  letter-spacing: 1px;
+}
+.sponsor-block-note {
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin-bottom: 28px;
+  line-height: 1.8;
+}
+.sponsor-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-sub);
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+.sponsor-contact-btn svg {
+  width: 18px; height: 18px;
+  transition: transform 0.3s;
+}
+.sponsor-contact-btn:hover {
+  background: var(--red-dark);
+  transform: translateX(4px);
+  box-shadow: 0 0 30px var(--red-glow);
+}
+.sponsor-contact-btn:hover svg { transform: translateX(4px); }
+
+/* ============================
    CONTACT OVERLAY (フルスクリーン)
    ============================ */
 #contactOverlay {
@@ -1034,6 +1138,9 @@ footer {
   }
 
   .sponsor-plan { grid-template-columns: 1fr !important; }
+  .banner-slots { grid-template-columns: 1fr; }
+  .sponsor-block-header { padding: 24px; }
+  .sponsor-block-body { padding: 24px; }
   .profile-table-wrapper { grid-template-columns: 1fr; }
 
   .footer-top { flex-direction: column; gap: 30px; }
@@ -1174,36 +1281,78 @@ footer {
     <h2 class="section-title">SUPPORT <span class="accent">MAEKAWA</span></h2>
   </div>
   <div class="sponsor-intro reveal">
-    <p>前川尚志の挑戦を、あなたの力で後押ししてください。個人スポンサーとして支援いただいた方には、感謝の気持ちを込めて特典をお届けします。一緒に戦ってくれる仲間を募集しています。</p>
+    <p>前川尚志の挑戦を、あなたの力で後押ししてください。応援いただいた方には、感謝の気持ちを込めて特典をお届けします。</p>
   </div>
-  <div class="sponsor-plan" style="grid-template-columns: repeat(3, 1fr);">
-    <div class="plan-card reveal">
-      <div class="plan-number">01</div>
-      <div class="plan-badge">MONTHLY MEMBER</div>
-      <p class="plan-desc">月額制で前川尚志の活動を継続的にサポートいただけます。</p>
-      <ul class="plan-benefits">
-        <li><span class="benefit-highlight">個別相談</span></li>
-      </ul>
+
+  <!-- 企業スポンサー -->
+  <div class="sponsor-block reveal">
+    <div class="sponsor-block-header">
+      <div class="sponsor-block-label">CORPORATE</div>
+      <h3 class="sponsor-block-title">企業スポンサー様</h3>
+      <p class="sponsor-block-sub">企業で応援していただける方</p>
     </div>
-    <div class="plan-card reveal">
-      <div class="plan-number">02</div>
-      <div class="plan-badge">SHOES SPONSOR</div>
-      <p class="plan-desc">シューズをご提供いただいたスポンサー様への特典です。</p>
-      <ul class="plan-benefits">
-        <li>着用後のシューズに<span class="benefit-highlight">サインを入れてお返し</span>します</li>
-      </ul>
-    </div>
-    <div class="plan-card reveal">
-      <div class="plan-number">03</div>
-      <div class="plan-badge">GOODS SUPPORT</div>
-      <p class="plan-desc">活動に必要な物品をご提供いただけるスポンサー様を募集しています。</p>
-      <ul class="plan-benefits">
-        <li>サポート内容は<span class="benefit-highlight">個別にご相談</span>ください</li>
-      </ul>
+    <div class="sponsor-block-body">
+      <div class="banner-slots">
+        <div class="banner-slot">
+          <span class="banner-slot-label">BANNER SLOT</span>
+          <span class="banner-slot-size">企業バナー掲載枠</span>
+        </div>
+        <div class="banner-slot">
+          <span class="banner-slot-label">BANNER SLOT</span>
+          <span class="banner-slot-size">企業バナー掲載枠</span>
+        </div>
+        <div class="banner-slot">
+          <span class="banner-slot-label">BANNER SLOT</span>
+          <span class="banner-slot-size">企業バナー掲載枠</span>
+        </div>
+      </div>
+      <p class="sponsor-block-note">掲載内容・条件については個別にご相談ください。</p>
+      <button class="sponsor-contact-btn" onclick="openContactWithCategory('企業スポンサーについて')">
+        個別相談・お問い合わせ
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+      </button>
     </div>
   </div>
-  <div class="sponsor-cta reveal">
-    <button class="contact-btn" onclick="openContact()">CONTACT US</button>
+
+  <!-- 個人スポンサー -->
+  <div class="sponsor-block reveal" style="margin-top: 40px;">
+    <div class="sponsor-block-header">
+      <div class="sponsor-block-label">PERSONAL</div>
+      <h3 class="sponsor-block-title">個人スポンサー様</h3>
+      <p class="sponsor-block-sub">個人で応援していただける方</p>
+    </div>
+    <div class="sponsor-block-body">
+      <div class="sponsor-plan" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 32px;">
+        <div class="plan-card">
+          <div class="plan-number">01</div>
+          <div class="plan-badge">MONTHLY MEMBER</div>
+          <p class="plan-desc">月額制で前川尚志の活動を継続的にサポートいただけます。</p>
+          <ul class="plan-benefits">
+            <li><span class="benefit-highlight">個別相談</span></li>
+          </ul>
+        </div>
+        <div class="plan-card">
+          <div class="plan-number">02</div>
+          <div class="plan-badge">SHOES SPONSOR</div>
+          <p class="plan-desc">シューズをご提供いただいたスポンサー様への特典です。</p>
+          <ul class="plan-benefits">
+            <li>着用後のシューズに<span class="benefit-highlight">サインを入れてお返し</span>します</li>
+          </ul>
+        </div>
+        <div class="plan-card">
+          <div class="plan-number">03</div>
+          <div class="plan-badge">GOODS SUPPORT</div>
+          <p class="plan-desc">活動に必要な物品をご提供いただけるスポンサー様を募集しています。</p>
+          <ul class="plan-benefits">
+            <li>サポート内容は<span class="benefit-highlight">個別にご相談</span>ください</li>
+          </ul>
+        </div>
+      </div>
+      <button class="sponsor-contact-btn" onclick="openContactWithCategory('個人スポンサーについて')">
+        個別相談・お問い合わせ
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -1316,6 +1465,8 @@ footer {
             <label>お問い合わせ種別<span class="required">*必須</span></label>
             <select name="category" required>
               <option value="">選択してください</option>
+              <option>企業スポンサーについて</option>
+              <option>個人スポンサーについて</option>
               <option>月額会員について</option>
               <option>靴提供スポンサーについて</option>
               <option>物品サポートについて</option>
@@ -1405,6 +1556,22 @@ document.querySelectorAll('.timeline-item').forEach((item, i) => {
 function openContact() {
   document.getElementById('contactOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+
+function openContactWithCategory(category) {
+  openContact();
+  // カテゴリを自動選択
+  setTimeout(() => {
+    const select = document.querySelector('#contactForm select[name="category"]');
+    if (select) {
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].text.includes(category) || select.options[i].value === category) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+    }
+  }, 100);
 }
 
 function closeContact() {
