@@ -831,27 +831,66 @@ section { position: relative; }
 }
 .banner-slot {
   aspect-ratio: 16/9;
-  border: 1px dashed var(--gray-dark);
+  border: 1px solid var(--gray-dark);
+  background: var(--black-card);
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  display: block;
+}
+.banner-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.banner-slot:hover {
+  border-color: var(--red);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(230,57,70,0.15);
+}
+.banner-slot:hover img { transform: scale(1.04); }
+.banner-slot-linked {
+  cursor: pointer;
+  position: relative;
+}
+.banner-slot-linked::after {
+  content: '↗';
+  position: absolute;
+  top: 8px; right: 8px;
+  background: var(--red);
+  color: var(--white);
+  font-size: 12px;
+  width: 24px; height: 24px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 2px;
+}
+.banner-slot-linked:hover::after { opacity: 1; }
+.dm-note {
+  display: flex;
+  align-items: center;
   gap: 8px;
-  background: var(--black-card);
-  transition: border-color 0.3s;
+  font-size: 0.82rem;
+  color: var(--gray);
+  line-height: 1.6;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
 }
-.banner-slot:hover { border-color: var(--red); }
-.banner-slot-label {
-  font-family: var(--font-sub);
-  font-size: 0.65rem;
-  letter-spacing: 3px;
-  color: var(--gray-dark);
+.dm-note svg {
+  width: 16px; height: 16px;
+  stroke: var(--red);
+  flex-shrink: 0;
 }
-.banner-slot-size {
-  font-size: 0.75rem;
-  color: var(--gray-dark);
-  letter-spacing: 1px;
+.dm-note a {
+  color: var(--red);
+  font-weight: 700;
+  transition: opacity 0.3s;
 }
+.dm-note a:hover { opacity: 0.7; }
+
 .sponsor-block-note {
   font-size: 0.85rem;
   color: var(--gray);
@@ -1181,6 +1220,68 @@ footer {
 /* ============================
    RESPONSIVE
    ============================ */
+/* Lesson card */
+.lesson-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 20px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--gray-dark);
+}
+.lesson-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.lf-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.lf-title {
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: var(--red);
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+.lf-body { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+.lesson-price-block {
+  background: var(--black);
+  border: 1px solid var(--gray-dark);
+  border-left: 3px solid var(--red);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.lesson-price-label {
+  font-family: var(--font-sub);
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  color: var(--red);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.lesson-price-main {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  letter-spacing: 2px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.lesson-price-unit { font-size: 1rem; color: var(--gray); letter-spacing: 1px; }
+.lesson-price-note { font-size: 0.78rem; color: var(--gray); margin-bottom: 8px; }
+.lesson-price-max {
+  font-size: 0.8rem;
+  color: var(--white);
+  font-weight: 700;
+  padding: 4px 10px;
+  background: rgba(230,57,70,0.12);
+  border: 1px solid rgba(230,57,70,0.3);
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.lesson-tip { font-size: 0.85rem; color: var(--white); font-weight: 700; }
+
 @media (max-width: 1024px) {
   .about-grid { gap: 40px; }
   .sponsor-plan { gap: 30px; }
@@ -1263,7 +1364,7 @@ footer {
   <div class="hero-bg"></div>
   <div class="hero-content">
     <div class="hero-label">Futsal Player ─ Pivo</div>
-    <h1 class="hero-name">NAOYUKI<br>MAEKAWA</h1>
+    <h1 class="hero-name">NAOYUKI<br>NAOYUKI</h1>
     <p class="hero-name-jp">前川 尚志</p>
     <div class="hero-meta">
       <div>ボアルース長野</div>
@@ -1335,8 +1436,8 @@ footer {
   </div>
   <div class="gallery-grid reveal">
     <div class="g-item"><img src="https://i.postimg.cc/ydqPsr1M/IMG-3980.jpg" alt="前川尚志 ボアルース長野 フットサル選手" loading="lazy"></div>
-    <div class="g-item"><img src="https://i.postimg.cc/nz8kpwVL/IMG-3981.jpg" alt="前川尚志 ボアルース長野 フットサル選手" loading="lazy"></div>
-    <div class="g-item"><img src="https://i.postimg.cc/4dC5sF4d/IMG-3982.jpg" alt="前川尚志 ボアルース長野 フットサル選手" loading="lazy"></div>
+    <div class="g-item"><img src="https://i.postimg.cc/XYWnyQp5/IMG-4057.jpg" alt="前川尚志 ボアルース長野 フットサル選手" loading="lazy"></div>
+    <div class="g-item"><img src="https://i.postimg.cc/mgSB3CHD/IMG-4058.jpg" alt="前川尚志 ボアルース長野 フットサル選手" loading="lazy"></div>
   </div>
 </section>
 
@@ -1359,20 +1460,22 @@ footer {
     </div>
     <div class="sponsor-block-body">
       <div class="banner-slots">
+        <a href="https://www.instagram.com/jinwa.co.jp?igsh=MW0wbGs1eHYxbTNzdg%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="banner-slot banner-slot-linked">
+          <img src="https://i.postimg.cc/8zbNdM6c/IMG-4117.jpg" alt="スポンサー企業" loading="lazy">
+        </a>
         <div class="banner-slot">
-          <span class="banner-slot-label">BANNER SLOT</span>
-          <span class="banner-slot-size">企業バナー掲載枠</span>
+          <img src="https://i.postimg.cc/x1Q9btcM/IMG-4115.jpg" alt="スポンサー企業" loading="lazy">
         </div>
         <div class="banner-slot">
-          <span class="banner-slot-label">BANNER SLOT</span>
-          <span class="banner-slot-size">企業バナー掲載枠</span>
-        </div>
-        <div class="banner-slot">
-          <span class="banner-slot-label">BANNER SLOT</span>
-          <span class="banner-slot-size">企業バナー掲載枠</span>
+          <img src="https://i.postimg.cc/L8SmZNnj/IMG-4116.jpg" alt="スポンサー企業" loading="lazy">
         </div>
       </div>
       <p class="sponsor-block-note">掲載内容・条件については個別にご相談ください。</p>
+      <div class="dm-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        InstagramのDMでもお問い合わせを受け付けています →
+        <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">@maenao07</a>
+      </div>
       <button class="sponsor-contact-btn" onclick="openContactWithCategory('企業スポンサーについて')">
         個別相談・お問い合わせ
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
@@ -1418,9 +1521,11 @@ footer {
         個別相談・お問い合わせ
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
       </button>
-    </div>
-  </div>
-</section>
+      <div class="dm-note" style="margin-top:16px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        InstagramのDMでもお問い合わせを受け付けています →
+        <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">@maenao07</a>
+      </div>
 
 <!-- EVENTS -->
 <section id="events" class="section-padding" style="background: var(--black);">
@@ -1438,14 +1543,46 @@ footer {
         <li>詳細・開催日程は<span class="benefit-highlight">SNSにて告知</span></li>
       </ul>
     </div>
-    <div class="plan-card reveal">
+    <div class="plan-card reveal lesson-card">
       <div class="plan-number">02</div>
       <div class="plan-badge">PRIVATE LESSON</div>
       <div class="plan-price" style="font-size: 2rem;">個別レッスン</div>
-      <p class="plan-desc">前川尚志による個別フットサルレッスン。レベルや目的に合わせたマンツーマン指導を受けられます。</p>
-      <ul class="plan-benefits">
-        <li>詳細・お申し込みは<span class="benefit-highlight">お問い合わせ</span>より</li>
-      </ul>
+
+      <p class="plan-desc">前川尚志による個別レッスンです。事前にヒアリングを行い、レベルや目的に合わせたトレーニングメニューをご用意します。</p>
+
+      <div class="lesson-features">
+        <div class="lesson-feature">
+          <span class="lf-icon">👤</span>
+          <div>
+            <div class="lf-title">対象</div>
+            <div class="lf-body">お子様から大人まで、どなたでも受講可能</div>
+          </div>
+        </div>
+        <div class="lesson-feature">
+          <span class="lf-icon">⚽</span>
+          <div>
+            <div class="lf-title">内容</div>
+            <div class="lf-body">フットサル技術指導・運動不足解消トレーニングなど</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-price-block">
+        <div class="lesson-price-label">PRICE</div>
+        <div class="lesson-price-main">¥10,000<span class="lesson-price-unit"> / 60分</span></div>
+        <div class="lesson-price-note">＋交通費・場所代</div>
+        <div class="lesson-price-max">最大4名まで参加可能</div>
+        <div class="lesson-tip">🉐 4名で割り勘するとお得！</div>
+      </div>
+
+      <button class="sponsor-contact-btn" style="width:100%;justify-content:center;margin-top:4px;" onclick="openContactWithCategory('個別レッスンについて')">
+        お問い合わせ・DMはこちら
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+      </button>
+      <div class="dm-note" style="margin-top:12px;justify-content:center;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">@maenao07</a> のDMも受付中
+      </div>
     </div>
   </div>
 </section>
