@@ -371,8 +371,10 @@ header.scrolled {
 .hero-scroll {
   position: absolute;
   bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
   z-index: 3;
   display: flex;
   flex-direction: column;
@@ -433,9 +435,9 @@ section { position: relative; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(40px);
+  transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1),
+              transform 0.55s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal.visible {
   opacity: 1;
@@ -822,6 +824,20 @@ section { position: relative; }
 .sponsor-block-body {
   padding: 40px;
   background: var(--black);
+}
+/* sponsor-block内のplan-cardは枠なし・アニメなし（パフォーマンス改善） */
+.sponsor-block-body .plan-card {
+  border: none;
+  border-top: 2px solid var(--gray-dark);
+  border-radius: 0;
+  transition: none;
+  transform: none !important;
+  box-shadow: none !important;
+}
+.sponsor-block-body .plan-card:hover {
+  border-color: var(--red);
+  transform: none !important;
+  box-shadow: none !important;
 }
 .banner-slots {
   display: grid;
@@ -1225,10 +1241,12 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin: 20px 0;
-  padding: 20px;
+  margin: 20px -40px;
+  padding: 20px 40px;
   background: rgba(255,255,255,0.03);
-  border: 1px solid var(--gray-dark);
+  border-top: 1px solid var(--gray-dark);
+  border-bottom: 1px solid var(--gray-dark);
+  width: calc(100% + 80px);
 }
 .lesson-feature {
   display: flex;
@@ -1246,11 +1264,11 @@ footer {
 }
 .lf-body { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
 .lesson-price-block {
-  background: var(--black);
-  border: 1px solid var(--gray-dark);
+  background: rgba(230,57,70,0.05);
   border-left: 3px solid var(--red);
   padding: 20px 24px;
-  margin: 20px 0;
+  margin: 20px -40px 20px -40px;
+  width: calc(100% + 80px);
 }
 .lesson-price-label {
   font-family: var(--font-sub);
@@ -1291,7 +1309,7 @@ footer {
 @media (max-width: 768px) {
   header { padding: 16px 24px; }
   header.scrolled { padding: 10px 24px; }
-  .section-padding { padding: 80px 6%; }
+  .section-padding { padding: 80px 4%; }
 
   .hero-content { max-width: 100%; padding: 0 6%; }
 
@@ -1302,10 +1320,24 @@ footer {
     grid-template-rows: 300px 300px 300px;
   }
 
-  .sponsor-plan { grid-template-columns: 1fr !important; }
+  .sponsor-plan { grid-template-columns: 1fr !important; gap: 20px; }
+  .sponsor-plan .plan-card { padding: 32px 24px; }
+  .plan-number { font-size: 3rem; }
+  .lesson-features {
+    margin: 20px -24px;
+    padding: 20px 24px;
+    width: calc(100% + 48px);
+  }
+  .lesson-price-block {
+    margin: 20px -24px;
+    padding: 20px 24px;
+    width: calc(100% + 48px);
+  }
+  #events.section-padding { padding-left: 4%; padding-right: 4%; }
   .banner-slots { grid-template-columns: 1fr; }
   .sponsor-block-header { padding: 24px; }
   .sponsor-block-body { padding: 24px; }
+  .sponsor-plan .plan-card { padding: 32px 24px; }
   .profile-table-wrapper { grid-template-columns: 1fr; }
 
   .footer-top { flex-direction: column; gap: 30px; }
@@ -1364,7 +1396,7 @@ footer {
   <div class="hero-bg"></div>
   <div class="hero-content">
     <div class="hero-label">Futsal Player ─ Pivo</div>
-    <h1 class="hero-name">NAOYUKI<br>NAOYUKI</h1>
+    <h1 class="hero-name">NAOYUKI<br>MAEKAWA</h1>
     <p class="hero-name-jp">前川 尚志</p>
     <div class="hero-meta">
       <div>ボアルース長野</div>
@@ -1381,7 +1413,7 @@ footer {
 <section id="about" class="section-padding">
   <div class="reveal">
     <div class="section-label">01 — About</div>
-    <h2 class="section-title">WHO IS <span class="accent">MAEKAWA</span></h2>
+    <h2 class="section-title">WHO IS <span class="accent">NAOYUKI</span></h2>
   </div>
   <div class="about-grid">
     <div class="about-photo-area reveal">
@@ -1445,7 +1477,7 @@ footer {
 <section id="sponsor" class="section-padding">
   <div class="reveal">
     <div class="section-label">04 — Sponsor</div>
-    <h2 class="section-title">SUPPORT <span class="accent">MAEKAWA</span></h2>
+    <h2 class="section-title">SUPPORT <span class="accent">NAOYUKI</span></h2>
   </div>
   <div class="sponsor-intro reveal">
     <p>前川尚志の挑戦を、あなたの力で後押ししてください。応援いただいた方には、感謝の気持ちを込めて特典をお届けします。</p>
@@ -1546,7 +1578,6 @@ footer {
     <div class="plan-card reveal lesson-card">
       <div class="plan-number">02</div>
       <div class="plan-badge">PRIVATE LESSON</div>
-      <div class="plan-price" style="font-size: 2rem;">個別レッスン</div>
 
       <p class="plan-desc">前川尚志による個別レッスンです。事前にヒアリングを行い、レベルや目的に合わせたトレーニングメニューをご用意します。</p>
 
@@ -1741,12 +1772,15 @@ window.addEventListener('scroll', () => {
   headerEl.classList.toggle('scrolled', window.scrollY > 80);
 });
 
-// Scroll Reveal
+// Scroll Reveal - 最適化版
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target); // 一度表示したら監視解除
+    }
   });
-}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' }); // 閾値を下げて早めに発火
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
