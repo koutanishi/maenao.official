@@ -24,7 +24,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="profile:first_name" content="尚志">
 <meta property="profile:last_name" content="前川">
-<meta property="profile:username" content="maenao07">
+<meta property="profile:username" content="maenao.11">
 
 <!-- ===== Twitter Card ===== -->
 <meta name="twitter:card" content="summary_large_image">
@@ -57,7 +57,7 @@
     "sport": "フットサル"
   },
   "sameAs": [
-    "https://www.instagram.com/maenao07",
+    "https://www.instagram.com/maenao.11",
     "https://twitter.com/maenao07"
   ]
 }
@@ -236,6 +236,8 @@ header.scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 100px 20px 40px;
+  overflow-y: auto;
   clip-path: circle(0% at calc(100% - 58px) 32px);
   transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
 }
@@ -243,14 +245,14 @@ header.scrolled {
   clip-path: circle(150% at calc(100% - 58px) 32px);
 }
 
-.nav-overlay nav { text-align: center; }
+.nav-overlay nav { text-align: center; margin: auto; }
 .nav-overlay nav a {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-size: clamp(1.6rem, 5vw, 4.5rem);
   letter-spacing: 6px;
   color: var(--gray-dark);
-  padding: 10px 0;
+  padding: 8px 0;
   transition: color 0.3s, transform 0.3s, letter-spacing 0.3s;
   position: relative;
 }
@@ -1408,10 +1410,9 @@ footer {
     <a href="#events" class="nav-link"><span class="nav-number">04</span>EVENTS</a>
     <a href="#gallery" class="nav-link"><span class="nav-number">05</span>GALLERY</a>
     <a href="#profile" class="nav-link"><span class="nav-number">06</span>PROFILE</a>
-    <a href="fanclub.html" class="nav-link"><span class="nav-number">07</span>FAN CLUB</a>
-    <a href="#" class="nav-link" onclick="openContact();return false;"><span class="nav-number">08</span>CONTACT</a>
+    <a href="#" class="nav-link" onclick="openContact();return false;"><span class="nav-number">07</span>CONTACT</a>
     <div class="nav-sns">
-      <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">INSTAGRAM</a>
+      <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">INSTAGRAM</a>
       <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X / TWITTER</a>
     </div>
   </nav>
@@ -1504,21 +1505,21 @@ footer {
     <div class="sponsor-block-body">
       <div class="sponsor-supporting-label">サポートして頂いている企業様</div>
       <div class="banner-slots">
-        <a href="https://www.instagram.com/jinwa.co.jp?igsh=MW0wbGs1eHYxbTNzdg%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="banner-slot banner-slot-linked">
-          <img src="https://i.postimg.cc/8zbNdM6c/IMG-4117.jpg" alt="スポンサー企業" loading="eager">
+        <a href="https://e-nankai.co.jp/" target="_blank" rel="noopener" class="banner-slot banner-slot-linked">
+          <img src="https://i.postimg.cc/x1Q9btcM/IMG-4115.jpg" alt="南開工業株式会社" loading="eager">
         </a>
-        <div class="banner-slot">
-          <img src="https://i.postimg.cc/x1Q9btcM/IMG-4115.jpg" alt="スポンサー企業" loading="eager">
-        </div>
-        <div class="banner-slot">
-          <img src="https://i.postimg.cc/L8SmZNnj/IMG-4116.jpg" alt="スポンサー企業" loading="eager">
-        </div>
+        <a href="https://www.mf-nal.com" target="_blank" rel="noopener" class="banner-slot banner-slot-linked">
+          <img src="https://i.postimg.cc/L8SmZNnj/IMG-4116.jpg" alt="株式会社エヌ・エー・エル" loading="eager">
+        </a>
+        <a href="https://www.instagram.com/jinwa.co.jp?igsh=MW0wbGs1eHYxbTNzdg%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="banner-slot banner-slot-linked">
+          <img src="https://i.postimg.cc/8zbNdM6c/IMG-4117.jpg" alt="有限会社人和" loading="eager">
+        </a>
       </div>
       <p class="sponsor-block-note">掲載内容・条件については個別にご相談ください。</p>
       <div class="dm-note">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         InstagramのDMでもお問い合わせを受け付けています →
-        <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">@maenao07</a>
+        <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">@maenao.11</a>
       </div>
       <button class="sponsor-contact-btn" onclick="openContactWithCategory('企業スポンサーについて')">
         個別相談・お問い合わせ
@@ -1535,17 +1536,9 @@ footer {
       <p class="sponsor-block-sub">個人で応援していただける方</p>
     </div>
     <div class="sponsor-block-body">
-      <div class="sponsor-plan" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 32px;">
+      <div class="sponsor-plan" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 32px;">
         <div class="plan-card">
           <div class="plan-number">01</div>
-          <button class="plan-badge plan-badge-btn" onclick="openContactWithCategory('月額会員について')">MONTHLY MEMBER</button>
-          <p class="plan-desc">月額制で前川尚志の活動を継続的にサポートいただけます。</p>
-          <ul class="plan-benefits">
-            <li><span class="benefit-highlight">個別相談</span></li>
-          </ul>
-        </div>
-        <div class="plan-card">
-          <div class="plan-number">02</div>
           <button class="plan-badge plan-badge-btn" onclick="openContactWithCategory('靴提供スポンサーについて')">SHOES SPONSOR</button>
           <p class="plan-desc">シューズをご提供いただいたスポンサー様への特典です。</p>
           <ul class="plan-benefits">
@@ -1553,7 +1546,7 @@ footer {
           </ul>
         </div>
         <div class="plan-card">
-          <div class="plan-number">03</div>
+          <div class="plan-number">02</div>
           <button class="plan-badge plan-badge-btn" onclick="openContactWithCategory('物品サポートについて')">GOODS SUPPORT</button>
           <p class="plan-desc">活動に必要な物品をご提供いただけるスポンサー様を募集しています。</p>
           <ul class="plan-benefits">
@@ -1568,7 +1561,7 @@ footer {
       <div class="dm-note" style="margin-top:16px;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         InstagramのDMでもお問い合わせを受け付けています →
-        <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">@maenao07</a>
+        <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">@maenao.11</a>
       </div>
 
 <!-- EVENTS -->
@@ -1625,7 +1618,7 @@ footer {
       </button>
       <div class="dm-note" style="margin-top:12px;justify-content:center;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">@maenao07</a> のDMも受付中
+        <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">@maenao.11</a> のDMも受付中
       </div>
     </div>
   </div>
@@ -1675,7 +1668,7 @@ footer {
       <p>前川尚志 ─ Futsal Player</p>
     </div>
     <div class="footer-sns">
-      <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">IG</a>
+      <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">IG</a>
       <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X</a>
     </div>
   </div>
@@ -1703,7 +1696,7 @@ footer {
         <h2 class="contact-title">GET IN <span class="accent">TOUCH</span></h2>
         <p class="contact-desc">スポンサーに関するお問い合わせ、取材依頼、その他ご質問がございましたら、お気軽にご連絡ください。内容を確認のうえ、折り返しご連絡いたします。</p>
         <div class="contact-sns-links">
-          <a href="https://instagram.com/maenao07" target="_blank" rel="noopener">IG</a>
+          <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">IG</a>
           <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X</a>
         </div>
       </div>
@@ -1728,7 +1721,6 @@ footer {
               <option value="">選択してください</option>
               <option>企業スポンサーについて</option>
               <option>個人スポンサーについて</option>
-              <option>月額会員について</option>
               <option>靴提供スポンサーについて</option>
               <option>物品サポートについて</option>
               <option>ゲーム会について</option>
@@ -1849,6 +1841,8 @@ if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = contactForm.querySelector('.submit-btn');
+    const originalText = btn.dataset.originalText || btn.textContent;
+    btn.dataset.originalText = originalText;
     btn.textContent = 'SENDING...';
     btn.disabled = true;
     try {
@@ -1861,6 +1855,12 @@ if (contactForm) {
         contactForm.reset();
         document.getElementById('formSuccess').style.display = 'block';
         btn.textContent = 'SENT ✓';
+        // 再送信できるよう少し待ってから元の状態に戻す
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          document.getElementById('formSuccess').style.display = 'none';
+        }, 3000);
       } else {
         btn.textContent = 'ERROR — RETRY';
         btn.disabled = false;
