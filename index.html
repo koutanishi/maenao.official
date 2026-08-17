@@ -71,9 +71,6 @@
 <!-- ヒーロー画像の優先読み込み -->
 <link rel="preload" as="image" href="https://i.postimg.cc/RFrR4bCZ/IMG-3979.jpg">
 <style>
-/* ============================
-   CSS VARIABLES & RESET
-   ============================ */
 :root {
   --black: #0a0a0a;
   --black-light: #141414;
@@ -112,9 +109,6 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
-/* ============================
-   LOADING SCREEN
-   ============================ */
 #loader {
   position: fixed;
   inset: 0;
@@ -126,10 +120,7 @@ a { color: inherit; text-decoration: none; }
   flex-direction: column;
   transition: opacity 0.6s, visibility 0.6s;
 }
-#loader.hide {
-  opacity: 0;
-  visibility: hidden;
-}
+#loader.hide { opacity: 0; visibility: hidden; }
 #loader .loader-text {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 8vw, 5rem);
@@ -154,9 +145,6 @@ a { color: inherit; text-decoration: none; }
 }
 @keyframes loaderFill { to { width: 100%; } }
 
-/* ============================
-   NOISE OVERLAY
-   ============================ */
 body::before {
   content: '';
   position: fixed;
@@ -168,9 +156,6 @@ body::before {
   background-repeat: repeat;
 }
 
-/* ============================
-   HEADER / NAVBAR
-   ============================ */
 header {
   position: fixed;
   top: 0; left: 0;
@@ -199,7 +184,6 @@ header.scrolled {
 }
 .logo span { color: var(--red); }
 
-/* Hamburger */
 .hamburger {
   width: 36px;
   height: 24px;
@@ -227,7 +211,6 @@ header.scrolled {
   bottom: 50%; transform: translateY(50%) rotate(-45deg); background: var(--red);
 }
 
-/* Fullscreen Nav Overlay */
 .nav-overlay {
   position: fixed;
   inset: 0;
@@ -241,9 +224,7 @@ header.scrolled {
   clip-path: circle(0% at calc(100% - 58px) 32px);
   transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
 }
-.nav-overlay.open {
-  clip-path: circle(150% at calc(100% - 58px) 32px);
-}
+.nav-overlay.open { clip-path: circle(150% at calc(100% - 58px) 32px); }
 
 .nav-overlay nav { text-align: center; margin: auto; }
 .nav-overlay nav a {
@@ -256,11 +237,7 @@ header.scrolled {
   transition: color 0.3s, transform 0.3s, letter-spacing 0.3s;
   position: relative;
 }
-.nav-overlay nav a:hover {
-  color: var(--red);
-  transform: translateX(10px);
-  letter-spacing: 12px;
-}
+.nav-overlay nav a:hover { color: var(--red); transform: translateX(10px); letter-spacing: 12px; }
 .nav-overlay nav a::after {
   content: '';
   position: absolute;
@@ -280,12 +257,7 @@ header.scrolled {
   vertical-align: super;
 }
 
-.nav-overlay .nav-sns {
-  margin-top: 50px;
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-}
+.nav-overlay .nav-sns { margin-top: 50px; display: flex; gap: 30px; justify-content: center; }
 .nav-overlay .nav-sns a {
   font-family: var(--font-sub);
   font-size: 0.9rem;
@@ -295,9 +267,6 @@ header.scrolled {
 }
 .nav-overlay .nav-sns a:hover { color: var(--red); }
 
-/* ============================
-   HERO SECTION
-   ============================ */
 .hero {
   height: 100vh;
   position: relative;
@@ -320,12 +289,7 @@ header.scrolled {
   background: linear-gradient(to bottom, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.9) 100%);
 }
 
-.hero-content {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  padding: 0 8%;
-}
+.hero-content { position: relative; z-index: 3; text-align: center; padding: 0 8%; }
 
 .hero-label {
   font-family: var(--font-sub);
@@ -406,14 +370,8 @@ header.scrolled {
   background: var(--red);
   animation: scrollDown 1.8s ease-in-out infinite;
 }
-@keyframes scrollDown {
-  0% { top: -100%; }
-  100% { top: 100%; }
-}
+@keyframes scrollDown { 0% { top: -100%; } 100% { top: 100%; } }
 
-/* ============================
-   SECTION COMMONS
-   ============================ */
 section { position: relative; }
 
 .section-padding { padding: 120px 8%; }
@@ -442,25 +400,11 @@ section { position: relative; }
   transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1),
               transform 0.55s cubic-bezier(0.16,1,0.3,1);
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ============================
-   ABOUT SECTION
-   ============================ */
-#about {
-  background: var(--black-light);
-  border-top: 1px solid var(--gray-dark);
-}
+#about { background: var(--black-light); border-top: 1px solid var(--gray-dark); }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 
 .about-photo-area { position: relative; }
 .about-photo-placeholder {
@@ -471,11 +415,7 @@ section { position: relative; }
   position: relative;
   overflow: hidden;
 }
-.about-photo-placeholder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.about-photo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
 .about-photo-placeholder::before {
   content: '';
   position: absolute;
@@ -493,23 +433,12 @@ section { position: relative; }
   z-index: -1;
 }
 
-.about-text p {
-  font-size: 0.95rem;
-  line-height: 2;
-  color: var(--gray);
-  margin-bottom: 20px;
-}
+.about-text p { font-size: 0.95rem; line-height: 2; color: var(--gray); margin-bottom: 20px; }
 .about-text strong { color: var(--white); font-weight: 700; }
 
-/* ============================
-   CAREER SECTION
-   ============================ */
 #career { background: var(--black); }
 
-.timeline {
-  position: relative;
-  padding-left: 60px;
-}
+.timeline { position: relative; padding-left: 60px; }
 .timeline::before {
   content: '';
   position: absolute;
@@ -570,16 +499,8 @@ section { position: relative; }
   color: var(--white);
 }
 
-/* ============================
-   GALLERY PLACEHOLDER
-   ============================ */
 #gallery { border-top: 1px solid var(--gray-dark); }
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 400px;
-  gap: 8px;
-}
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 400px; gap: 8px; }
 .gallery-grid .g-item {
   background: var(--black-card);
   border: 1px solid var(--gray-dark);
@@ -593,9 +514,7 @@ section { position: relative; }
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.gallery-grid .g-item:hover img {
-  transform: scale(1.05);
-}
+.gallery-grid .g-item:hover img { transform: scale(1.05); }
 .gallery-grid .g-item:hover { border-color: var(--red); }
 .gallery-grid .g-item:hover::after { opacity: 1; }
 .gallery-grid .g-item::after {
@@ -607,30 +526,12 @@ section { position: relative; }
   transition: opacity 0.4s;
 }
 
-/* ============================
-   SPONSOR SECTION
-   ============================ */
-#sponsor {
-  background: var(--black-light);
-  border-top: 1px solid var(--gray-dark);
-}
+#sponsor { background: var(--black-light); border-top: 1px solid var(--gray-dark); }
 
-.sponsor-intro {
-  max-width: 700px;
-  margin-bottom: 60px;
-}
-.sponsor-intro p {
-  font-size: 0.95rem;
-  line-height: 2;
-  color: var(--gray);
-}
+.sponsor-intro { max-width: 700px; margin-bottom: 60px; }
+.sponsor-intro p { font-size: 0.95rem; line-height: 2; color: var(--gray); }
 
-.sponsor-plan {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
+.sponsor-plan { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
 
 .plan-card {
   background: var(--black);
@@ -686,23 +587,9 @@ section { position: relative; }
   letter-spacing: 2px;
   margin-bottom: 6px;
 }
-.plan-card .plan-price .yen {
-  font-size: 1.3rem;
-  color: var(--gray);
-  margin-right: 4px;
-}
-.plan-card .plan-price .unit {
-  font-size: 0.9rem;
-  color: var(--gray);
-  margin-left: 4px;
-  letter-spacing: 1px;
-}
-.plan-card .plan-desc {
-  font-size: 0.85rem;
-  color: var(--gray);
-  margin-bottom: 30px;
-  line-height: 1.8;
-}
+.plan-card .plan-price .yen { font-size: 1.3rem; color: var(--gray); margin-right: 4px; }
+.plan-card .plan-price .unit { font-size: 0.9rem; color: var(--gray); margin-left: 4px; letter-spacing: 1px; }
+.plan-card .plan-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 30px; line-height: 1.8; }
 
 .plan-benefits { list-style: none; }
 .plan-benefits li {
@@ -721,15 +608,9 @@ section { position: relative; }
   left: 0;
   top: 15px;
 }
-.plan-benefits li .benefit-highlight {
-  color: var(--white);
-  font-weight: 700;
-}
+.plan-benefits li .benefit-highlight { color: var(--white); font-weight: 700; }
 
-.sponsor-cta {
-  text-align: center;
-  margin-top: 60px;
-}
+.sponsor-cta { text-align: center; margin-top: 60px; }
 
 .contact-btn {
   display: inline-block;
@@ -756,24 +637,11 @@ section { position: relative; }
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: -1;
 }
-.contact-btn:hover {
-  color: var(--white);
-  transform: scale(1.03);
-  box-shadow: 0 0 40px var(--red-glow);
-}
-.contact-btn:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+.contact-btn:hover { color: var(--white); transform: scale(1.03); box-shadow: 0 0 40px var(--red-glow); }
+.contact-btn:hover::before { transform: scaleX(1); transform-origin: left; }
 
-/* ============================
-   PROFILE TABLE
-   ============================ */
 #profile { border-top: 1px solid var(--gray-dark); }
-.profile-table-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
+.profile-table-wrapper { display: grid; grid-template-columns: 1fr 1fr; }
 .profile-row {
   display: flex;
   border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -791,19 +659,9 @@ section { position: relative; }
   text-transform: uppercase;
   border-right: 1px solid rgba(255,255,255,0.05);
 }
-.profile-row .row-value {
-  padding: 16px 20px;
-  font-size: 0.9rem;
-  color: var(--gray);
-}
+.profile-row .row-value { padding: 16px 20px; font-size: 0.9rem; color: var(--gray); }
 
-/* ============================
-   SPONSOR BLOCKS
-   ============================ */
-.sponsor-block {
-  border: 1px solid var(--gray-dark);
-  overflow: hidden;
-}
+.sponsor-block { border: 1px solid var(--gray-dark); overflow: hidden; }
 .sponsor-block-header {
   background: var(--black-card);
   padding: 32px 40px;
@@ -817,13 +675,7 @@ section { position: relative; }
   height: 3px;
   background: linear-gradient(90deg, var(--red), var(--red-dark));
 }
-.sponsor-block-label {
-  font-family: var(--font-sub);
-  font-size: 0.7rem;
-  letter-spacing: 5px;
-  color: var(--red);
-  margin-bottom: 8px;
-}
+.sponsor-block-label { font-family: var(--font-sub); font-size: 0.7rem; letter-spacing: 5px; color: var(--red); margin-bottom: 8px; }
 .sponsor-block-title {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 4vw, 2.8rem);
@@ -831,16 +683,8 @@ section { position: relative; }
   color: var(--white);
   margin-bottom: 6px;
 }
-.sponsor-block-sub {
-  font-size: 0.85rem;
-  color: var(--gray);
-  letter-spacing: 1px;
-}
-.sponsor-block-body {
-  padding: 40px;
-  background: var(--black);
-}
-/* sponsor-block内のplan-cardは枠なし・アニメなし（パフォーマンス改善） */
+.sponsor-block-sub { font-size: 0.85rem; color: var(--gray); letter-spacing: 1px; }
+.sponsor-block-body { padding: 40px; background: var(--black); }
 .sponsor-block-body .plan-card {
   border: none;
   border-top: 2px solid var(--gray-dark);
@@ -849,71 +693,8 @@ section { position: relative; }
   transform: none !important;
   box-shadow: none !important;
 }
-.sponsor-block-body .plan-card:hover {
-  border-color: var(--red);
-  transform: none !important;
-  box-shadow: none !important;
-}
-.sponsor-supporting-label {
-  font-family: var(--font-sub);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  color: var(--gray);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--gray-dark);
-}
+.sponsor-block-body .plan-card:hover { border-color: var(--red); transform: none !important; box-shadow: none !important; }
 
-.banner-slots {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 30px;
-  width: 100%;
-}
-.banner-slot {
-  aspect-ratio: 16/9;
-  width: 100%;
-  border: 1px solid var(--gray-dark);
-  background: var(--black-card);
-  overflow: hidden;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  display: block;
-  contain: layout paint;
-}
-.banner-slot img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.banner-slot:hover {
-  border-color: var(--red);
-  box-shadow: 0 8px 30px rgba(230,57,70,0.15);
-}
-.banner-slot:hover img { transform: scale(1.04); }
-.banner-slot-linked {
-  cursor: pointer;
-  position: relative;
-}
-.banner-slot-linked::after {
-  content: '↗';
-  position: absolute;
-  top: 8px; right: 8px;
-  background: var(--red);
-  color: var(--white);
-  font-size: 12px;
-  width: 24px; height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s;
-  border-radius: 2px;
-}
-.banner-slot-linked:hover::after { opacity: 1; }
 .dm-note {
   display: flex;
   align-items: center;
@@ -924,24 +705,11 @@ section { position: relative; }
   flex-wrap: wrap;
   margin-bottom: 28px;
 }
-.dm-note svg {
-  width: 16px; height: 16px;
-  stroke: var(--red);
-  flex-shrink: 0;
-}
-.dm-note a {
-  color: var(--red);
-  font-weight: 700;
-  transition: opacity 0.3s;
-}
+.dm-note svg { width: 16px; height: 16px; stroke: var(--red); flex-shrink: 0; }
+.dm-note a { color: var(--red); font-weight: 700; transition: opacity 0.3s; }
 .dm-note a:hover { opacity: 0.7; }
 
-.sponsor-block-note {
-  font-size: 0.85rem;
-  color: var(--gray);
-  margin-bottom: 28px;
-  line-height: 1.8;
-}
+.sponsor-block-note { font-size: 0.85rem; color: var(--gray); margin-bottom: 28px; line-height: 1.8; }
 .sponsor-contact-btn {
   display: inline-flex;
   align-items: center;
@@ -957,20 +725,10 @@ section { position: relative; }
   overflow: hidden;
   transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
 }
-.sponsor-contact-btn svg {
-  width: 18px; height: 18px;
-  transition: transform 0.3s;
-}
-.sponsor-contact-btn:hover {
-  background: var(--red-dark);
-  transform: translateX(4px);
-  box-shadow: 0 0 30px var(--red-glow);
-}
+.sponsor-contact-btn svg { width: 18px; height: 18px; transition: transform 0.3s; }
+.sponsor-contact-btn:hover { background: var(--red-dark); transform: translateX(4px); box-shadow: 0 0 30px var(--red-glow); }
 .sponsor-contact-btn:hover svg { transform: translateX(4px); }
 
-/* ============================
-   CONTACT OVERLAY (フルスクリーン)
-   ============================ */
 #contactOverlay {
   position: fixed;
   inset: 0;
@@ -982,9 +740,7 @@ section { position: relative; }
   transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
   overflow-y: auto;
 }
-#contactOverlay.open {
-  transform: translateY(0);
-}
+#contactOverlay.open { transform: translateY(0); }
 
 .contact-header {
   padding: 24px 40px;
@@ -1009,19 +765,9 @@ section { position: relative; }
   transition: color 0.3s;
 }
 .back-btn:hover { color: var(--red); }
-.back-btn svg {
-  width: 18px; height: 18px;
-  stroke: currentColor;
-  fill: none; stroke-width: 2;
-}
+.back-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-.contact-main {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 8%;
-}
+.contact-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 8%; }
 
 .contact-wrapper {
   width: 100%;
@@ -1034,14 +780,7 @@ section { position: relative; }
 
 .contact-info { padding-top: 20px; }
 
-.contact-label {
-  font-family: var(--font-sub);
-  font-size: 0.75rem;
-  letter-spacing: 6px;
-  color: var(--red);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
+.contact-label { font-family: var(--font-sub); font-size: 0.75rem; letter-spacing: 6px; color: var(--red); text-transform: uppercase; margin-bottom: 12px; }
 
 .contact-title {
   font-family: var(--font-display);
@@ -1052,17 +791,9 @@ section { position: relative; }
 }
 .contact-title .accent { color: var(--red); }
 
-.contact-desc {
-  font-size: 0.9rem;
-  line-height: 2;
-  color: var(--gray);
-  margin-bottom: 40px;
-}
+.contact-desc { font-size: 0.9rem; line-height: 2; color: var(--gray); margin-bottom: 40px; }
 
-.contact-sns-links {
-  display: flex;
-  gap: 16px;
-}
+.contact-sns-links { display: flex; gap: 16px; }
 .contact-sns-links a {
   display: flex;
   align-items: center;
@@ -1097,12 +828,7 @@ section { position: relative; }
   background: linear-gradient(90deg, var(--red), var(--red-dark));
 }
 
-.form-title {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  letter-spacing: 4px;
-  margin-bottom: 36px;
-}
+.form-title { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 4px; margin-bottom: 36px; }
 
 .form-group { margin-bottom: 24px; }
 .form-group label {
@@ -1114,11 +840,7 @@ section { position: relative; }
   margin-bottom: 8px;
   text-transform: uppercase;
 }
-.form-group .required {
-  color: var(--red);
-  font-size: 0.65rem;
-  margin-left: 6px;
-}
+.form-group .required { color: var(--red); font-size: 0.65rem; margin-left: 6px; }
 .form-group input,
 .form-group textarea,
 .form-group select {
@@ -1134,10 +856,7 @@ section { position: relative; }
 }
 .form-group input:focus,
 .form-group textarea:focus,
-.form-group select:focus {
-  border-color: var(--red);
-  box-shadow: 0 0 20px rgba(230, 57, 70, 0.15);
-}
+.form-group select:focus { border-color: var(--red); box-shadow: 0 0 20px rgba(230, 57, 70, 0.15); }
 .form-group textarea { height: 140px; resize: vertical; }
 .form-group select {
   cursor: pointer;
@@ -1175,52 +894,18 @@ section { position: relative; }
 }
 .submit-btn:hover::after { transform: translateX(100%); }
 
-.contact-footer {
-  padding: 20px 40px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  text-align: center;
-  flex-shrink: 0;
-}
-.contact-footer p {
-  font-size: 0.7rem;
-  color: var(--gray-dark);
-  letter-spacing: 2px;
-  font-family: var(--font-sub);
-}
+.contact-footer { padding: 20px 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; flex-shrink: 0; }
+.contact-footer p { font-size: 0.7rem; color: var(--gray-dark); letter-spacing: 2px; font-family: var(--font-sub); }
 
-/* ============================
-   FOOTER
-   ============================ */
-footer {
-  background: var(--black);
-  border-top: 1px solid var(--gray-dark);
-  padding: 80px 8% 40px;
-}
+footer { background: var(--black); border-top: 1px solid var(--gray-dark); padding: 80px 8% 40px; }
 
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin-bottom: 60px;
-}
+.footer-top { display: flex; justify-content: space-between; align-items: start; margin-bottom: 60px; }
 
-.footer-brand .footer-logo {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  letter-spacing: 4px;
-  margin-bottom: 12px;
-}
+.footer-brand .footer-logo { font-family: var(--font-display); font-size: 2rem; letter-spacing: 4px; margin-bottom: 12px; }
 .footer-brand .footer-logo span { color: var(--red); }
-.footer-brand p {
-  font-size: 0.8rem;
-  color: var(--gray);
-  letter-spacing: 1px;
-}
+.footer-brand p { font-size: 0.8rem; color: var(--gray); letter-spacing: 1px; }
 
-.footer-sns {
-  display: flex;
-  gap: 20px;
-}
+.footer-sns { display: flex; gap: 20px; }
 .footer-sns a {
   display: flex;
   align-items: center;
@@ -1247,25 +932,10 @@ footer {
   padding-top: 30px;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
-.footer-bottom p {
-  font-size: 0.7rem;
-  color: var(--gray-dark);
-  letter-spacing: 2px;
-  font-family: var(--font-sub);
-}
+.footer-bottom p { font-size: 0.7rem; color: var(--gray-dark); letter-spacing: 2px; font-family: var(--font-sub); }
 
-/* ============================
-   ANIMATIONS
-   ============================ */
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ============================
-   RESPONSIVE
-   ============================ */
-/* Lesson card */
 .lesson-features {
   display: flex;
   flex-direction: column;
@@ -1277,11 +947,7 @@ footer {
   border-bottom: 1px solid var(--gray-dark);
   width: calc(100% + 80px);
 }
-.lesson-feature {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
+.lesson-feature { display: flex; align-items: flex-start; gap: 12px; }
 .lf-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
 .lf-title {
   font-family: var(--font-sub);
@@ -1344,29 +1010,16 @@ footer {
 
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
 
-  .gallery-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: 300px 300px 300px;
-  }
+  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: 300px 300px 300px; }
 
   .sponsor-plan { grid-template-columns: 1fr !important; gap: 20px; }
   .sponsor-plan .plan-card { padding: 32px 24px; }
   .plan-number { font-size: 3rem; }
-  .lesson-features {
-    margin: 20px -24px;
-    padding: 20px 24px;
-    width: calc(100% + 48px);
-  }
-  .lesson-price-block {
-    margin: 20px -24px;
-    padding: 20px 24px;
-    width: calc(100% + 48px);
-  }
+  .lesson-features { margin: 20px -24px; padding: 20px 24px; width: calc(100% + 48px); }
+  .lesson-price-block { margin: 20px -24px; padding: 20px 24px; width: calc(100% + 48px); }
   #events.section-padding { padding-left: 4%; padding-right: 4%; }
-  .banner-slots { grid-template-columns: 1fr; }
   .sponsor-block-header { padding: 24px; }
   .sponsor-block-body { padding: 24px; }
-  .sponsor-plan .plan-card { padding: 32px 24px; }
   .profile-table-wrapper { grid-template-columns: 1fr; }
 
   .footer-top { flex-direction: column; gap: 30px; }
@@ -1387,13 +1040,11 @@ footer {
 </head>
 <body>
 
-<!-- LOADING SCREEN -->
 <div id="loader">
   <div class="loader-text" style="font-size:clamp(1.5rem,5vw,3rem);letter-spacing:4px;">NAOYUKI MAEKAWA</div>
   <div class="loader-bar"></div>
 </div>
 
-<!-- HEADER -->
 <header id="header">
   <a href="#top" class="logo" style="font-size:1.1rem;letter-spacing:2px;">NAOYUKI <span>MAEKAWA</span></a>
   <div class="hamburger" id="hamburger" aria-label="メニューを開く">
@@ -1401,7 +1052,6 @@ footer {
   </div>
 </header>
 
-<!-- NAV OVERLAY -->
 <div class="nav-overlay" id="navOverlay">
   <nav>
     <a href="#about" class="nav-link"><span class="nav-number">01</span>ABOUT</a>
@@ -1418,7 +1068,6 @@ footer {
   </nav>
 </div>
 
-<!-- HERO -->
 <main id="main-content">
 <section class="hero" id="top">
   <div class="hero-bg"></div>
@@ -1437,7 +1086,6 @@ footer {
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="section-padding">
   <div class="reveal">
     <div class="section-label">01 — About</div>
@@ -1460,7 +1108,6 @@ footer {
   </div>
 </section>
 
-<!-- CAREER -->
 <section id="career" class="section-padding">
   <div class="reveal">
     <div class="section-label">02 — Career</div>
@@ -1488,14 +1135,12 @@ footer {
   </div>
 </section>
 
-<!-- SPONSOR -->
 <section id="sponsor" class="section-padding">
   <div class="reveal">
     <div class="section-label">03 — Sponsor</div>
     <h2 class="section-title" style="margin-bottom: 0;">SUPPORT <span class="accent">NAOYUKI</span></h2>
   </div>
 
-  <!-- 企業スポンサー -->
   <div class="sponsor-block reveal">
     <div class="sponsor-block-header">
       <div class="sponsor-block-label">CORPORATE</div>
@@ -1503,18 +1148,6 @@ footer {
       <p class="sponsor-block-sub">前川尚志の挑戦を、一緒に支えてくださる企業様を募集しております。サポートの形は決まったものではなく、企業様とご相談しながら作っていきたいと考えています。ご興味をお持ちいただけましたら、DMまたはお問い合わせよりお気軽にご連絡ください。</p>
     </div>
     <div class="sponsor-block-body">
-      <div class="sponsor-supporting-label">サポートして頂いている企業様</div>
-      <div class="banner-slots">
-        <a href="https://e-nankai.co.jp/" target="_blank" rel="noopener" class="banner-slot banner-slot-linked">
-          <img src="https://i.postimg.cc/x1Q9btcM/IMG-4115.jpg" alt="南開工業株式会社" loading="eager">
-        </a>
-        <a href="https://www.mf-nal.com" target="_blank" rel="noopener" class="banner-slot banner-slot-linked">
-          <img src="https://i.postimg.cc/SRYcCCtP/IMG-4476.jpg" alt="株式会社エヌ・エー・エル" loading="eager">
-        </a>
-        <a href="https://www.instagram.com/jinwa.co.jp?igsh=MW0wbGs1eHYxbTNzdg%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="banner-slot banner-slot-linked">
-          <img src="https://i.postimg.cc/8zbNdM6c/IMG-4117.jpg" alt="有限会社人和" loading="eager">
-        </a>
-      </div>
       <p class="sponsor-block-note">掲載内容・条件については個別にご相談ください。</p>
       <div class="dm-note">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -1528,7 +1161,6 @@ footer {
     </div>
   </div>
 
-  <!-- 個人スポンサー -->
   <div class="sponsor-block reveal" style="margin-top: 40px;">
     <div class="sponsor-block-header">
       <div class="sponsor-block-label">PERSONAL</div>
@@ -1563,8 +1195,10 @@ footer {
         InstagramのDMでもお問い合わせを受け付けています →
         <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">@maenao.11</a>
       </div>
+    </div>
+  </div>
+</section>
 
-<!-- EVENTS -->
 <section id="events" class="section-padding" style="background: var(--black);">
   <div class="reveal">
     <div class="section-label">04 — Events</div>
@@ -1624,7 +1258,6 @@ footer {
   </div>
 </section>
 
-<!-- GALLERY -->
 <section id="gallery" class="section-padding">
   <div class="reveal">
     <div class="section-label">05 — Gallery</div>
@@ -1637,7 +1270,6 @@ footer {
   </div>
 </section>
 
-<!-- PROFILE -->
 <section id="profile" class="section-padding">
   <div class="reveal">
     <div class="section-label">06 — Profile</div>
@@ -1678,9 +1310,6 @@ footer {
   </div>
 </footer>
 
-<!-- ============================
-     CONTACT OVERLAY (別画面風)
-     ============================ -->
 <div id="contactOverlay">
   <div class="contact-header">
     <div class="logo">MAE<span>NAO</span></div>
@@ -1746,14 +1375,11 @@ footer {
   </div>
 </div>
 
-<!-- SCRIPTS -->
 <script>
-// Loader
 window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('loader').classList.add('hide'), 2000);
 });
 
-// Hamburger Menu
 const hamburger = document.getElementById('hamburger');
 const navOverlay = document.getElementById('navOverlay');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -1772,25 +1398,22 @@ navLinks.forEach(link => {
   });
 });
 
-// Header scroll
 const headerEl = document.getElementById('header');
 window.addEventListener('scroll', () => {
   headerEl.classList.toggle('scrolled', window.scrollY > 80);
 });
 
-// Scroll Reveal - 最適化版
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target); // 一度表示したら監視解除
+      revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' }); // 閾値を下げて早めに発火
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Timeline stagger animation
 document.querySelectorAll('.timeline-item').forEach((item, i) => {
   item.style.opacity = '0';
   item.style.transform = 'translateX(-30px)';
@@ -1808,7 +1431,6 @@ document.querySelectorAll('.timeline-item').forEach((item, i) => {
   obs.observe(item);
 });
 
-// Contact Overlay
 function openContact() {
   document.getElementById('contactOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1816,7 +1438,6 @@ function openContact() {
 
 function openContactWithCategory(category) {
   openContact();
-  // カテゴリを自動選択
   setTimeout(() => {
     const select = document.querySelector('#contactForm select[name="category"]');
     if (select) {
@@ -1835,7 +1456,6 @@ function closeContact() {
   document.body.style.overflow = '';
 }
 
-// Formspree async submit
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
@@ -1855,7 +1475,6 @@ if (contactForm) {
         contactForm.reset();
         document.getElementById('formSuccess').style.display = 'block';
         btn.textContent = 'SENT ✓';
-        // 再送信できるよう少し待ってから元の状態に戻す
         setTimeout(() => {
           btn.textContent = originalText;
           btn.disabled = false;
