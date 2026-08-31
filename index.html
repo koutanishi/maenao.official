@@ -612,34 +612,6 @@ section { position: relative; }
 
 .sponsor-cta { text-align: center; margin-top: 60px; }
 
-.contact-btn {
-  display: inline-block;
-  padding: 20px 60px;
-  background: transparent;
-  color: var(--white);
-  border: 2px solid var(--red);
-  font-family: var(--font-sub);
-  font-size: 1rem;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.contact-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--red);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: -1;
-}
-.contact-btn:hover { color: var(--white); transform: scale(1.03); box-shadow: 0 0 40px var(--red-glow); }
-.contact-btn:hover::before { transform: scaleX(1); transform-origin: left; }
-
 #profile { border-top: 1px solid var(--gray-dark); }
 .profile-table-wrapper { display: grid; grid-template-columns: 1fr 1fr; }
 .profile-row {
@@ -728,174 +700,7 @@ section { position: relative; }
 .sponsor-contact-btn svg { width: 18px; height: 18px; transition: transform 0.3s; }
 .sponsor-contact-btn:hover { background: var(--red-dark); transform: translateX(4px); box-shadow: 0 0 30px var(--red-glow); }
 .sponsor-contact-btn:hover svg { transform: translateX(4px); }
-
-#contactOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  background: var(--black);
-  display: flex;
-  flex-direction: column;
-  transform: translateY(100%);
-  transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
-  overflow-y: auto;
-}
-#contactOverlay.open { transform: translateY(0); }
-
-.contact-header {
-  padding: 24px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--gray-dark);
-  flex-shrink: 0;
-}
-
-.back-btn {
-  font-family: var(--font-sub);
-  font-size: 0.8rem;
-  letter-spacing: 3px;
-  color: var(--gray);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  transition: color 0.3s;
-}
-.back-btn:hover { color: var(--red); }
-.back-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-.contact-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 8%; }
-
-.contact-wrapper {
-  width: 100%;
-  max-width: 1100px;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.contact-info { padding-top: 20px; }
-
-.contact-label { font-family: var(--font-sub); font-size: 0.75rem; letter-spacing: 6px; color: var(--red); text-transform: uppercase; margin-bottom: 12px; }
-
-.contact-title {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5rem);
-  letter-spacing: 4px;
-  line-height: 1.05;
-  margin-bottom: 30px;
-}
-.contact-title .accent { color: var(--red); }
-
-.contact-desc { font-size: 0.9rem; line-height: 2; color: var(--gray); margin-bottom: 40px; }
-
-.contact-sns-links { display: flex; gap: 16px; }
-.contact-sns-links a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px; height: 48px;
-  border: 1px solid var(--gray-dark);
-  font-family: var(--font-sub);
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  color: var(--gray);
-  transition: all 0.3s;
-}
-.contact-sns-links a:hover {
-  border-color: var(--red);
-  color: var(--red);
-  background: rgba(230, 57, 70, 0.05);
-  transform: translateY(-3px);
-}
-
-.contact-form-card {
-  background: var(--black-card);
-  border: 1px solid var(--gray-dark);
-  padding: 50px 44px;
-  position: relative;
-  overflow: hidden;
-}
-.contact-form-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--red), var(--red-dark));
-}
-
-.form-title { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 4px; margin-bottom: 36px; }
-
-.form-group { margin-bottom: 24px; }
-.form-group label {
-  display: block;
-  font-family: var(--font-sub);
-  font-size: 0.75rem;
-  letter-spacing: 3px;
-  color: var(--gray);
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-.form-group .required { color: var(--red); font-size: 0.65rem; margin-left: 6px; }
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 14px 16px;
-  background: var(--black);
-  border: 1px solid var(--gray-dark);
-  color: var(--white);
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus { border-color: var(--red); box-shadow: 0 0 20px rgba(230, 57, 70, 0.15); }
-.form-group textarea { height: 140px; resize: vertical; }
-.form-group select {
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23888'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-}
-
-.submit-btn {
-  width: 100%;
-  padding: 18px;
-  background: var(--red);
-  color: var(--white);
-  border: none;
-  font-family: var(--font-sub);
-  font-size: 0.9rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.3s, transform 0.2s;
-  margin-top: 8px;
-}
-.submit-btn:hover { background: var(--red-dark); transform: scale(1.02); }
-.submit-btn:active { transform: scale(0.98); }
-.submit-btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s;
-}
-.submit-btn:hover::after { transform: translateX(100%); }
-
-.contact-footer { padding: 20px 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; flex-shrink: 0; }
-.contact-footer p { font-size: 0.7rem; color: var(--gray-dark); letter-spacing: 2px; font-family: var(--font-sub); }
+a.sponsor-contact-btn { text-decoration: none; }
 
 footer { background: var(--black); border-top: 1px solid var(--gray-dark); padding: 80px 8% 40px; }
 
@@ -998,7 +803,6 @@ footer { background: var(--black); border-top: 1px solid var(--gray-dark); paddi
 @media (max-width: 1024px) {
   .about-grid { gap: 40px; }
   .sponsor-plan { gap: 30px; }
-  .contact-wrapper { gap: 50px; }
 }
 
 @media (max-width: 768px) {
@@ -1024,11 +828,6 @@ footer { background: var(--black); border-top: 1px solid var(--gray-dark); paddi
 
   .footer-top { flex-direction: column; gap: 30px; }
   .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-
-  .contact-header { padding: 16px 24px; }
-  .contact-main { padding: 40px 6%; }
-  .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
-  .contact-form-card { padding: 30px 24px; }
 }
 
 @media (max-width: 480px) {
@@ -1060,7 +859,7 @@ footer { background: var(--black); border-top: 1px solid var(--gray-dark); paddi
     <a href="#events" class="nav-link"><span class="nav-number">04</span>EVENTS</a>
     <a href="#gallery" class="nav-link"><span class="nav-number">05</span>GALLERY</a>
     <a href="#profile" class="nav-link"><span class="nav-number">06</span>PROFILE</a>
-    <a href="#" class="nav-link" onclick="openContact();return false;"><span class="nav-number">07</span>CONTACT</a>
+    <a href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" class="nav-link"><span class="nav-number">07</span>CONTACT</a>
     <div class="nav-sns">
       <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">INSTAGRAM</a>
       <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X / TWITTER</a>
@@ -1145,19 +944,14 @@ footer { background: var(--black); border-top: 1px solid var(--gray-dark); paddi
     <div class="sponsor-block-header">
       <div class="sponsor-block-label">CORPORATE</div>
       <h3 class="sponsor-block-title">企業スポンサー様</h3>
-      <p class="sponsor-block-sub">前川尚志の挑戦を、一緒に支えてくださる企業様を募集しております。サポートの形は決まったものではなく、企業様とご相談しながら作っていきたいと考えています。ご興味をお持ちいただけましたら、DMまたはお問い合わせよりお気軽にご連絡ください。</p>
+      <p class="sponsor-block-sub">前川尚志の挑戦を、一緒に支えてくださる企業様を募集しております。サポートの形は決まったものではなく、企業様とご相談しながら作っていきたいと考えています。ご興味をお持ちいただけましたら、公式LINEよりお気軽にご連絡ください。</p>
     </div>
     <div class="sponsor-block-body">
       <p class="sponsor-block-note">掲載内容・条件については個別にご相談ください。</p>
-      <div class="dm-note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        InstagramのDMでもお問い合わせを受け付けています →
-        <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">@maenao.11</a>
-      </div>
-      <button class="sponsor-contact-btn" onclick="openContactWithCategory('企業スポンサーについて')">
-        個別相談・お問い合わせ
+      <a href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" class="sponsor-contact-btn">
+        公式LINEでお問い合わせ
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-      </button>
+      </a>
     </div>
   </div>
 
@@ -1168,33 +962,60 @@ footer { background: var(--black); border-top: 1px solid var(--gray-dark); paddi
       <p class="sponsor-block-sub">個人で応援していただける方</p>
     </div>
     <div class="sponsor-block-body">
+      <div class="sponsor-plan" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 32px;">
+        <div class="plan-card">
+          <div class="plan-number">01</div>
+          <div class="plan-badge">STANDARD</div>
+          <div class="plan-price" style="font-size: 1.6rem; white-space: nowrap;">スタンダード会員</div>
+          <p class="plan-desc">月額1,000円で前川尚志の活動を継続的にサポートいただけます。</p>
+          <ul class="plan-benefits">
+            <li>Instagramの<span class="benefit-highlight">親しい友達</span>にて日常を配信</li>
+            <li>月一回の<span class="benefit-highlight">note配信</span></li>
+          </ul>
+        </div>
+        <div class="plan-card">
+          <div class="plan-number">02</div>
+          <div class="plan-badge">PREMIUM</div>
+          <div class="plan-price" style="font-size: 1.6rem; white-space: nowrap;">プレミア会員</div>
+          <p class="plan-desc">月額5,000円で、より手厚い特典と共にサポートいただけます。</p>
+          <ul class="plan-benefits">
+            <li>Instagramの<span class="benefit-highlight">親しい友達</span>にて日常を配信</li>
+            <li>月一回の<span class="benefit-highlight">note配信</span></li>
+            <li><span class="benefit-highlight">サポーター限定グッズ</span>プレゼント🎁</li>
+            <li>年一回の<span class="benefit-highlight">前川セレクトプレゼント</span>🎁</li>
+            <li>（半年以上の会員様）パーソナルトレーニング<span class="benefit-highlight">何回でも2割引</span></li>
+          </ul>
+        </div>
+      </div>
+      <a href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" class="sponsor-contact-btn">
+        公式LINEでお問い合わせ
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="sponsor-block reveal" style="margin-top: 40px;">
+    <div class="sponsor-block-header">
+      <div class="sponsor-block-label">GOODS</div>
+      <h3 class="sponsor-block-title">物品提供サポーター</h3>
+      <p class="sponsor-block-sub">活動に必要なものを提供していただける方を募集しています。</p>
+    </div>
+    <div class="sponsor-block-body">
       <div class="sponsor-plan" style="grid-template-columns: 1fr; margin-bottom: 32px;">
         <div class="plan-card">
           <div class="plan-number">01</div>
-          <button class="plan-badge plan-badge-btn" onclick="openContactWithCategory('物品サポートについて')">GOODS SUPPORT</button>
-          <p class="plan-desc">活動に必要な物品をご提供いただけるスポンサー様を募集しています。</p>
+          <div class="plan-badge">GOODS SUPPORT</div>
+          <p class="plan-desc">継続してご提供して頂ける方</p>
           <ul class="plan-benefits">
-            <li>サポート内容は<span class="benefit-highlight">個別にご相談</span>ください</li>
+            <li><span class="benefit-highlight">サポーター限定グッズ</span>プレゼント🎁</li>
+            <li>パーソナルトレーニング<span class="benefit-highlight">何回でも2割引</span></li>
           </ul>
         </div>
-        <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener" class="plan-card" style="display:block;">
-          <div class="plan-number">02</div>
-          <div class="plan-badge">FAN CLUB</div>
-          <p class="plan-desc">前川尚志のファンクラブ。詳細は<span class="benefit-highlight" style="color:var(--white);">DM</span>まで。</p>
-          <ul class="plan-benefits">
-            <li>詳細は<span class="benefit-highlight">Instagram DM</span>まで</li>
-          </ul>
-        </a>
       </div>
-      <button class="sponsor-contact-btn" onclick="openContactWithCategory('個人スポンサーについて')">
-        個別相談・お問い合わせ
+      <a href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" class="sponsor-contact-btn">
+        公式LINEでお問い合わせ
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-      </button>
-      <div class="dm-note" style="margin-top:16px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        InstagramのDMでもお問い合わせを受け付けています →
-        <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">@maenao.11</a>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1207,7 +1028,7 @@ footer { background: var(--black); border-top: 1px solid var(--gray-dark); paddi
   <div class="sponsor-plan">
     <div class="plan-card reveal">
       <div class="plan-number">01</div>
-      <button class="plan-badge plan-badge-btn" onclick="openContactWithCategory('ゲーム会について')">GAME EVENT</button>
+      <div class="plan-badge">GAME EVENT</div>
       <div class="plan-price" style="font-size: 2rem;">ゲーム会</div>
       <p class="plan-desc">前川尚志と一緒にゲームを楽しめるファンイベント。選手との距離がぐっと縮まる特別な時間です。</p>
       <ul class="plan-benefits">
@@ -1216,10 +1037,10 @@ footer { background: var(--black); border-top: 1px solid var(--gray-dark); paddi
     </div>
     <div class="plan-card reveal lesson-card">
       <div class="plan-number">02</div>
-      <button class="plan-badge plan-badge-btn" onclick="openContactWithCategory('個別レッスンについて')">PERSONAL TRAINING</button>
+      <div class="plan-badge">PERSONAL TRAINING</div>
       <div class="plan-price" style="font-size: 2rem;">パーソナル<br>トレーニング</div>
 
-      <p class="plan-desc">前川尚志による個別レッスンです。事前にヒアリングを行い、レベルや目的に合わせたトレーニングメニューをご用意します。（フットサル以外のフィットネスなどのトレーニングでも可能）</p>
+      <p class="plan-desc">本気で上手くなるために、課題に対して取り組みます！（フットサル以外のフィットネスなどのトレーニングでも可能）</p>
 
       <div class="lesson-features">
         <div class="lesson-feature">
@@ -1240,18 +1061,15 @@ footer { background: var(--black); border-top: 1px solid var(--gray-dark); paddi
 
       <div class="lesson-price-block">
         <div class="lesson-price-label">PRICE</div>
-        <div class="lesson-price-main" style="font-size:1.8rem;">詳細は<span style="color:var(--red);">DM</span>まで</div>
+        <div class="lesson-price-main">¥7,500<span class="lesson-price-unit"> / 1時間</span></div>
+        <div class="lesson-price-note">会場は利用者の方負担にてよろしくお願いします</div>
         <div class="lesson-price-max">最大4名まで参加可能</div>
       </div>
 
-      <button class="sponsor-contact-btn" style="width:100%;justify-content:center;margin-top:4px;" onclick="openContactWithCategory('個別レッスンについて')">
-        お問い合わせ・DMはこちら
+      <a href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" class="sponsor-contact-btn" style="width:100%;justify-content:center;margin-top:4px;">
+        公式LINEでお問い合わせ
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-      </button>
-      <div class="dm-note" style="margin-top:12px;justify-content:center;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">@maenao.11</a> のDMも受付中
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1308,70 +1126,6 @@ footer { background: var(--black); border-top: 1px solid var(--gray-dark); paddi
   </div>
 </footer>
 
-<div id="contactOverlay">
-  <div class="contact-header">
-    <div class="logo">MAE<span>NAO</span></div>
-    <button class="back-btn" onclick="closeContact()">
-      <svg viewBox="0 0 24 24"><path d="M19 12H5m0 0l7 7m-7-7l7-7"/></svg>
-      BACK TO TOP
-    </button>
-  </div>
-  <div class="contact-main">
-    <div class="contact-wrapper">
-      <div class="contact-info">
-        <div class="contact-label">Contact</div>
-        <h2 class="contact-title">GET IN <span class="accent">TOUCH</span></h2>
-        <p class="contact-desc">スポンサーに関するお問い合わせ、取材依頼、その他ご質問がございましたら、お気軽にご連絡ください。内容を確認のうえ、折り返しご連絡いたします。</p>
-        <div class="contact-sns-links">
-          <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">IG</a>
-          <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X</a>
-        </div>
-      </div>
-      <div class="contact-form-card">
-        <div class="form-title">CONTACT FORM</div>
-        <form action="https://formspree.io/f/maqzvryk" method="POST" id="contactForm">
-          <div class="form-group">
-            <label>お名前<span class="required">*必須</span></label>
-            <input type="text" name="name" placeholder="山田 太郎" required>
-          </div>
-          <div class="form-group">
-            <label>メールアドレス<span class="required">*必須</span></label>
-            <input type="email" name="email" placeholder="example@email.com" required>
-          </div>
-          <div class="form-group">
-            <label>電話番号</label>
-            <input type="tel" name="phone" placeholder="090-0000-0000">
-          </div>
-          <div class="form-group">
-            <label>お問い合わせ種別<span class="required">*必須</span></label>
-            <select name="category" required>
-              <option value="">選択してください</option>
-              <option>企業スポンサーについて</option>
-              <option>個人スポンサーについて</option>
-              <option>物品サポートについて</option>
-              <option>ゲーム会について</option>
-              <option>個別レッスンについて</option>
-              <option>取材・メディア関連</option>
-              <option>その他</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>メッセージ<span class="required">*必須</span></label>
-            <textarea name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
-          </div>
-          <button class="submit-btn" type="submit">SEND MESSAGE</button>
-          <div id="formSuccess" style="display:none;margin-top:16px;padding:14px;border:1px solid var(--red);color:var(--white);font-family:var(--font-sub);font-size:0.8rem;letter-spacing:2px;text-align:center;">
-            送信完了しました。ありがとうございます。
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div class="contact-footer">
-    <p>&copy; 2026 NAOYUKI MAEKAWA. ALL RIGHTS RESERVED.</p>
-  </div>
-</div>
-
 <script>
 window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('loader').classList.add('hide'), 2000);
@@ -1427,66 +1181,6 @@ document.querySelectorAll('.timeline-item').forEach((item, i) => {
   }, { threshold: 0.2 });
   obs.observe(item);
 });
-
-function openContact() {
-  document.getElementById('contactOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function openContactWithCategory(category) {
-  openContact();
-  setTimeout(() => {
-    const select = document.querySelector('#contactForm select[name="category"]');
-    if (select) {
-      for (let i = 0; i < select.options.length; i++) {
-        if (select.options[i].text.includes(category) || select.options[i].value === category) {
-          select.selectedIndex = i;
-          break;
-        }
-      }
-    }
-  }, 100);
-}
-
-function closeContact() {
-  document.getElementById('contactOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = contactForm.querySelector('.submit-btn');
-    const originalText = btn.dataset.originalText || btn.textContent;
-    btn.dataset.originalText = originalText;
-    btn.textContent = 'SENDING...';
-    btn.disabled = true;
-    try {
-      const res = await fetch(contactForm.action, {
-        method: 'POST',
-        body: new FormData(contactForm),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        contactForm.reset();
-        document.getElementById('formSuccess').style.display = 'block';
-        btn.textContent = 'SENT ✓';
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.disabled = false;
-          document.getElementById('formSuccess').style.display = 'none';
-        }, 3000);
-      } else {
-        btn.textContent = 'ERROR — RETRY';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'ERROR — RETRY';
-      btn.disabled = false;
-    }
-  });
-}
 </script>
 </body>
 </html>
