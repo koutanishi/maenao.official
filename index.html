@@ -170,52 +170,6 @@
     "priceCurrency": "JPY",
     "description": "1時間あたりの料金"
    }
-  },
-  {
-   "@type": "FAQPage",
-   "@id": "https://maenao-official.com/#faq",
-   "mainEntity": [
-    {
-     "@type": "Question",
-     "name": "前川尚志（まえかわなおゆき）はどんな選手ですか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "2001年1月22日生まれ、兵庫県神戸市出身のフットサル選手です。ポジションはFP（ピヴォ）で、2026年からボアルース長野に所属しています。身長170cm・体重73kg、利き足は右足です。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "これまでの経歴を教えてください。",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "幼少期からサッカーに取り組み、本庄FC、西宮SS、報徳学園高校サッカー部でプレーしました。大学進学を機にフットサルへ転向し、摂南大学フットサル部と並行してFC大阪楽笑・カンカンボーイズでプレー。大学卒業後に特別指定選手として湘南ベルマーレフットサルクラブに加入し、トップチームへ昇格して3シーズンプレーしたのち、2026年にボアルース長野へ加入しました。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "スポンサーになるにはどうすればいいですか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "企業スポンサー、個人スポンサー（スタンダード会員：月額1,000円／プレミア会員：月額5,000円）、物品提供サポーターを募集しています。お申し込み・ご相談は公式LINEからご連絡ください。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "パーソナルトレーニングの料金と内容は？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "料金は1時間7,500円で、最大4名まで参加できます（会場費は利用者の方のご負担です）。お子様から大人まで受講でき、フットサルの技術指導のほか、運動不足解消などのフィットネストレーニングにも対応しています。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "最新情報はどこで確認できますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Instagram（@maenao.11）とX（@maenao07）で試合やイベントの情報を発信しています。ファンイベント（ゲーム会）の開催日程もSNSで告知します。"
-     }
-    }
-   ]
   }
  ]
 }
@@ -366,7 +320,6 @@ section { position: relative; }
   font-size: clamp(3.6rem, 12vw, 11rem); text-wrap: balance;
 }
 .h-display .red { color: var(--red); }
-.h-ja { display: block; margin-top: 18px; font-family: var(--font-body); font-size: clamp(.95rem, 1.6vw, 1.15rem); font-weight: 700; letter-spacing: .18em; line-height: 1.6; color: var(--mute); }
 .line-mask { display: block; overflow: hidden; padding-bottom: .04em; }
 .line-mask > span { display: block; }
 .char { display: inline-block; will-change: transform; }
@@ -589,25 +542,6 @@ section { position: relative; }
 .plan li::before { content: ""; position: absolute; left: 4px; top: 1.45em; width: 12px; height: 1px; background: var(--red); }
 .plan li b { color: var(--red); font-weight: 700; }
 
-/* ---------- FAQ ---------- */
-.faq { padding-block: clamp(100px, 14vw, 180px); background: var(--ink-2); border-top: 1px solid var(--line); }
-.faq-list { margin-top: 56px; border-top: 1px solid var(--line); max-width: 980px; }
-.faq-item { border-bottom: 1px solid var(--line); }
-.faq-item summary {
-  list-style: none; cursor: pointer; display: grid; grid-template-columns: 3.2em minmax(0, 1fr) 24px; align-items: baseline; gap: 16px;
-  padding: 22px 4px; font-weight: 700; font-size: clamp(1rem, 1.8vw, 1.2rem); line-height: 1.6; transition: color .3s;
-}
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary:hover { color: var(--red); }
-.faq-n { font-family: var(--font-mono); font-size: 12px; letter-spacing: .15em; color: var(--red); font-weight: 500; }
-.faq-icon { position: relative; width: 16px; height: 16px; align-self: center; }
-.faq-icon::before, .faq-icon::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: currentColor; transition: transform .4s var(--ease); }
-.faq-icon::after { transform: rotate(90deg); }
-.faq-item[open] .faq-icon::after { transform: rotate(0deg); }
-.faq-a { padding: 0 4px 24px calc(3.2em + 16px); }
-.faq-a p { margin: 0; color: var(--mute); font-size: 15px; line-height: 1.9; max-width: 62ch; }
-@media (max-width: 860px) { .faq-a { padding-left: 4px; } }
-
 /* ---------- CTA ---------- */
 .cta { padding-block: clamp(110px, 16vw, 220px); text-align: center; overflow: hidden; }
 .cta .h-display { font-size: clamp(3.4rem, 13vw, 13rem); }
@@ -700,7 +634,6 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
     <a class="menu-link" href="#events"><small>EVENTS</small><span>FAN EVENTS</span></a>
     <a class="menu-link" href="#gallery"><small>GALLERY</small><span>IN ACTION</span></a>
     <a class="menu-link" href="#profile"><small>PROFILE</small><span>PLAYER DATA</span></a>
-    <a class="menu-link" href="#faq"><small>FAQ</small><span>Q &amp; A</span></a>
     <a class="menu-link" href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener"><small>CONTACT</small><span>OFFICIAL LINE</span></a>
   </nav>
   <div class="menu-foot">
@@ -741,7 +674,7 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
   <div class="about-grid">
     <div class="about-head">
       <span class="eyebrow" data-scramble>About</span>
-      <h2 class="h-display"><span class="line-mask"><span data-reveal>WHO IS</span></span><span class="line-mask"><span data-reveal class="red">NAOYUKI</span></span><span class="h-ja">前川尚志について</span></h2>
+      <h2 class="h-display"><span class="line-mask"><span data-reveal>WHO IS</span></span><span class="line-mask"><span data-reveal class="red">NAOYUKI</span></span></h2>
       <div class="about-portrait" data-clip>
         <div class="photo" data-parallax="0.18"><img src="images/promo.jpg" width="534" height="800" alt="前川尚志（まえかわなおゆき）フットサル選手 宣材写真" loading="lazy"></div>
       </div>
@@ -764,7 +697,7 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
   <div class="career-head">
     <div>
       <span class="eyebrow" data-scramble>Career</span>
-      <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>THE <span class="red">JOURNEY</span></span></span><span class="h-ja">経歴（サッカー → フットサル → Fリーグ）</span></h2>
+      <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>THE <span class="red">JOURNEY</span></span></span></h2>
     </div>
     <p>FOOTBALL → FUTSAL → F.LEAGUE</p>
   </div>
@@ -783,7 +716,7 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
       <ol>
           <li class="tl-row"><span class="tl-n">04</span><span class="tl-name">摂南大学（FC大阪楽笑）</span><span class="tl-k">UNIVERSITY</span></li>
           <li class="tl-row"><span class="tl-n">05</span><span class="tl-name">摂南大学（カンカンボーイズ）</span><span class="tl-k">UNIVERSITY</span></li>
-          <li class="tl-row"><span class="tl-n">06</span><span class="tl-name">S.B.F.C. LONDRINA</span><span class="tl-k">KANSAI</span></li>
+          <li class="tl-row"><span class="tl-n">06</span><span class="tl-name">S.B.F.C. LONDRINA</span><span class="tl-k">SHONAN</span></li>
           <li class="tl-row"><span class="tl-n">07</span><span class="tl-name">湘南ベルマーレ フットサルクラブ</span><span class="tl-k">F.LEAGUE</span></li>
           <li class="tl-row now"><span class="tl-n">08</span><span class="tl-name">ボアルース長野</span><span class="tl-k">2026 — NOW</span></li>
       </ol>
@@ -794,7 +727,7 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
 <!-- SPONSOR -->
 <section class="sponsor wrap" id="sponsor">
   <span class="eyebrow" data-scramble>Sponsor</span>
-  <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>SUPPORT</span></span><span class="line-mask"><span data-reveal class="red">NAOYUKI</span></span><span class="h-ja">スポンサー募集（企業・個人・物品提供）</span></h2>
+  <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>SUPPORT</span></span><span class="line-mask"><span data-reveal class="red">NAOYUKI</span></span></h2>
 
   <div class="sp-block">
     <div class="sp-head"><span class="sp-label">CORPORATE</span><h3>企業スポンサー様</h3></div>
@@ -814,7 +747,7 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
         <p>月額1,000円で前川尚志の活動を継続的にサポートいただけます。</p>
         <ul>
           <li>Instagramの<b>親しい友達</b>にて日常を配信</li>
-          <li>月一回の<b>note配信</b></li>
+          <li>月一回以上の<b>note配信</b></li>
         </ul>
       </article>
       <article class="plan" data-tilt>
@@ -850,7 +783,7 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
 <!-- EVENTS -->
 <section class="events wrap" id="events">
   <span class="eyebrow" data-scramble>Events</span>
-  <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>FAN <span class="red">EVENTS</span></span></span><span class="h-ja">ファンイベント・パーソナルトレーニング</span></h2>
+  <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>FAN <span class="red">EVENTS</span></span></span></h2>
   <div class="plans">
     <article class="plan" data-tilt>
       <div class="plan-top"><span class="plan-badge">GAME EVENT</span><span class="plan-no">01</span></div>
@@ -882,7 +815,7 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
   <div class="gallery-head">
     <div>
       <span class="eyebrow" data-scramble>Gallery</span>
-      <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>IN <span class="red">ACTION</span></span></span><span class="h-ja">試合写真ギャラリー</span></h2>
+      <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>IN <span class="red">ACTION</span></span></span></h2>
     </div>
     <p>ボアルース長野での試合から。写真をタップすると大きく表示します。</p>
   </div>
@@ -900,7 +833,7 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
 <!-- PROFILE -->
 <section class="profile wrap" id="profile">
   <span class="eyebrow" data-scramble>Profile</span>
-  <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>PLAYER <span class="red">DATA</span></span></span><span class="h-ja">選手プロフィール</span></h2>
+  <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>PLAYER <span class="red">DATA</span></span></span></h2>
   <div class="profile-grid">
     <dl class="stats">
       <div class="stat"><dt>Height</dt><dd><span data-count="170">170</span><small>cm</small></dd></div>
@@ -925,37 +858,9 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq wrap" id="faq">
-  <span class="eyebrow" data-scramble>FAQ</span>
-  <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>Q <span class="red">&amp;</span> A</span></span><span class="h-ja">よくある質問</span></h2>
-  <div class="faq-list">
-    <details class="faq-item" open>
-      <summary><span class="faq-n">Q01</span><span class="faq-q">前川尚志（まえかわなおゆき）はどんな選手ですか？</span><span class="faq-icon" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>2001年1月22日生まれ、兵庫県神戸市出身のフットサル選手です。ポジションはFP（ピヴォ）で、2026年からボアルース長野に所属しています。身長170cm・体重73kg、利き足は右足です。</p></div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-n">Q02</span><span class="faq-q">これまでの経歴を教えてください。</span><span class="faq-icon" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>幼少期からサッカーに取り組み、本庄FC、西宮SS、報徳学園高校サッカー部でプレーしました。大学進学を機にフットサルへ転向し、摂南大学フットサル部と並行してFC大阪楽笑・カンカンボーイズでプレー。大学卒業後に特別指定選手として湘南ベルマーレフットサルクラブに加入し、トップチームへ昇格して3シーズンプレーしたのち、2026年にボアルース長野へ加入しました。</p></div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-n">Q03</span><span class="faq-q">スポンサーになるにはどうすればいいですか？</span><span class="faq-icon" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>企業スポンサー、個人スポンサー（スタンダード会員：月額1,000円／プレミア会員：月額5,000円）、物品提供サポーターを募集しています。お申し込み・ご相談は公式LINEからご連絡ください。</p></div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-n">Q04</span><span class="faq-q">パーソナルトレーニングの料金と内容は？</span><span class="faq-icon" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>料金は1時間7,500円で、最大4名まで参加できます（会場費は利用者の方のご負担です）。お子様から大人まで受講でき、フットサルの技術指導のほか、運動不足解消などのフィットネストレーニングにも対応しています。</p></div>
-    </details>
-    <details class="faq-item">
-      <summary><span class="faq-n">Q05</span><span class="faq-q">最新情報はどこで確認できますか？</span><span class="faq-icon" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>Instagram（@maenao.11）とX（@maenao07）で試合やイベントの情報を発信しています。ファンイベント（ゲーム会）の開催日程もSNSで告知します。</p></div>
-    </details>
-  </div>
-</section>
-
 <!-- CTA -->
 <section class="cta wrap" id="cta">
-  <h2 class="h-display"><span class="line-mask"><span data-reveal>FIGHT</span></span><span class="line-mask"><span data-reveal><span class="red">WITH</span> US</span></span><span class="h-ja">お問い合わせ</span></h2>
+  <h2 class="h-display"><span class="line-mask"><span data-reveal>FIGHT</span></span><span class="line-mask"><span data-reveal><span class="red">WITH</span> US</span></span></h2>
   <p>スポンサー・イベント・取材のご相談は公式LINEから。</p>
   <div class="mag-wrap" data-magnetic>
     <span class="mag-ring" aria-hidden="true"></span><span class="mag-ring" aria-hidden="true"></span>
@@ -1240,12 +1145,12 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
   lenis && lenis.stop();
   intro
     .to(counter, {
-      v: 100, duration: 1, ease: 'power2.inOut',
+      v: 100, duration: 1.6, ease: 'power2.inOut',
       onUpdate: () => { $('#loaderNum').textContent = String(Math.round(counter.v)).padStart(3, '0'); $('#loaderBar').style.transform = `scaleX(${counter.v / 100})`; }
     })
     .to('.loader-center', { yPercent: -30, opacity: 0, duration: .5, ease: 'power3.in' }, '+=.1')
-    .to('.loader-panel.top', { yPercent: -100, duration: .9, ease: 'expo.inOut' }, '-=.15')
-    .to('.loader-panel.bot', { yPercent: 100, duration: .9, ease: 'expo.inOut' }, '<')
+    .to('.loader-panel.top', { yPercent: -100, duration: 1.1, ease: 'expo.inOut' }, '-=.15')
+    .to('.loader-panel.bot', { yPercent: 100, duration: 1.1, ease: 'expo.inOut' }, '<')
     .add(() => lenis && lenis.start(), '<.5')
     .add(heroIntro(), '<.35');
 
@@ -1372,10 +1277,6 @@ footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom
       glState.energy = 1; glState.mx = e.clientX / innerWidth; glState.my = e.clientY / innerHeight; glState.lastTouch = performance.now();
     }, { passive: true });
   }
-
-  /* ---------- FAQ: stagger in, answer slides open ---------- */
-  gsap.from('.faq-item', { y: 30, opacity: 0, duration: .8, ease: 'expo.out', stagger: .08, scrollTrigger: { trigger: '.faq-list', start: 'top 85%' } });
-  $$('.faq-item').forEach(d => d.addEventListener('toggle', () => { if (d.open) gsap.from(d.querySelector('.faq-a'), { y: -10, opacity: 0, duration: .5, ease: 'power3.out' }); }));
 
   /* ---------- footer wordmark ---------- */
   gsap.from($('[data-foot]')._chars, { yPercent: 100, duration: 1.4, ease: 'expo.out', stagger: .06, scrollTrigger: { trigger: 'footer.site', start: 'top 85%' } });
