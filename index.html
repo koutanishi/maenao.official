@@ -2,8 +2,7 @@
 <html lang="ja" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- ===== PRIMARY SEO ===== -->
 <title>前川尚志（まえかわなおゆき）| フットサル選手 ボアルース長野 #ピヴォ</title>
 <meta name="description" content="前川尚志（まえかわなおゆき）のオフィシャルサイト。兵庫県神戸市出身のフットサル選手。ボアルース長野所属。ポジションはFP（ピヴォ）。個人スポンサー・企業スポンサー募集中。">
@@ -62,1125 +61,1114 @@
   ]
 }
 </script>
-
-<!-- ===== パフォーマンス最適化 ===== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://i.postimg.cc">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;700;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- ヒーロー画像の優先読み込み -->
-<link rel="preload" as="image" href="https://i.postimg.cc/RFrR4bCZ/IMG-3979.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* Layout: 全面ダークのピッチ。フットサルコート(40m×20m)のラインを全体のグリッド/モチーフにし、
+   セクションごとに「ピン留め → スクラブ」の一場面を持たせる映像的な構成。 */
 :root {
-  --black: #0a0a0a;
-  --black-light: #141414;
-  --black-card: #1a1a1a;
+  --ink: #0b0a0b;
+  --ink-2: #141213;
+  --ink-3: #1d1a1b;
+  --line: rgba(242, 236, 234, 0.1);
   --red: #e63946;
-  --red-dark: #c1121f;
-  --red-glow: rgba(230, 57, 70, 0.4);
-  --white: #f1f1f1;
-  --gray: #888;
-  --gray-dark: #333;
-  --font-display: 'Bebas Neue', 'Oswald', sans-serif;
-  --font-sub: 'Oswald', sans-serif;
-  --font-body: 'Noto Sans JP', sans-serif;
+  --red-deep: #7d0d18;
+  --paper: #f2ecea;
+  --mute: #8d8385;
+  --font-display: 'Bebas Neue', 'Oswald', 'Arial Narrow', sans-serif;
+  --font-sub: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --gutter: clamp(16px, 4vw, 56px);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  color-scheme: dark;
 }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-html {
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: var(--red) var(--black);
-  scrollbar-gutter: stable;
-}
-
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--ink); overflow-x: hidden; }
+@supports (overflow: clip) { html, body { overflow-x: clip; } }
+/* phones: vertical panning only, so the page never drifts sideways */
+body { touch-action: pan-y pinch-zoom; overscroll-behavior-x: none; }
+.gallery, .about, .career, .profile, .sponsor, .cta { overflow-x: clip; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
 body {
-  background: var(--black);
-  color: var(--white);
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
   font-family: var(--font-body);
-  overflow-x: hidden;
-  line-height: 1.7;
-}
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--black); }
-::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
-
-a { color: inherit; text-decoration: none; }
-
-#loader {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  background: var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  transition: opacity 0.6s, visibility 0.6s;
-}
-#loader.hide { opacity: 0; visibility: hidden; }
-#loader .loader-text {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  color: var(--red);
-  letter-spacing: 8px;
-}
-#loader .loader-bar {
-  width: 200px;
-  height: 2px;
-  background: var(--gray-dark);
-  margin-top: 20px;
-  position: relative;
-  overflow: hidden;
-}
-#loader .loader-bar::after {
-  content: '';
-  position: absolute;
-  left: 0; top: 0;
-  height: 100%; width: 0;
-  background: var(--red);
-  animation: loaderFill 1.8s ease-in-out forwards;
-}
-@keyframes loaderFill { to { width: 100%; } }
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-}
-
-header {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  z-index: 1000;
-  padding: 20px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background 0.4s, padding 0.4s;
-}
-header.scrolled {
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 12px 40px;
-  border-bottom: 1px solid rgba(230, 57, 70, 0.2);
-}
-
-.logo {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  letter-spacing: 4px;
-  color: var(--white);
-  position: relative;
-  z-index: 1001;
-}
-.logo span { color: var(--red); }
-
-.hamburger {
-  width: 36px;
-  height: 24px;
-  position: relative;
-  cursor: pointer;
-  z-index: 1001;
-}
-.hamburger span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--white);
-  transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-}
-.hamburger span:nth-child(1) { top: 0; }
-.hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); width: 60%; margin-left: 40%; }
-.hamburger span:nth-child(3) { bottom: 0; }
-
-.hamburger.active span:nth-child(1) {
-  top: 50%; transform: translateY(-50%) rotate(45deg); background: var(--red);
-}
-.hamburger.active span:nth-child(2) { opacity: 0; width: 0; }
-.hamburger.active span:nth-child(3) {
-  bottom: 50%; transform: translateY(50%) rotate(-45deg); background: var(--red);
-}
-
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  background: var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 100px 20px 40px;
-  overflow-y: auto;
-  clip-path: circle(0% at calc(100% - 58px) 32px);
-  transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-}
-.nav-overlay.open { clip-path: circle(150% at calc(100% - 58px) 32px); }
-
-.nav-overlay nav { text-align: center; margin: auto; }
-.nav-overlay nav a {
-  display: block;
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 5vw, 4.5rem);
-  letter-spacing: 6px;
-  color: var(--gray-dark);
-  padding: 8px 0;
-  transition: color 0.3s, transform 0.3s, letter-spacing 0.3s;
-  position: relative;
-}
-.nav-overlay nav a:hover { color: var(--red); transform: translateX(10px); letter-spacing: 12px; }
-.nav-overlay nav a::after {
-  content: '';
-  position: absolute;
-  left: 50%; bottom: 5px;
-  width: 0; height: 2px;
-  background: var(--red);
-  transform: translateX(-50%);
-  transition: width 0.4s;
-}
-.nav-overlay nav a:hover::after { width: 60%; }
-
-.nav-overlay .nav-number {
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  color: var(--red);
-  margin-right: 12px;
-  vertical-align: super;
-}
-
-.nav-overlay .nav-sns { margin-top: 50px; display: flex; gap: 30px; justify-content: center; }
-.nav-overlay .nav-sns a {
-  font-family: var(--font-sub);
-  font-size: 0.9rem;
-  letter-spacing: 3px;
-  color: var(--gray);
-  transition: color 0.3s;
-}
-.nav-overlay .nav-sns a:hover { color: var(--red); }
-
-.hero {
-  height: 100vh;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: url('https://i.postimg.cc/RFrR4bCZ/IMG-3979.jpg') center center / cover no-repeat;
-  z-index: 0;
-}
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.9) 100%);
-}
-
-.hero-content { position: relative; z-index: 3; text-align: center; padding: 0 8%; }
-
-.hero-label {
-  font-family: var(--font-sub);
-  font-size: 0.85rem;
-  letter-spacing: 6px;
-  color: var(--red);
-  margin-bottom: 16px;
-  text-transform: uppercase;
-  opacity: 0;
-  animation: fadeSlideUp 0.8s 2.2s forwards;
-}
-
-.hero-name {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 10vw, 8rem);
-  line-height: 0.95;
-  letter-spacing: 8px;
-  margin-bottom: 10px;
-  opacity: 0;
-  animation: fadeSlideUp 0.8s 2.4s forwards;
-}
-
-.hero-name-jp {
-  font-family: var(--font-body);
-  font-weight: 900;
-  font-size: clamp(1rem, 2.5vw, 1.6rem);
-  letter-spacing: 14px;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 24px;
-  opacity: 0;
-  animation: fadeSlideUp 0.8s 2.6s forwards;
-}
-
-.hero-meta {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  font-family: var(--font-sub);
-  font-size: 0.85rem;
-  letter-spacing: 3px;
-  color: var(--gray);
-  opacity: 0;
-  animation: fadeSlideUp 0.8s 2.8s forwards;
-}
-
-.hero-scroll {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: fit-content;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  animation: fadeSlideUp 0.8s 3.2s forwards;
-}
-.hero-scroll span {
-  font-family: var(--font-sub);
-  font-size: 0.65rem;
-  letter-spacing: 4px;
-  color: var(--gray);
-  text-transform: uppercase;
-}
-.hero-scroll .scroll-line {
-  width: 1px; height: 50px;
-  background: var(--gray-dark);
-  position: relative;
-  overflow: hidden;
-}
-.hero-scroll .scroll-line::after {
-  content: '';
-  position: absolute;
-  top: -100%; width: 100%; height: 100%;
-  background: var(--red);
-  animation: scrollDown 1.8s ease-in-out infinite;
-}
-@keyframes scrollDown { 0% { top: -100%; } 100% { top: 100%; } }
-
-section { position: relative; }
-
-.section-padding { padding: 120px 8%; }
-
-.section-label {
-  font-family: var(--font-sub);
-  font-size: 0.75rem;
-  letter-spacing: 6px;
-  color: var(--red);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  letter-spacing: 4px;
-  margin-bottom: 50px;
-  line-height: 1.1;
-}
-.section-title .accent { color: var(--red); }
-
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1),
-              transform 0.55s cubic-bezier(0.16,1,0.3,1);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-#about { background: var(--black-light); border-top: 1px solid var(--gray-dark); }
-
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-
-.about-photo-area { position: relative; }
-.about-photo-placeholder {
-  width: 100%;
-  aspect-ratio: 3/4;
-  background: var(--black-card);
-  border: 1px solid var(--gray-dark);
-  position: relative;
-  overflow: hidden;
-}
-.about-photo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
-.about-photo-placeholder::before {
-  content: '';
-  position: absolute;
-  top: -1px; left: -1px; right: -1px;
-  height: 3px;
-  background: var(--red);
-  z-index: 1;
-}
-
-.about-red-block {
-  position: absolute;
-  bottom: -20px; right: -20px;
-  width: 120px; height: 120px;
-  background: var(--red);
-  z-index: -1;
-}
-
-.about-text p { font-size: 0.95rem; line-height: 2; color: var(--gray); margin-bottom: 20px; }
-.about-text strong { color: var(--white); font-weight: 700; }
-
-#career { background: var(--black); }
-
-.timeline { position: relative; padding-left: 60px; }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 20px; top: 0; bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--red), var(--gray-dark));
-}
-
-.timeline-era { margin-bottom: 60px; }
-.timeline-era-label {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  letter-spacing: 6px;
-  color: var(--red);
-  margin-bottom: 30px;
-  padding-left: 10px;
-  position: relative;
-}
-.timeline-era-label::before {
-  content: '';
-  position: absolute;
-  left: -49px; top: 50%;
-  width: 18px; height: 18px;
-  border: 2px solid var(--red);
-  background: var(--black);
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 24px;
-  padding: 24px 30px;
-  background: var(--black-card);
-  border-left: 3px solid transparent;
-  transition: all 0.4s ease;
-}
-.timeline-item:hover {
-  border-left-color: var(--red);
-  transform: translateX(8px);
-  box-shadow: -4px 0 30px var(--red-glow);
-}
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -42px; top: 50%;
-  transform: translateY(-50%);
-  width: 10px; height: 10px;
-  background: var(--red);
-  border-radius: 50%;
-  box-shadow: 0 0 12px var(--red-glow);
-}
-
-.timeline-item .team-name {
-  font-family: var(--font-sub);
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: var(--white);
-}
-
-#gallery { border-top: 1px solid var(--gray-dark); }
-.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 400px; gap: 8px; }
-.gallery-grid .g-item {
-  background: var(--black-card);
-  border: 1px solid var(--gray-dark);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s;
-}
-.gallery-grid .g-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.gallery-grid .g-item:hover img { transform: scale(1.05); }
-.gallery-grid .g-item:hover { border-color: var(--red); }
-.gallery-grid .g-item:hover::after { opacity: 1; }
-.gallery-grid .g-item::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(230,57,70,0.3), transparent);
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-#sponsor { background: var(--black-light); border-top: 1px solid var(--gray-dark); }
-
-.sponsor-intro { max-width: 700px; margin-bottom: 60px; }
-.sponsor-intro p { font-size: 0.95rem; line-height: 2; color: var(--gray); }
-
-.sponsor-plan { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-
-.plan-card {
-  background: var(--black);
-  border: 1px solid var(--gray-dark);
-  padding: 50px 40px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
-}
-.plan-card:hover {
-  border-color: var(--red);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 50px rgba(230, 57, 70, 0.1);
-}
-.plan-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--red), var(--red-dark));
-}
-.plan-card .plan-number {
-  font-family: var(--font-display);
-  font-size: 4rem;
-  color: rgba(230, 57, 70, 0.1);
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.plan-card .plan-badge {
-  display: inline-block;
-  padding: 4px 16px;
-  background: var(--red);
-  font-family: var(--font-sub);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  margin-bottom: 24px;
-}
-.plan-badge-btn {
-  border: none;
-  color: var(--white);
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-}
-.plan-badge-btn:hover {
-  background: var(--red-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(230,57,70,0.35);
-}
-.plan-badge-btn:active { transform: translateY(0); }
-.plan-card .plan-price {
-  font-family: var(--font-display);
-  font-size: 3rem;
-  letter-spacing: 2px;
-  margin-bottom: 6px;
-}
-.plan-card .plan-price .yen { font-size: 1.3rem; color: var(--gray); margin-right: 4px; }
-.plan-card .plan-price .unit { font-size: 0.9rem; color: var(--gray); margin-left: 4px; letter-spacing: 1px; }
-.plan-card .plan-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 30px; line-height: 1.8; }
-
-.plan-benefits { list-style: none; }
-.plan-benefits li {
-  padding: 12px 0 12px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  font-size: 0.85rem;
-  color: var(--gray);
+  font-size: 15px;
   line-height: 1.8;
-  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
-.plan-benefits li::before {
-  content: '✦';
-  color: var(--red);
-  font-size: 0.7rem;
-  position: absolute;
-  left: 0;
-  top: 15px;
-}
-.plan-benefits li .benefit-highlight { color: var(--white); font-weight: 700; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+::selection { background: var(--red); color: var(--ink); }
 
-.sponsor-cta { text-align: center; margin-top: 60px; }
-
-#profile { border-top: 1px solid var(--gray-dark); }
-.profile-table-wrapper { display: grid; grid-template-columns: 1fr 1fr; }
-.profile-row {
-  display: flex;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  transition: background 0.3s;
+/* film grain over everything */
+.grain {
+  position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1s steps(6) infinite;
 }
-.profile-row:hover { background: rgba(230, 57, 70, 0.03); }
-.profile-row .row-label {
-  width: 140px;
-  flex-shrink: 0;
-  padding: 16px 20px;
-  font-family: var(--font-sub);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  color: var(--red);
-  text-transform: uppercase;
-  border-right: 1px solid rgba(255,255,255,0.05);
-}
-.profile-row .row-value { padding: 16px 20px; font-size: 0.9rem; color: var(--gray); }
-
-.sponsor-block { border: 1px solid var(--gray-dark); overflow: hidden; }
-.sponsor-block-header {
-  background: var(--black-card);
-  padding: 32px 40px;
-  border-bottom: 1px solid var(--gray-dark);
-  position: relative;
-}
-.sponsor-block-header::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--red), var(--red-dark));
-}
-.sponsor-block-label { font-family: var(--font-sub); font-size: 0.7rem; letter-spacing: 5px; color: var(--red); margin-bottom: 8px; }
-.sponsor-block-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  letter-spacing: 4px;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-.sponsor-block-sub { font-size: 0.85rem; color: var(--gray); letter-spacing: 1px; }
-.sponsor-block-body { padding: 40px; background: var(--black); }
-.sponsor-block-body .plan-card {
-  border: none;
-  border-top: 2px solid var(--gray-dark);
-  border-radius: 0;
-  transition: none;
-  transform: none !important;
-  box-shadow: none !important;
-}
-.sponsor-block-body .plan-card:hover { border-color: var(--red); transform: none !important; box-shadow: none !important; }
-
-.dm-note {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  color: var(--gray);
-  line-height: 1.6;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-}
-.dm-note svg { width: 16px; height: 16px; stroke: var(--red); flex-shrink: 0; }
-.dm-note a { color: var(--red); font-weight: 700; transition: opacity 0.3s; }
-.dm-note a:hover { opacity: 0.7; }
-
-.sponsor-block-note { font-size: 0.85rem; color: var(--gray); margin-bottom: 28px; line-height: 1.8; }
-.sponsor-contact-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 36px;
-  background: var(--red);
-  color: var(--white);
-  border: none;
-  font-family: var(--font-sub);
-  font-size: 0.9rem;
-  letter-spacing: 3px;
-  cursor: pointer;
-  overflow: hidden;
-  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-}
-.sponsor-contact-btn svg { width: 18px; height: 18px; transition: transform 0.3s; }
-.sponsor-contact-btn:hover { background: var(--red-dark); transform: translateX(4px); box-shadow: 0 0 30px var(--red-glow); }
-.sponsor-contact-btn:hover svg { transform: translateX(4px); }
-a.sponsor-contact-btn { text-decoration: none; }
-
-footer { background: var(--black); border-top: 1px solid var(--gray-dark); padding: 80px 8% 40px; }
-
-.footer-top { display: flex; justify-content: space-between; align-items: start; margin-bottom: 60px; }
-
-.footer-brand .footer-logo { font-family: var(--font-display); font-size: 2rem; letter-spacing: 4px; margin-bottom: 12px; }
-.footer-brand .footer-logo span { color: var(--red); }
-.footer-brand p { font-size: 0.8rem; color: var(--gray); letter-spacing: 1px; }
-
-.footer-sns { display: flex; gap: 20px; }
-.footer-sns a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px; height: 48px;
-  border: 1px solid var(--gray-dark);
-  transition: all 0.3s;
-  font-family: var(--font-sub);
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  color: var(--gray);
-}
-.footer-sns a:hover {
-  border-color: var(--red);
-  color: var(--red);
-  background: rgba(230, 57, 70, 0.05);
-  transform: translateY(-3px);
+@keyframes grain {
+  0% { transform: translate(0, 0); } 20% { transform: translate(-4%, 3%); } 40% { transform: translate(3%, -5%); }
+  60% { transform: translate(-6%, -2%); } 80% { transform: translate(5%, 4%); } 100% { transform: translate(0, 0); }
 }
 
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+/* ---------- LOADER ---------- */
+#loader { position: fixed; inset: 0; z-index: 200; pointer-events: none; animation: loaderFailsafe 0s 6s forwards; }
+@keyframes loaderFailsafe { to { visibility: hidden; } }
+.loader-panel { position: absolute; left: 0; right: 0; height: 50.5%; background: var(--ink-2); }
+.loader-panel.top { top: 0; }
+.loader-panel.bot { bottom: 0; }
+.loader-center {
+  position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 14px;
 }
-.footer-bottom p { font-size: 0.7rem; color: var(--gray-dark); letter-spacing: 2px; font-family: var(--font-sub); }
-
-@keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-.lesson-features {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 20px -40px;
-  padding: 20px 40px;
-  background: rgba(255,255,255,0.03);
-  border-top: 1px solid var(--gray-dark);
-  border-bottom: 1px solid var(--gray-dark);
-  width: calc(100% + 80px);
+.loader-num {
+  font-family: var(--font-display); font-size: clamp(6rem, 22vw, 16rem); line-height: .8;
+  color: var(--paper); font-variant-numeric: tabular-nums; letter-spacing: .02em;
 }
-.lesson-feature { display: flex; align-items: flex-start; gap: 12px; }
-.lf-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
-.lf-title {
-  font-family: var(--font-sub);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  color: var(--red);
-  margin-bottom: 3px;
-  text-transform: uppercase;
-}
-.lf-body { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
-.lesson-price-block {
-  background: rgba(230,57,70,0.05);
-  border-left: 3px solid var(--red);
-  padding: 20px 24px;
-  margin: 20px -40px 20px -40px;
-  width: calc(100% + 80px);
-}
-.lesson-price-label {
-  font-family: var(--font-sub);
-  font-size: 0.65rem;
-  letter-spacing: 4px;
-  color: var(--red);
-  margin-bottom: 6px;
-  text-transform: uppercase;
-}
-.lesson-price-main {
-  font-family: var(--font-display);
-  font-size: 2.4rem;
-  letter-spacing: 2px;
-  color: var(--white);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.lesson-price-unit { font-size: 1rem; color: var(--gray); letter-spacing: 1px; }
-.lesson-price-note { font-size: 0.78rem; color: var(--gray); margin-bottom: 8px; }
-.lesson-price-max {
-  font-size: 0.8rem;
-  color: var(--white);
-  font-weight: 700;
-  padding: 4px 10px;
-  background: rgba(230,57,70,0.12);
-  border: 1px solid rgba(230,57,70,0.3);
-  display: inline-block;
-  margin-bottom: 10px;
-}
-.lesson-tip { font-size: 0.85rem; color: var(--white); font-weight: 700; }
+.loader-num em { font-style: normal; color: var(--red); }
+.loader-bar { width: min(280px, 60vw); height: 2px; background: var(--line); overflow: hidden; }
+.loader-bar i { display: block; height: 100%; background: var(--red); transform-origin: left; transform: scaleX(0); }
+.loader-cap { font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em; color: var(--mute); }
 
-@media (max-width: 1024px) {
-  .about-grid { gap: 40px; }
-  .sponsor-plan { gap: 30px; }
+/* ---------- CURSOR ---------- */
+.cursor, .cursor-ring { position: fixed; top: 0; left: 0; z-index: 150; pointer-events: none; border-radius: 50%; display: none; }
+.has-cursor .cursor, .has-cursor .cursor-ring { display: block; }
+.cursor { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--red); }
+.cursor-ring {
+  width: 44px; height: 44px; margin: -22px 0 0 -22px; border: 1px solid rgba(242, 236, 234, .45);
+  display: none; place-items: center; transition: width .4s var(--ease), height .4s var(--ease), margin .4s var(--ease), background .3s, border-color .3s;
+}
+.has-cursor .cursor-ring { display: grid; }
+.cursor-ring span { font-family: var(--font-sub); font-size: 11px; letter-spacing: .2em; opacity: 0; transition: opacity .2s; color: var(--ink); }
+.cursor-ring.is-link { width: 72px; height: 72px; margin: -36px 0 0 -36px; border-color: var(--red); background: rgba(230, 57, 70, .12); }
+.cursor-ring.is-label { width: 96px; height: 96px; margin: -48px 0 0 -48px; background: var(--paper); border-color: var(--paper); }
+.cursor-ring.is-label span { opacity: 1; }
+
+/* ---------- HEADER ---------- */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 120; background: var(--red); transform-origin: left; transform: scaleX(0); }
+header.site {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 110;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(18px + env(safe-area-inset-top, 0px)) var(--gutter) 18px;
+  mix-blend-mode: difference; transition: transform .6s var(--ease);
+}
+header.site.hide { transform: translateY(-110%); }
+.logo { font-family: var(--font-display); font-size: 26px; letter-spacing: .08em; color: #fff; white-space: nowrap; }
+.logo .red { color: var(--red); }
+.menu-btn {
+  display: flex; align-items: center; gap: 14px; color: #fff;
+  font-family: var(--font-sub); font-size: 13px; letter-spacing: .25em;
+}
+.menu-btn .bars { width: 34px; height: 12px; position: relative; }
+.menu-btn .bars i { position: absolute; left: 0; right: 0; height: 2px; background: #fff; transition: transform .5s var(--ease), width .5s var(--ease); }
+.menu-btn .bars i:first-child { top: 0; }
+.menu-btn .bars i:last-child { bottom: 0; width: 60%; left: auto; }
+.menu-btn:hover .bars i:last-child { width: 100%; }
+.menu-open .menu-btn .bars i:first-child { transform: translateY(5px) rotate(45deg); }
+.menu-open .menu-btn .bars i:last-child { transform: translateY(-5px) rotate(-45deg); width: 100%; }
+
+/* ---------- MENU ---------- */
+.menu {
+  position: fixed; inset: 0; z-index: 105; background: var(--red); color: var(--ink);
+  clip-path: circle(0% at calc(100% - 60px) 40px); visibility: hidden;
+  display: grid; align-content: center; padding: 90px var(--gutter) 40px;
+}
+.menu nav { display: grid; gap: 0; }
+.menu-link {
+  display: flex; align-items: baseline; gap: 18px; overflow: hidden;
+  font-family: var(--font-display); font-size: clamp(2.6rem, min(10vw, 11vh), 7.5rem); line-height: .95; letter-spacing: .01em;
+}
+.menu-link small { font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; }
+.menu-link > span { display: inline-block; transition: padding-left .5s var(--ease), color .3s; }
+.menu-link:hover > span { padding-left: 24px; color: var(--paper); }
+.menu-open header.site { mix-blend-mode: normal; }
+.menu-open header.site .logo, .menu-open .menu-btn { color: var(--ink); }
+.menu-open .menu-btn .bars i { background: var(--ink); }
+.menu-foot { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 28px; font-family: var(--font-sub); letter-spacing: .2em; font-size: 13px; }
+
+/* ---------- COMMON ---------- */
+section { position: relative; }
+.wrap { padding-inline: var(--gutter); }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--red);
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+.h-display {
+  font-family: var(--font-display); font-weight: 400; margin: 0; line-height: .88; letter-spacing: .005em;
+  font-size: clamp(3.6rem, 12vw, 11rem); text-wrap: balance;
+}
+.h-display .red { color: var(--red); }
+.line-mask { display: block; overflow: hidden; padding-bottom: .04em; }
+.line-mask > span { display: block; }
+.char { display: inline-block; will-change: transform; }
+
+/* ---------- HERO ---------- */
+.hero {
+  min-height: 100svh; display: grid; grid-template-rows: 1fr auto; overflow: hidden;
+  padding: calc(100px + env(safe-area-inset-top, 0px)) var(--gutter) 32px;
+  isolation: isolate;
+}
+#heroGL { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; display: block; mix-blend-mode: screen; opacity: .55; }
+.hero-photo { position: absolute; inset: 0 -4% 0 0; z-index: -3; overflow: hidden; background: var(--ink); }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 64% 22%; display: block; will-change: transform; }
+.hero-photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(11, 10, 11, .88) 0%, rgba(11, 10, 11, .45) 42%, rgba(11, 10, 11, .1) 70%, rgba(11, 10, 11, .35) 100%),
+              linear-gradient(0deg, rgba(11, 10, 11, .9) 0%, transparent 45%);
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(11, 10, 11, .6) 0%, transparent 20%, transparent 72%, var(--ink) 100%);
+}
+.hero-floor {
+  position: absolute; left: 50%; bottom: -8%; width: min(1500px, 160vw); z-index: -1; pointer-events: none;
+  transform: translateX(-50%) perspective(900px) rotateX(64deg); transform-origin: 50% 100%; opacity: .4;
+}
+.court path, .court rect, .court circle, .court line { fill: none; stroke: var(--paper); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.court .spot { fill: var(--paper); stroke: none; }
+.hero-top { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-self: start; }
+.hero-tag { font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em; color: var(--mute); display: grid; gap: 4px; }
+.hero-tag b { color: var(--paper); font-weight: 500; }
+.hero-tag.right { text-align: right; }
+.hero-main { align-self: end; position: relative; }
+.hero-name {
+  font-family: var(--font-display); font-weight: 400; margin: 0; line-height: .8;
+  font-size: clamp(4.6rem, 21vw, 22rem); letter-spacing: -.005em; white-space: nowrap;
+}
+.hero-name .line-mask { padding-top: .06em; }
+.hero-name .l2 { padding-left: 8vw; }
+.hero-name .l2 .char:first-child { color: var(--red); }
+.hero-ghost {
+  position: absolute; inset: 0; pointer-events: none; color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 236, 234, .22);
+}
+.hero-bottom {
+  display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap;
+  margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line);
+}
+.hero-jp { font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 700; letter-spacing: .5em; }
+.hero-jp small { display: block; font-weight: 400; letter-spacing: .2em; color: var(--mute); font-size: 12px; }
+.hero-scroll { display: flex; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em; color: var(--mute); }
+.hero-scroll i { width: 70px; height: 1px; background: var(--line); position: relative; overflow: hidden; }
+.hero-scroll i::after { content: ""; position: absolute; inset: 0; background: var(--red); animation: scrollLine 2.2s var(--ease) infinite; }
+@keyframes scrollLine { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
+
+/* ---------- ABOUT ---------- */
+.about { padding-block: clamp(100px, 16vw, 200px); }
+.about-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.about-head { position: sticky; top: 120px; display: grid; gap: 28px; }
+.about-portrait {
+  aspect-ratio: 4 / 5; max-width: 100%; position: relative; overflow: hidden; background: var(--ink-3);
+  clip-path: inset(0 0 0 0);
+}
+.about-portrait img { object-position: 50% 28%; }
+.about-portrait { background: #eceef0; }
+.about-body { display: grid; gap: 1.2em; }
+.about-body p {
+  margin: 0; font-size: clamp(1.15rem, 2.2vw, 1.75rem); line-height: 1.75; font-weight: 500; letter-spacing: .02em;
+}
+.about-body strong { color: var(--red); font-weight: 700; }
+.about-facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.chip {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; padding: 8px 14px;
+  border: 1px solid var(--line); border-radius: 999px; color: var(--mute);
 }
 
-@media (max-width: 768px) {
-  header { padding: 16px 24px; }
-  header.scrolled { padding: 10px 24px; }
-  .section-padding { padding: 80px 4%; }
+/* photo placeholder look */
+.photo { position: absolute; inset: -14% 0; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease), filter .6s; }
 
-  .hero-content { max-width: 100%; padding: 0 6%; }
+/* ---------- CAREER ---------- */
+.career { padding-block: clamp(100px, 14vw, 180px); }
+.career-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+.career-head p { margin: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: .2em; color: var(--mute); }
+.tl { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); margin-top: 56px; padding-left: 44px; }
+.tl-rail { position: absolute; left: 12px; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.tl-fill { position: absolute; inset: 0; background: var(--red); transform-origin: top; transform: scaleY(0); }
+.tl-rail .ball { position: absolute; left: -12px; top: 0; width: 24px; height: 24px; will-change: transform; }
+.ball circle { fill: var(--paper); }
+.ball path { fill: var(--ink); }
+.tl-era h3 { margin: 0 0 8px; font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1; letter-spacing: .04em; color: var(--red); }
+.tl-era ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.tl-row {
+  position: relative; display: grid; grid-template-columns: 2.4em minmax(0, 1fr) auto; align-items: baseline; gap: 14px;
+  padding: 16px 4px; border-bottom: 1px solid var(--line); overflow: hidden; isolation: isolate;
+}
+.tl-row::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease); }
+.tl-row:hover::before { transform: scaleX(1); }
+.tl-row:hover, .tl-row:hover .tl-n, .tl-row:hover .tl-k { color: var(--ink); }
+.tl-n { font-family: var(--font-mono); font-size: 12px; color: var(--mute); }
+.tl-name { font-size: clamp(1rem, 1.6vw, 1.2rem); font-weight: 700; letter-spacing: .03em; line-height: 1.5; }
+.tl-k { font-family: var(--font-sub); font-size: 11px; letter-spacing: .22em; color: var(--mute); text-align: right; }
+.tl-row.now { border-bottom-color: var(--red); }
+.tl-row.now .tl-name { color: var(--red); }
+.tl-row.now .tl-k { color: var(--paper); background: var(--red); padding: 2px 8px; letter-spacing: .18em; }
+.tl-row.now:hover .tl-name { color: var(--ink); }
 
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+/* ---------- PROFILE / DATA ---------- */
+.profile { padding-block: clamp(100px, 14vw, 180px); }
+.profile-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); margin-top: 56px; align-items: center; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.stat { padding: 22px 0 20px; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
+.stat:nth-child(odd) { padding-right: 16px; border-right: 1px solid var(--line); }
+.stat:nth-child(even) { padding-left: 20px; }
+.stat dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .25em; color: var(--mute); text-transform: uppercase; }
+.stat dd { margin: 0; font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat dd small { font-family: var(--font-sub); font-size: .38em; color: var(--mute); margin-left: 4px; letter-spacing: .1em; }
+.stat dd.jp { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.5; padding-top: .4em; }
+.pitch { position: relative; }
+.pitch svg { width: 100%; height: auto; display: block; overflow: visible; }
+.pitch .court path, .pitch .court rect, .pitch .court circle, .pitch .court line { stroke: rgba(242, 236, 234, .5); }
+.pitch .court .goal { stroke: var(--paper); }
+.pitch .run { fill: none; stroke: var(--red); stroke-width: 2; stroke-dasharray: 5 6; vector-effect: non-scaling-stroke; }
+.pitch .me { fill: var(--red); }
+.pitch .pulse { fill: none; stroke: var(--red); stroke-width: 1.5; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; animation: pulse 2.4s var(--ease) infinite; }
+.pitch .pulse.p2 { animation-delay: 1.2s; }
+@keyframes pulse { from { transform: scale(1); opacity: .9; } to { transform: scale(4.2); opacity: 0; } }
+.pitch-legend { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .18em; color: var(--mute); }
+.pitch-legend b { color: var(--red); font-weight: 500; }
+.pitch-note { margin: 18px 0 0; color: var(--mute); max-width: 44ch; font-size: 14px; }
+.pitch-note b { color: var(--paper); }
 
-  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: 300px 300px 300px; }
+/* ---------- GALLERY ---------- */
+.gallery { padding-block: clamp(60px, 8vw, 120px) clamp(100px, 14vw, 180px); }
+.gallery-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+.gallery-head p { margin: 0; color: var(--mute); max-width: 36ch; font-size: 14px; }
+.g-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 22px); margin-top: 56px; }
+.g-item { position: relative; overflow: hidden; background: var(--ink-3); clip-path: inset(0 0 0 0); }
+.g-item { cursor: zoom-in; margin: 0; }
+.g-item:nth-child(6n+1) { grid-column: 1 / span 7; aspect-ratio: 3 / 2; }
+.g-item:nth-child(6n+2) { grid-column: 8 / span 5; aspect-ratio: 4 / 5; margin-top: 14%; }
+.g-item:nth-child(6n+3) { grid-column: 2 / span 5; aspect-ratio: 4 / 5; margin-top: -6%; }
+.g-item:nth-child(6n+4) { grid-column: 7 / span 6; aspect-ratio: 3 / 2; margin-top: 10%; }
+.g-item:nth-child(6n+5) { grid-column: 1 / span 12; aspect-ratio: 21 / 9; }
+.g-item:nth-child(6n+6) { grid-column: 4 / span 6; aspect-ratio: 3 / 2; }
+.g-item img { object-position: 55% 40%; }
+.g-item:hover img { transform: scale(1.06); }
+.g-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11, 10, 11, .75), transparent 45%); pointer-events: none; }
+.g-item figcaption {
+  position: absolute; left: 18px; right: 18px; bottom: 14px; z-index: 1; display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .22em; color: var(--paper);
+}
+.g-item figcaption b { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: .04em; line-height: 1; color: var(--red); }
+.credit { font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; color: var(--mute); margin-top: 18px; text-align: right; }
 
-  .sponsor-plan { grid-template-columns: 1fr !important; gap: 20px; }
-  .sponsor-plan .plan-card { padding: 32px 24px; }
-  .plan-number { font-size: 3rem; }
-  .lesson-features { margin: 20px -24px; padding: 20px 24px; width: calc(100% + 48px); }
-  .lesson-price-block { margin: 20px -24px; padding: 20px 24px; width: calc(100% + 48px); }
-  #events.section-padding { padding-left: 4%; padding-right: 4%; }
-  .sponsor-block-header { padding: 24px; }
-  .sponsor-block-body { padding: 24px; }
-  .profile-table-wrapper { grid-template-columns: 1fr; }
+/* lightbox */
+#lightbox {
+  position: fixed; inset: 0; z-index: 135; background: rgba(11, 10, 11, .94); display: grid; place-items: center;
+  padding: calc(56px + env(safe-area-inset-top, 0px)) var(--gutter) calc(40px + env(safe-area-inset-bottom, 0px));
+  visibility: hidden; opacity: 0; cursor: zoom-out;
+}
+#lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+#lightbox .lb-cap { position: absolute; left: var(--gutter); right: var(--gutter); margin: 0; line-height: 1.7; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); font-family: var(--font-mono); font-size: 11px; letter-spacing: .22em; color: var(--mute); }
+#lightbox .lb-close { position: absolute; top: calc(16px + env(safe-area-inset-top, 0px)); right: var(--gutter); font-family: var(--font-sub); font-size: 13px; letter-spacing: .25em; }
 
-  .footer-top { flex-direction: column; gap: 30px; }
-  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+/* ---------- SPONSOR ---------- */
+.sponsor { padding-block: clamp(100px, 14vw, 180px); background: var(--ink-2); border-top: 1px solid var(--line); }
+.events { padding-block: clamp(100px, 14vw, 180px); }
+.sp-block { margin-top: clamp(48px, 7vw, 88px); display: grid; gap: 24px; }
+.sp-head { display: grid; grid-template-columns: 9em minmax(0, auto) minmax(0, 1fr); align-items: baseline; gap: 8px 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+.sp-head h3 { margin: 0; font-size: clamp(1.3rem, 2.6vw, 1.9rem); font-weight: 900; letter-spacing: .04em; }
+.sp-head p { margin: 0; color: var(--mute); font-size: 14px; }
+.sp-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .28em; color: var(--red); }
+.plan.wide { max-width: 100%; }
+.plan .lead-text { color: var(--paper); font-size: 15px; max-width: 62ch; line-height: 1.9; }
+.plan-name { font-weight: 900; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: .04em; line-height: 1.3; transform: translateZ(40px); }
+.facts { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.facts div { display: grid; grid-template-columns: 4em minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.facts dt { font-family: var(--font-mono); font-size: 12px; letter-spacing: .15em; color: var(--red); padding-top: 2px; }
+.facts dd { margin: 0; }
+.price-block { display: grid; gap: 4px; padding: 18px 20px; background: var(--ink-2); border-left: 2px solid var(--red); }
+.pb-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em; color: var(--mute); }
+.pb-main { font-family: var(--font-display); font-size: clamp(2.6rem, 5vw, 3.6rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.pb-main small { font-family: var(--font-body); font-size: .32em; color: var(--mute); margin-left: 8px; font-weight: 500; }
+.price-block p { font-size: 13px; }
+.price-block .pb-max { color: var(--paper); font-weight: 700; }
+.line-btn {
+  justify-self: start; display: inline-flex; align-items: center; gap: 12px; padding: 14px 22px;
+  background: var(--red); color: var(--ink); font-weight: 700; font-size: 14px; letter-spacing: .06em;
+  transition: background .3s, gap .3s var(--ease);
+}
+.line-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
+.line-btn:hover { background: var(--paper); gap: 18px; }
+.line-btn.full { justify-self: stretch; justify-content: center; }
+.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); margin-top: 56px; perspective: 1200px; }
+@property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.plan {
+  --mx: 50%; --my: 50%;
+  position: relative; padding: clamp(28px, 3.4vw, 48px); background: var(--ink); isolation: isolate;
+  transform-style: preserve-3d; display: grid; gap: 18px; align-content: start;
+}
+.plan::before {
+  content: ""; position: absolute; inset: 0; z-index: -2; padding: 1px;
+  background: conic-gradient(from var(--ang), transparent 0 60%, var(--red) 80%, transparent 95%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: spin 5s linear infinite;
+}
+.plan::after {
+  content: ""; position: absolute; inset: 1px; z-index: -1; opacity: 0; transition: opacity .4s;
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(230, 57, 70, .18), transparent 60%);
+}
+.plan:hover::after, .plan.lit::after { opacity: 1; }
+@keyframes spin { to { --ang: 360deg; } }
+.plan-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.plan-badge { font-family: var(--font-sub); font-size: 12px; letter-spacing: .28em; color: var(--red); }
+.plan-no { font-family: var(--font-mono); font-size: 12px; color: var(--mute); }
+.plan p { margin: 0; color: var(--mute); font-size: 14px; }
+.plan ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.plan li { padding: 14px 0 14px 28px; border-bottom: 1px solid var(--line); position: relative; font-size: 14px; }
+.plan li::before { content: ""; position: absolute; left: 4px; top: 1.45em; width: 12px; height: 1px; background: var(--red); }
+.plan li b { color: var(--red); font-weight: 700; }
+
+/* ---------- CTA ---------- */
+.cta { padding-block: clamp(110px, 16vw, 220px); text-align: center; overflow: hidden; }
+.cta .h-display { font-size: clamp(3.4rem, 13vw, 13rem); }
+.cta p { color: var(--mute); margin: 28px auto 0; max-width: 40ch; }
+.mag-wrap { display: inline-block; margin-top: 48px; padding: 20px; }
+.mag-btn {
+  width: clamp(150px, 16vw, 190px); aspect-ratio: 1; border-radius: 50%; background: var(--red); color: var(--ink);
+  display: grid; place-items: center; font-family: var(--font-display); font-size: 1.6rem; letter-spacing: .08em; line-height: 1;
+  position: relative; overflow: hidden; will-change: transform;
+}
+.mag-btn::before { content: ""; position: absolute; inset: 0; background: var(--paper); border-radius: 50%; transform: scale(0); transition: transform .6s var(--ease); }
+.mag-btn:hover::before { transform: scale(1); }
+.mag-btn span { position: relative; }
+
+/* touch: tap ripple + pulsing CTA */
+.tap { position: fixed; z-index: 140; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; border: 1.5px solid var(--red); pointer-events: none; }
+.mag-wrap { position: relative; }
+.mag-ring { position: absolute; inset: 20px; border-radius: 50%; border: 1px solid var(--red); pointer-events: none; opacity: 0; }
+
+/* ---------- FOOTER ---------- */
+footer.site { padding: 40px var(--gutter) calc(28px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); overflow: hidden; }
+.foot-row { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; color: var(--mute); }
+.foot-row a:hover { color: var(--red); }
+.foot-sns { display: flex; gap: 24px; }
+.foot-big {
+  font-family: var(--font-display); font-size: 30vw; line-height: .8; padding-top: .04em; margin: 28px 0 8px; letter-spacing: -.01em;
+  display: flex; justify-content: space-between; overflow: hidden;
+}
+.foot-big .char:nth-child(n+4) { color: var(--red); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 860px) {
+  .about-grid, .profile-grid, .plans { grid-template-columns: minmax(0, 1fr); }
+  .sp-head { grid-template-columns: minmax(0, 1fr); }
+  .line-btn { justify-self: stretch; justify-content: center; }
+  .about-head { position: static; }
+  .about-portrait { max-width: 360px; }
+  .g-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .g-item:nth-child(n) { grid-column: span 6; margin-top: 0; aspect-ratio: 4 / 3; }
+  .g-item:nth-child(6n+2), .g-item:nth-child(6n+3) { grid-column: span 3; aspect-ratio: 3 / 4; }
+  .hero-photo img { object-position: 70% 20%; }
+  .hero-photo::after { background: linear-gradient(0deg, rgba(11, 10, 11, .92) 0%, rgba(11, 10, 11, .35) 55%, rgba(11, 10, 11, .55) 100%); }
+  .hero-tag.right { text-align: left; }
+  .tl { grid-template-columns: minmax(0, 1fr); padding-left: 36px; }
+  .tl-rail { left: 8px; }
+  .hero { grid-template-rows: auto 1fr; }
+  .hero-top { flex-direction: column; gap: 10px; }
+  .hero-main { align-self: end; }
+  .hero-name { font-size: 25vw; }
+  .hero-name .l2 { padding-left: 0; }
+  .hero-floor { width: 260vw; bottom: 4%; opacity: .7; }
+  .hero-jp { letter-spacing: .3em; }
 }
 
-@media (max-width: 480px) {
-  .hero-name { letter-spacing: 3px; }
-  .hero-meta { flex-wrap: wrap; gap: 12px; }
-  .plan-card { padding: 30px 24px; }
-}
+/* fallback when the animation library fails to load: no pinning, everything readable in flow */
+.rm .grain { animation: none; }
 </style>
 </head>
 <body>
 
-<div id="loader">
-  <div class="loader-text" style="font-size:clamp(1.5rem,5vw,3rem);letter-spacing:4px;">NAOYUKI MAEKAWA</div>
-  <div class="loader-bar"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"><span></span></div>
+
+<!-- LOADER -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-panel top"></div>
+  <div class="loader-panel bot"></div>
+  <div class="loader-center">
+    <div class="loader-num"><span id="loaderNum">000</span><em>%</em></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-cap">KICK OFF — NAOYUKI MAEKAWA</div>
+  </div>
 </div>
 
-<header id="header">
-  <a href="#top" class="logo" style="font-size:1.1rem;letter-spacing:2px;">NAOYUKI <span>MAEKAWA</span></a>
-  <div class="hamburger" id="hamburger" aria-label="メニューを開く">
-    <span></span><span></span><span></span>
-  </div>
+<!-- HEADER -->
+<header class="site" id="siteHeader">
+  <a href="#top" class="logo" data-cursor="link">NAOYUKI <span class="red">MAEKAWA</span></a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu" data-cursor="link">
+    <span id="menuLabel">MENU</span><span class="bars"><i></i><i></i></span>
+  </button>
 </header>
 
-<div class="nav-overlay" id="navOverlay">
+<div class="menu" id="menu" aria-hidden="true">
   <nav>
-    <a href="#about" class="nav-link"><span class="nav-number">01</span>ABOUT</a>
-    <a href="#career" class="nav-link"><span class="nav-number">02</span>CAREER</a>
-    <a href="#sponsor" class="nav-link"><span class="nav-number">03</span>SPONSOR</a>
-    <a href="#events" class="nav-link"><span class="nav-number">04</span>EVENTS</a>
-    <a href="#gallery" class="nav-link"><span class="nav-number">05</span>GALLERY</a>
-    <a href="#profile" class="nav-link"><span class="nav-number">06</span>PROFILE</a>
-    <a href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" class="nav-link"><span class="nav-number">07</span>CONTACT</a>
-    <div class="nav-sns">
-      <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">INSTAGRAM</a>
-      <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X / TWITTER</a>
-    </div>
+    <a class="menu-link" href="#about"><small>ABOUT</small><span>WHO IS NAOYUKI</span></a>
+    <a class="menu-link" href="#career"><small>CAREER</small><span>THE JOURNEY</span></a>
+    <a class="menu-link" href="#sponsor"><small>SPONSOR</small><span>SUPPORT</span></a>
+    <a class="menu-link" href="#events"><small>EVENTS</small><span>FAN EVENTS</span></a>
+    <a class="menu-link" href="#gallery"><small>GALLERY</small><span>IN ACTION</span></a>
+    <a class="menu-link" href="#profile"><small>PROFILE</small><span>PLAYER DATA</span></a>
+    <a class="menu-link" href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener"><small>CONTACT</small><span>OFFICIAL LINE</span></a>
   </nav>
+  <div class="menu-foot">
+    <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">INSTAGRAM</a>
+    <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X / TWITTER</a>
+  </div>
 </div>
 
-<main id="main-content">
+<main>
+<!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-label">Futsal Player ─ Pivo</div>
-    <h1 class="hero-name">NAOYUKI<br>MAEKAWA</h1>
-    <p class="hero-name-jp">前川 尚志</p>
-    <div class="hero-meta">
-      <div>ボアルース長野</div>
-      <div>2026 —</div>
-    </div>
+  <div class="hero-photo" id="heroPhoto"><img src="images/hero.jpg" alt="ボアルース長野の11番ユニフォームを着た前川尚志" fetchpriority="high"></div>
+  <canvas id="heroGL" aria-hidden="true"></canvas>
+  <div class="hero-floor" aria-hidden="true" data-court></div>
+  <div class="hero-top">
+    <div class="hero-tag"><span>FUTSAL PLAYER</span><b>POSITION — PIVO</b></div>
+    <div class="hero-tag right"><span>COURT 40m × 20m</span><b>BOA LUZ NAGANO / 2026 —</b></div>
   </div>
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
+  <div class="hero-main" id="heroMain">
+    <h1 class="hero-name" aria-label="Naoyuki Maekawa">
+      <span class="line-mask"><span class="l1" data-split>NAOYUKI</span></span>
+      <span class="line-mask"><span class="l2" data-split>MAEKAWA</span></span>
+    </h1>
+    <div class="hero-name hero-ghost" aria-hidden="true" id="heroGhost">
+      <span class="line-mask"><span class="l1">NAOYUKI</span></span>
+      <span class="line-mask"><span class="l2">MAEKAWA</span></span>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-jp">前川 尚志<small>ボアルース長野 所属</small></div>
+      <div class="hero-scroll">SCROLL<i></i></div>
+    </div>
   </div>
 </section>
 
-<section id="about" class="section-padding">
-  <div class="reveal">
-    <div class="section-label">01 — About</div>
-    <h2 class="section-title">WHO IS <span class="accent">NAOYUKI</span></h2>
-  </div>
+<!-- ABOUT -->
+<section class="about wrap" id="about">
   <div class="about-grid">
-    <div class="about-photo-area reveal">
-      <div class="about-photo-placeholder">
-        <img src="https://i.postimg.cc/fL4KDgWT/IMG-3978.jpg" alt="前川尚志（まえかわなおゆき）フットサル選手 宣材写真" loading="lazy">
+    <div class="about-head">
+      <span class="eyebrow" data-scramble>About</span>
+      <h2 class="h-display"><span class="line-mask"><span data-reveal>WHO IS</span></span><span class="line-mask"><span data-reveal class="red">NAOYUKI</span></span></h2>
+      <div class="about-portrait" data-clip>
+        <div class="photo" data-parallax="0.18"><img src="images/promo.jpg" alt="前川尚志（まえかわなおゆき）フットサル選手 宣材写真" loading="lazy"></div>
       </div>
-      <div class="about-red-block"></div>
     </div>
-    <div class="about-text reveal">
+    <div class="about-body" id="aboutBody">
       <p>兵庫県神戸市出身。</p>
-      <p>幼少期からサッカーに取り組み、本庄FC、西宮SSを経て、報徳学園高校サッカー部でプレー。</p>
-      <p>大学進学を機にフットサルへ転向。摂南大学フットサル部と並行し、FC大阪楽笑とカンカンボーイズでプレー。</p>
-      <p>大学卒業後、特別指定選手として湘南ベルマーレフットサルクラブに加入。その後トップチームへ昇格し、3シーズンプレー。</p>
+      <p>幼少期からサッカーに取り組み、本庄FC、西宮SSを経て、<strong>報徳学園高校</strong>サッカー部でプレー。</p>
+      <p>大学進学を機に<strong>フットサルへ転向</strong>。摂南大学フットサル部と並行し、FC大阪楽笑とカンカンボーイズでプレー。</p>
+      <p>大学卒業後、特別指定選手として<strong>湘南ベルマーレフットサルクラブ</strong>に加入。その後トップチームへ昇格し、3シーズンプレー。</p>
       <p>2026年より<strong>ボアルース長野</strong>へ加入。</p>
-    </div>
-  </div>
-</section>
-
-<section id="career" class="section-padding">
-  <div class="reveal">
-    <div class="section-label">02 — Career</div>
-    <h2 class="section-title">THE <span class="accent">JOURNEY</span></h2>
-  </div>
-  <div class="career-wrapper reveal">
-    <div class="timeline">
-      <div class="timeline-era">
-        <div class="timeline-era-label">FOOTBALL ERA</div>
-        <div class="timeline-item"><div class="team-name">本庄FC</div></div>
-        <div class="timeline-item"><div class="team-name">西宮SS</div></div>
-        <div class="timeline-item"><div class="team-name">報徳学園高校 サッカー部</div></div>
-      </div>
-      <div class="timeline-era">
-        <div class="timeline-era-label">FUTSAL ERA</div>
-        <div class="timeline-item"><div class="team-name">摂南大学（FC大阪楽笑）</div></div>
-        <div class="timeline-item"><div class="team-name">摂南大学（カンカンボーイズ）</div></div>
-        <div class="timeline-item"><div class="team-name">S.B.F.C. LONDRINA</div></div>
-        <div class="timeline-item"><div class="team-name">湘南ベルマーレ フットサルクラブ</div></div>
-        <div class="timeline-item" style="border-left: 3px solid var(--red); box-shadow: -4px 0 30px var(--red-glow);">
-          <div class="team-name" style="color: var(--red);">ボアルース長野</div>
-        </div>
+      <div class="about-facts">
+        <span class="chip">KOBE, HYOGO</span><span class="chip">FOOTBALL → FUTSAL</span><span class="chip">F.LEAGUE</span>
       </div>
     </div>
   </div>
 </section>
 
-<section id="sponsor" class="section-padding">
-  <div class="reveal">
-    <div class="section-label">03 — Sponsor</div>
-    <h2 class="section-title" style="margin-bottom: 0;">SUPPORT <span class="accent">NAOYUKI</span></h2>
+<!-- CAREER -->
+<section class="career wrap" id="career">
+  <div class="career-head">
+    <div>
+      <span class="eyebrow" data-scramble>Career</span>
+      <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>THE <span class="red">JOURNEY</span></span></span></h2>
+    </div>
+    <p>FOOTBALL → FUTSAL → F.LEAGUE</p>
   </div>
-
-  <div class="sponsor-block reveal">
-    <div class="sponsor-block-header">
-      <div class="sponsor-block-label">CORPORATE</div>
-      <h3 class="sponsor-block-title">企業スポンサー様</h3>
-      <p class="sponsor-block-sub">前川尚志の挑戦を、一緒に支えてくださる企業様を募集しております。サポートの形は決まったものではなく、企業様とご相談しながら作っていきたいと考えています。ご興味をお持ちいただけましたら、公式LINEよりお気軽にご連絡ください。</p>
+  <div class="tl" id="timeline">
+    <div class="tl-rail" aria-hidden="true"><div class="tl-fill" id="tlFill"></div><svg class="ball" id="ball" viewBox="0 0 36 36"><circle cx="18" cy="18" r="17"/><path d="M18 11l6 4.4-2.3 7.1h-7.4L12 15.4z"/><path d="M18 1.5a16.5 16.5 0 0 1 6 1.2L18 6.5l-6-3.8A16.5 16.5 0 0 1 18 1.5zM33.6 13.5a16.5 16.5 0 0 1 .4 7.4l-4.5-3.6 1.4-6zM2 20.9a16.5 16.5 0 0 1 .4-7.4l2.7 1.8 1.4 6zM10 32.4l1.6-5.4h7L22 32.8a16.5 16.5 0 0 1-12-.4z"/></svg></div>
+    <div class="tl-era">
+      <h3>FOOTBALL ERA</h3>
+      <ol>
+          <li class="tl-row"><span class="tl-n">01</span><span class="tl-name">本庄FC</span><span class="tl-k">JUNIOR</span></li>
+          <li class="tl-row"><span class="tl-n">02</span><span class="tl-name">西宮SS</span><span class="tl-k">JUNIOR YOUTH</span></li>
+          <li class="tl-row"><span class="tl-n">03</span><span class="tl-name">報徳学園高校 サッカー部</span><span class="tl-k">HIGH SCHOOL</span></li>
+      </ol>
     </div>
-    <div class="sponsor-block-body">
-      <p class="sponsor-block-note">掲載内容・条件については個別にご相談ください。</p>
-      <a href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" class="sponsor-contact-btn">
-        公式LINEでお問い合わせ
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-
-  <div class="sponsor-block reveal" style="margin-top: 40px;">
-    <div class="sponsor-block-header">
-      <div class="sponsor-block-label">PERSONAL</div>
-      <h3 class="sponsor-block-title">個人スポンサー様</h3>
-      <p class="sponsor-block-sub">個人で応援していただける方</p>
-    </div>
-    <div class="sponsor-block-body">
-      <div class="sponsor-plan" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 32px;">
-        <div class="plan-card">
-          <div class="plan-number">01</div>
-          <div class="plan-badge">STANDARD</div>
-          <div class="plan-price" style="font-size: 1.6rem; white-space: nowrap;">スタンダード会員</div>
-          <p class="plan-desc">月額1,000円で前川尚志の活動を継続的にサポートいただけます。</p>
-          <ul class="plan-benefits">
-            <li>Instagramの<span class="benefit-highlight">親しい友達</span>にて日常を配信</li>
-            <li>月一回の<span class="benefit-highlight">note配信</span></li>
-          </ul>
-        </div>
-        <div class="plan-card">
-          <div class="plan-number">02</div>
-          <div class="plan-badge">PREMIUM</div>
-          <div class="plan-price" style="font-size: 1.6rem; white-space: nowrap;">プレミア会員</div>
-          <p class="plan-desc">月額5,000円で、より手厚い特典と共にサポートいただけます。</p>
-          <ul class="plan-benefits">
-            <li>Instagramの<span class="benefit-highlight">親しい友達</span>にて日常を配信</li>
-            <li>月一回の<span class="benefit-highlight">note配信</span></li>
-            <li><span class="benefit-highlight">サポーター限定グッズ</span>プレゼント🎁</li>
-            <li>年一回の<span class="benefit-highlight">前川セレクトプレゼント</span>🎁</li>
-            <li>（半年以上の会員様）パーソナルトレーニング<span class="benefit-highlight">何回でも2割引</span></li>
-          </ul>
-        </div>
-      </div>
-      <a href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" class="sponsor-contact-btn">
-        公式LINEでお問い合わせ
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-
-  <div class="sponsor-block reveal" style="margin-top: 40px;">
-    <div class="sponsor-block-header">
-      <div class="sponsor-block-label">GOODS</div>
-      <h3 class="sponsor-block-title">物品提供サポーター</h3>
-      <p class="sponsor-block-sub">活動に必要なものを提供していただける方を募集しています。</p>
-    </div>
-    <div class="sponsor-block-body">
-      <div class="sponsor-plan" style="grid-template-columns: 1fr; margin-bottom: 32px;">
-        <div class="plan-card">
-          <div class="plan-number">01</div>
-          <div class="plan-badge">GOODS SUPPORT</div>
-          <p class="plan-desc">継続してご提供して頂ける方</p>
-          <ul class="plan-benefits">
-            <li><span class="benefit-highlight">サポーター限定グッズ</span>プレゼント🎁</li>
-            <li>パーソナルトレーニング<span class="benefit-highlight">何回でも2割引</span></li>
-          </ul>
-        </div>
-      </div>
-      <a href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" class="sponsor-contact-btn">
-        公式LINEでお問い合わせ
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-      </a>
+    <div class="tl-era">
+      <h3>FUTSAL ERA</h3>
+      <ol>
+          <li class="tl-row"><span class="tl-n">04</span><span class="tl-name">摂南大学（FC大阪楽笑）</span><span class="tl-k">UNIVERSITY</span></li>
+          <li class="tl-row"><span class="tl-n">05</span><span class="tl-name">摂南大学（カンカンボーイズ）</span><span class="tl-k">UNIVERSITY</span></li>
+          <li class="tl-row"><span class="tl-n">06</span><span class="tl-name">S.B.F.C. LONDRINA</span><span class="tl-k">KANSAI</span></li>
+          <li class="tl-row"><span class="tl-n">07</span><span class="tl-name">湘南ベルマーレ フットサルクラブ</span><span class="tl-k">F.LEAGUE</span></li>
+          <li class="tl-row now"><span class="tl-n">08</span><span class="tl-name">ボアルース長野</span><span class="tl-k">2026 — NOW</span></li>
+      </ol>
     </div>
   </div>
 </section>
 
-<section id="events" class="section-padding" style="background: var(--black);">
-  <div class="reveal">
-    <div class="section-label">04 — Events</div>
-    <h2 class="section-title">FAN <span class="accent">EVENTS</span></h2>
+<!-- SPONSOR -->
+<section class="sponsor wrap" id="sponsor">
+  <span class="eyebrow" data-scramble>Sponsor</span>
+  <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>SUPPORT</span></span><span class="line-mask"><span data-reveal class="red">NAOYUKI</span></span></h2>
+
+  <div class="sp-block">
+    <div class="sp-head"><span class="sp-label">CORPORATE</span><h3>企業スポンサー様</h3></div>
+    <article class="plan wide" data-tilt>
+      <p class="lead-text">前川尚志の挑戦を、一緒に支えてくださる企業様を募集しております。サポートの形は決まったものではなく、企業様とご相談しながら作っていきたいと考えています。ご興味をお持ちいただけましたら、公式LINEよりお気軽にご連絡ください。</p>
+      <p>掲載内容・条件については個別にご相談ください。</p>
+      <a class="line-btn" href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" data-cursor="link">公式LINEでお問い合わせ<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7l7 7-7 7"/></svg></a>
+    </article>
   </div>
-  <div class="sponsor-plan">
-    <div class="plan-card reveal">
-      <div class="plan-number">01</div>
-      <div class="plan-badge">GAME EVENT</div>
-      <div class="plan-price" style="font-size: 2rem;">ゲーム会</div>
-      <p class="plan-desc">前川尚志と一緒にゲームを楽しめるファンイベント。選手との距離がぐっと縮まる特別な時間です。</p>
-      <ul class="plan-benefits">
-        <li>詳細・開催日程は<span class="benefit-highlight">SNSにて告知</span></li>
+
+  <div class="sp-block">
+    <div class="sp-head"><span class="sp-label">PERSONAL</span><h3>個人スポンサー様</h3><p>個人で応援していただける方</p></div>
+    <div class="plans">
+      <article class="plan" data-tilt>
+        <div class="plan-top"><span class="plan-badge">STANDARD</span><span class="plan-no">01</span></div>
+        <div class="plan-name" data-fade>スタンダード会員</div>
+        <p>月額1,000円で前川尚志の活動を継続的にサポートいただけます。</p>
+        <ul>
+          <li>Instagramの<b>親しい友達</b>にて日常を配信</li>
+          <li>月一回の<b>note配信</b></li>
+        </ul>
+      </article>
+      <article class="plan" data-tilt>
+        <div class="plan-top"><span class="plan-badge">PREMIUM</span><span class="plan-no">02</span></div>
+        <div class="plan-name" data-fade>プレミア会員</div>
+        <p>月額5,000円で、より手厚い特典と共にサポートいただけます。</p>
+        <ul>
+          <li>Instagramの<b>親しい友達</b>にて日常を配信</li>
+          <li>月一回の<b>note配信</b></li>
+          <li><b>サポーター限定グッズ</b>プレゼント</li>
+          <li>年一回の<b>前川セレクトプレゼント</b></li>
+          <li>（半年以上の会員様）パーソナルトレーニング<b>何回でも2割引</b></li>
+        </ul>
+      </article>
+    </div>
+    <a class="line-btn" href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" data-cursor="link">公式LINEでお問い合わせ<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7l7 7-7 7"/></svg></a>
+  </div>
+
+  <div class="sp-block">
+    <div class="sp-head"><span class="sp-label">GOODS</span><h3>物品提供サポーター</h3><p>活動に必要なものを提供していただける方を募集しています。</p></div>
+    <article class="plan wide" data-tilt>
+      <div class="plan-top"><span class="plan-badge">GOODS SUPPORT</span><span class="plan-no">01</span></div>
+      <p>継続してご提供して頂ける方</p>
+      <ul>
+        <li><b>サポーター限定グッズ</b>プレゼント</li>
+        <li>パーソナルトレーニング<b>何回でも2割引</b></li>
       </ul>
-    </div>
-    <div class="plan-card reveal lesson-card">
-      <div class="plan-number">02</div>
-      <div class="plan-badge">PERSONAL TRAINING</div>
-      <div class="plan-price" style="font-size: 2rem;">パーソナル<br>トレーニング</div>
+      <a class="line-btn" href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" data-cursor="link">公式LINEでお問い合わせ<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7l7 7-7 7"/></svg></a>
+    </article>
+  </div>
+</section>
 
-      <p class="plan-desc">本気で上手くなるために、課題に対して取り組みます！（フットサル以外のフィットネスなどのトレーニングでも可能）</p>
-
-      <div class="lesson-features">
-        <div class="lesson-feature">
-          <span class="lf-icon">👤</span>
-          <div>
-            <div class="lf-title">対象</div>
-            <div class="lf-body">お子様から大人まで、どなたでも受講可能</div>
-          </div>
-        </div>
-        <div class="lesson-feature">
-          <span class="lf-icon">⚽</span>
-          <div>
-            <div class="lf-title">内容</div>
-            <div class="lf-body">フットサル技術指導・運動不足解消トレーニングなど</div>
-          </div>
-        </div>
+<!-- EVENTS -->
+<section class="events wrap" id="events">
+  <span class="eyebrow" data-scramble>Events</span>
+  <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>FAN <span class="red">EVENTS</span></span></span></h2>
+  <div class="plans">
+    <article class="plan" data-tilt>
+      <div class="plan-top"><span class="plan-badge">GAME EVENT</span><span class="plan-no">01</span></div>
+      <div class="plan-name" data-fade>ゲーム会</div>
+      <p>前川尚志と一緒にゲームを楽しめるファンイベント。選手との距離がぐっと縮まる特別な時間です。</p>
+      <ul><li>詳細・開催日程は<b>SNSにて告知</b></li></ul>
+    </article>
+    <article class="plan" data-tilt>
+      <div class="plan-top"><span class="plan-badge">PERSONAL TRAINING</span><span class="plan-no">02</span></div>
+      <div class="plan-name" data-fade>パーソナルトレーニング</div>
+      <p>本気で上手くなるために、課題に対して取り組みます！（フットサル以外のフィットネスなどのトレーニングでも可能）</p>
+      <dl class="facts">
+        <div><dt>対象</dt><dd>お子様から大人まで、どなたでも受講可能</dd></div>
+        <div><dt>内容</dt><dd>フットサル技術指導・運動不足解消トレーニングなど</dd></div>
+      </dl>
+      <div class="price-block" data-fade>
+        <span class="pb-label">PRICE</span>
+        <div class="pb-main">¥7,500<small>/ 1時間</small></div>
+        <p>会場は利用者の方負担にてよろしくお願いします</p>
+        <p class="pb-max">最大4名まで参加可能</p>
       </div>
-
-      <div class="lesson-price-block">
-        <div class="lesson-price-label">PRICE</div>
-        <div class="lesson-price-main">¥7,500<span class="lesson-price-unit"> / 1時間</span></div>
-        <div class="lesson-price-note">会場は利用者の方負担にてよろしくお願いします</div>
-        <div class="lesson-price-max">最大4名まで参加可能</div>
-      </div>
-
-      <a href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" class="sponsor-contact-btn" style="width:100%;justify-content:center;margin-top:4px;">
-        公式LINEでお問い合わせ
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-      </a>
-    </div>
+      <a class="line-btn full" href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" data-cursor="link">公式LINEでお問い合わせ<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7l7 7-7 7"/></svg></a>
+    </article>
   </div>
 </section>
 
-<section id="gallery" class="section-padding">
-  <div class="reveal">
-    <div class="section-label">05 — Gallery</div>
-    <h2 class="section-title">IN <span class="accent">ACTION</span></h2>
-  </div>
-  <div class="gallery-grid reveal">
-    <div class="g-item"><img src="https://i.postimg.cc/ydqPsr1M/IMG-3980.jpg" alt="前川尚志 ボアルース長野 フットサル選手" loading="lazy"></div>
-    <div class="g-item"><img src="https://i.postimg.cc/XYWnyQp5/IMG-4057.jpg" alt="前川尚志 ボアルース長野 フットサル選手" loading="lazy"></div>
-    <div class="g-item"><img src="https://i.postimg.cc/mgSB3CHD/IMG-4058.jpg" alt="前川尚志 ボアルース長野 フットサル選手" loading="lazy"></div>
-  </div>
-</section>
-
-<section id="profile" class="section-padding">
-  <div class="reveal">
-    <div class="section-label">06 — Profile</div>
-    <h2 class="section-title">PLAYER <span class="accent">DATA</span></h2>
-  </div>
-  <div class="profile-table-wrapper reveal">
+<!-- GALLERY -->
+<section class="gallery wrap" id="gallery">
+  <div class="gallery-head">
     <div>
-      <div class="profile-row"><div class="row-label">Name</div><div class="row-value">前川 尚志（まえかわ なおゆき）</div></div>
-      <div class="profile-row"><div class="row-label">Born</div><div class="row-value">2001年1月22日</div></div>
-      <div class="profile-row"><div class="row-label">From</div><div class="row-value">兵庫県神戸市</div></div>
-      <div class="profile-row"><div class="row-label">Position</div><div class="row-value">FP（ピヴォ）</div></div>
+      <span class="eyebrow" data-scramble>Gallery</span>
+      <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>IN <span class="red">ACTION</span></span></span></h2>
     </div>
-    <div>
-      <div class="profile-row"><div class="row-label">Height</div><div class="row-value">170cm</div></div>
-      <div class="profile-row"><div class="row-label">Weight</div><div class="row-value">73kg</div></div>
-      <div class="profile-row"><div class="row-label">Foot</div><div class="row-value">右足</div></div>
-      <div class="profile-row"><div class="row-label">Blood</div><div class="row-value">A型</div></div>
+    <p>ボアルース長野での試合から。写真をタップすると大きく表示します。</p>
+  </div>
+  <div class="g-grid">
+    <figure class="g-item" data-clip data-cursor="VIEW"><div class="photo" data-parallax="0.2"><img src="images/celebrate.jpg" alt="ゴール後、拳を握って駆け出す瞬間" loading="lazy"></div><figcaption><b>CELEBRATE</b><span>BOA LUZ NAGANO</span></figcaption></figure>
+    <figure class="g-item" data-clip data-cursor="VIEW"><div class="photo" data-parallax="0.26"><img src="images/onball.jpg" alt="ボアルース長野のアウェイユニフォームで、ボールを持って仕掛ける前川尚志" loading="lazy"></div><figcaption><b>ON THE BALL</b><span>BOA LUZ NAGANO</span></figcaption></figure>
+    <figure class="g-item" data-clip data-cursor="VIEW"><div class="photo" data-parallax="0.18"><img src="images/ready.jpg" alt="ボアルース長野のホームユニフォームで構える前川尚志" loading="lazy"></div><figcaption><b>READY</b><span>BOA LUZ NAGANO</span></figcaption></figure>
+    <figure class="g-item" data-clip data-cursor="VIEW"><div class="photo" data-parallax="0.22"><img src="images/away.jpg" alt="アウェイユニフォームで周りを見る前川尚志" loading="lazy"></div><figcaption><b>FOCUS</b><span>BOA LUZ NAGANO</span></figcaption></figure>
+    <figure class="g-item" data-clip data-cursor="VIEW"><div class="photo" data-parallax="0.2"><img src="images/team.jpg" alt="ゴール後にチームメイトと抱き合う前川尚志とスタンドのサポーター" loading="lazy"></div><figcaption><b>WITH TEAM</b><span>2026-27</span></figcaption></figure>
+    <figure class="g-item" data-clip data-cursor="VIEW"><div class="photo" data-parallax="0.24"><img src="images/run.jpg" alt="試合中にコートを駆ける前川尚志" loading="lazy"></div><figcaption><b>MATCH DAY</b><span>BOA LUZ NAGANO</span></figcaption></figure>
+  </div>
+  <p class="credit">PHOTO &copy; boaluz.K</p>
+</section>
+
+<!-- PROFILE -->
+<section class="profile wrap" id="profile">
+  <span class="eyebrow" data-scramble>Profile</span>
+  <h2 class="h-display" style="margin-top: 14px;"><span class="line-mask"><span data-reveal>PLAYER <span class="red">DATA</span></span></span></h2>
+  <div class="profile-grid">
+    <dl class="stats">
+      <div class="stat"><dt>Height</dt><dd><span data-count="170">170</span><small>cm</small></dd></div>
+      <div class="stat"><dt>Weight</dt><dd><span data-count="73">73</span><small>kg</small></dd></div>
+      <div class="stat"><dt>Born</dt><dd><span data-count="2001">2001</span><small>.01.22</small></dd></div>
+      <div class="stat"><dt>Foot</dt><dd>RIGHT<small>右足</small></dd></div>
+      <div class="stat"><dt>Name</dt><dd class="jp">前川 尚志<br><span style="font-weight:400;color:var(--mute);font-size:.8em">まえかわ なおゆき</span></dd></div>
+      <div class="stat"><dt>From / Blood</dt><dd class="jp">兵庫県神戸市<br><span style="font-weight:400;color:var(--mute);font-size:.8em">A型</span></dd></div>
+    </dl>
+    <div class="pitch">
+      <svg viewBox="-14 -8 428 216" aria-label="フットサルコート上のピヴォのポジション">
+        <g class="court" data-court-inline></g>
+        <path class="run" data-draw d="M250 150 C 285 140, 300 120, 322 102"/>
+        <path class="run" data-draw d="M300 40 C 310 60, 318 80, 322 98"/>
+        <circle class="pulse" cx="322" cy="100" r="6"/>
+        <circle class="pulse p2" cx="322" cy="100" r="6"/>
+        <circle class="me" cx="322" cy="100" r="6"/>
+      </svg>
+      <div class="pitch-legend"><span><b>●</b> PIVO / FP</span><span>40m × 20m · GOAL 3m × 2m</span></div>
+      <p class="pitch-note"><b>ピヴォ</b>は最前線でボールを収め、攻撃の起点になるポジション。相手ゴールに最も近い位置で体を張る。</p>
     </div>
   </div>
 </section>
 
+<!-- CTA -->
+<section class="cta wrap" id="cta">
+  <h2 class="h-display"><span class="line-mask"><span data-reveal>FIGHT</span></span><span class="line-mask"><span data-reveal><span class="red">WITH</span> US</span></span></h2>
+  <p>スポンサー・イベント・取材のご相談は公式LINEから。</p>
+  <div class="mag-wrap" data-magnetic>
+    <span class="mag-ring" aria-hidden="true"></span><span class="mag-ring" aria-hidden="true"></span>
+    <a class="mag-btn" href="https://lin.ee/uCaJMLa" target="_blank" rel="noopener" data-cursor="link"><span>LINE</span></a>
+  </div>
+</section>
 </main>
 
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="footer-logo">MAE<span>NAO</span></div>
-      <p>前川尚志 ─ Futsal Player</p>
-    </div>
-    <div class="footer-sns">
-      <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener">IG</a>
-      <a href="https://twitter.com/maenao07" target="_blank" rel="noopener">X</a>
+<footer class="site">
+  <div class="foot-row">
+    <span>前川尚志 — FUTSAL PLAYER</span>
+    <div class="foot-sns">
+      <a href="https://instagram.com/maenao.11" target="_blank" rel="noopener" data-cursor="link">INSTAGRAM</a>
+      <a href="https://twitter.com/maenao07" target="_blank" rel="noopener" data-cursor="link">X</a>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 NAOYUKI MAEKAWA. ALL RIGHTS RESERVED.</p>
-    <p>DESIGNED WITH PASSION</p>
-  </div>
+  <div class="foot-big" aria-hidden="true" data-split data-foot>MAENAO</div>
+  <div class="foot-row"><span>&copy; 2026 NAOYUKI MAEKAWA</span><span>DESIGNED WITH PASSION</span></div>
 </footer>
 
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="写真の拡大表示">
+  <button class="lb-close" id="lbClose">CLOSE ✕</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
-window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('loader').classList.add('hide'), 2000);
-});
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const touch = !fine;
+  const hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
 
-const hamburger = document.getElementById('hamburger');
-const navOverlay = document.getElementById('navOverlay');
-const navLinks = document.querySelectorAll('.nav-link');
+  /* ---------- futsal court (40m × 20m → 400 × 200) ---------- */
+  const COURT = `
+    <rect x="0" y="0" width="400" height="200"/>
+    <line x1="200" y1="0" x2="200" y2="200"/>
+    <circle cx="200" cy="100" r="30"/>
+    <circle class="spot" cx="200" cy="100" r="2"/>
+    <path d="M0 40 A60 60 0 0 1 60 85 L60 115 A60 60 0 0 1 0 160"/>
+    <path d="M400 40 A60 60 0 0 0 340 85 L340 115 A60 60 0 0 0 400 160"/>
+    <circle class="spot" cx="60" cy="100" r="2"/><circle class="spot" cx="100" cy="100" r="2"/>
+    <circle class="spot" cx="340" cy="100" r="2"/><circle class="spot" cx="300" cy="100" r="2"/>
+    <rect class="goal" x="-10" y="85" width="10" height="30"/>
+    <rect class="goal" x="400" y="85" width="10" height="30"/>`;
+  $$('[data-court]').forEach(el => el.innerHTML = `<svg class="court" viewBox="-12 -2 424 204">${COURT}</svg>`);
+  $$('[data-court-inline]').forEach(el => el.innerHTML = COURT);
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navOverlay.classList.toggle('open');
-  document.body.style.overflow = navOverlay.classList.contains('open') ? 'hidden' : '';
-});
+  /* ---------- split text into chars (keeps inline tags) ---------- */
+  function split(el) {
+    const out = [];
+    const walk = node => {
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          [...n.textContent].forEach(ch => {
+            if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); return; }
+            const s = document.createElement('span'); s.className = 'char'; s.textContent = ch;
+            frag.appendChild(s); out.push(s);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) walk(n);
+      });
+    };
+    walk(el);
+    return out;
+  }
+  $$('[data-split]').forEach(el => el._chars = split(el));
+  const aboutChars = $$('#aboutBody p').flatMap(p => split(p));
 
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-});
+  /* ---------- WebGL hero: domain-warped noise, mouse-reactive ---------- */
+  const glState = { mx: .5, my: .5, run: true, energy: 0, lastTouch: -1e4 };
+  (function heroGL() {
+    const cv = $('#heroGL');
+    const gl = cv.getContext('webgl', { antialias: false, premultipliedAlpha: false });
+    if (!gl) return;
+    const vs = `attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }`;
+    const fs = `precision mediump float;
+      uniform vec2 r; uniform float t; uniform vec2 m; uniform float e;
+      float h(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453); }
+      float n(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.-2.*f);
+        return mix(mix(h(i),h(i+vec2(1,0)),f.x), mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x), f.y); }
+      float fbm(vec2 p){ float v=0., a=.5; for(int i=0;i<5;i++){ v+=a*n(p); p=p*2.03+vec2(1.7,9.2); a*=.5; } return v; }
+      void main(){
+        vec2 uv = gl_FragCoord.xy / r; vec2 p = (gl_FragCoord.xy - .5*r) / r.y;
+        vec2 mm = (m - .5) * vec2(r.x/r.y, 1.);
+        float tt = t * (.06 + e * .5);
+        vec2 q = vec2(fbm(p*1.6 + tt), fbm(p*1.6 - tt + 4.2));
+        vec2 w = vec2(fbm(p*1.4 + 3.*q + vec2(1.7,9.2) + tt*1.4), fbm(p*1.4 + 3.*q + vec2(8.3,2.8) - tt));
+        float f = fbm(p*1.2 + 2.6*w);
+        float d = length(p - mm);
+        f += (.35 + e * .5) * exp(-d*d*5.);
+        vec3 ink = vec3(.043,.039,.043);
+        vec3 deep = vec3(.49,.05,.094);
+        vec3 red = vec3(.9,.224,.275);
+        vec3 col = mix(ink, deep, smoothstep(.35,.75,f));
+        col = mix(col, red, smoothstep(.72,1.05,f) * .85);
+        float stripes = smoothstep(.0,.02, abs(fract((p.x+p.y)*18.)-.5)-.47);
+        col += stripes * .018;
+        col *= smoothstep(1.25,.25, length(uv-.5)*1.4);
+        col += (h(gl_FragCoord.xy + t) - .5) * .035;
+        gl_FragColor = vec4(col,1.);
+      }`;
+    const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
+    const pr = gl.createProgram();
+    gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+    gl.useProgram(pr);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, 'p');
+    gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const uE = gl.getUniformLocation(pr, 'e'), uR = gl.getUniformLocation(pr, 'r'), uT = gl.getUniformLocation(pr, 't'), uM = gl.getUniformLocation(pr, 'm');
+    const scale = Math.min(devicePixelRatio || 1, 1.5) * .6;
+    const resize = () => { cv.width = cv.clientWidth * scale; cv.height = cv.clientHeight * scale; gl.viewport(0, 0, cv.width, cv.height); };
+    resize(); addEventListener('resize', resize);
+    const sm = { x: .5, y: .5 };
+    const t0 = performance.now();
+    const frame = now => {
+      if (glState.run) {
+        if (touch && now - glState.lastTouch > 1200) {
+          const k = now / 1000;
+          glState.mx = .5 + Math.sin(k * .7) * .32; glState.my = .55 + Math.sin(k * 1.1) * .22;
+        }
+        sm.x += (glState.mx - sm.x) * .05; sm.y += (glState.my - sm.y) * .05;
+        glState.energy *= .94;
+        gl.uniform1f(uE, Math.min(glState.energy, 1));
+        gl.uniform2f(uR, cv.width, cv.height);
+        gl.uniform1f(uT, (now - t0) / 1000 + 20);
+        gl.uniform2f(uM, sm.x, 1 - sm.y);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+    new IntersectionObserver(([e]) => glState.run = e.isIntersecting).observe(cv);
+  })();
+  addEventListener('pointermove', e => { glState.mx = e.clientX / innerWidth; glState.my = e.clientY / innerHeight; glState.lastTouch = performance.now(); });
+  addEventListener('touchmove', e => { const t = e.touches[0]; glState.mx = t.clientX / innerWidth; glState.my = t.clientY / innerHeight; glState.lastTouch = performance.now(); }, { passive: true });
 
-const headerEl = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  headerEl.classList.toggle('scrolled', window.scrollY > 80);
-});
+  let lenis = null;
 
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
+  /* ---------- lightbox ---------- */
+  const lb = $('#lightbox'), lbImg = $('#lbImg');
+  let lbOpen = false;
+  function openLightbox(fig) {
+    const img = fig.querySelector('img');
+    lbImg.src = img.src; lbImg.alt = img.alt; $('#lbCap').textContent = img.alt;
+    lbOpen = true; lenis && lenis.stop(); lb.style.visibility = 'visible';
+    if (!hasGsap) { lb.style.opacity = 1; return; }
+    gsap.to(lb, { opacity: 1, duration: .4 });
+    gsap.fromTo(lbImg, { clipPath: 'inset(20% 20% 20% 20%)', scale: .9 }, { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, duration: .9, ease: 'expo.out' });
+  }
+  function closeLightbox() {
+    if (!lbOpen) return;
+    lbOpen = false;
+    const done = () => { lb.style.visibility = 'hidden'; if (!menuOpen) lenis && lenis.start(); };
+    if (!hasGsap) { lb.style.opacity = 0; return done(); }
+    gsap.to(lb, { opacity: 0, duration: .35, onComplete: done });
+  }
+  $$('.g-item').forEach(fig => { fig.tabIndex = 0; fig.addEventListener('click', () => openLightbox(fig)); fig.addEventListener('keydown', e => { if (e.key === 'Enter') openLightbox(fig); }); });
+  lb.addEventListener('click', closeLightbox);
+
+  /* ---------- menu ---------- */
+  const menu = $('#menu'), menuBtn = $('#menuBtn');
+  let menuOpen = false;
+  function openMenu() {
+    menuOpen = true; document.documentElement.classList.add('menu-open');
+    menuBtn.setAttribute('aria-expanded', 'true'); menu.setAttribute('aria-hidden', 'false'); $('#menuLabel').textContent = 'CLOSE';
+    menu.style.visibility = 'visible'; lenis && lenis.stop();
+    if (!hasGsap) { menu.style.clipPath = 'none'; return; }
+    gsap.to(menu, { clipPath: 'circle(150% at calc(100% - 60px) 40px)', duration: 1, ease: 'expo.inOut' });
+    gsap.fromTo('.menu-link > span, .menu-link small', { yPercent: 110 }, { yPercent: 0, stagger: .04, duration: 1, ease: 'expo.out', delay: .3 });
+  }
+  function closeMenu() {
+    if (!menuOpen) return;
+    menuOpen = false; document.documentElement.classList.remove('menu-open');
+    menuBtn.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-hidden', 'true'); $('#menuLabel').textContent = 'MENU';
+    if (!lbOpen) lenis && lenis.start();
+    const done = () => { menu.style.visibility = 'hidden'; };
+    if (!hasGsap) { menu.style.clipPath = ''; return done(); }
+    gsap.to(menu, { clipPath: 'circle(0% at calc(100% - 60px) 40px)', duration: .8, ease: 'expo.inOut', onComplete: done });
+  }
+  menuBtn.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+  addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeMenu(); } });
+
+  /* ---------- anchor links ---------- */
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const target = $(a.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault(); closeMenu();
+    if (lenis) setTimeout(() => lenis.scrollTo(target, { duration: 1.6 }), menuOpen ? 0 : 150);
+    else target.scrollIntoView({ behavior: 'smooth' });
+  }));
+
+  /* ---------- cursor ---------- */
+  if (fine && hasGsap) {
+    document.documentElement.classList.add('has-cursor');
+    const dot = $('.cursor'), ring = $('.cursor-ring'), label = ring.querySelector('span');
+    const dx = gsap.quickTo(dot, 'x', { duration: .08 }), dy = gsap.quickTo(dot, 'y', { duration: .08 });
+    const rx = gsap.quickTo(ring, 'x', { duration: .45, ease: 'power3' }), ry = gsap.quickTo(ring, 'y', { duration: .45, ease: 'power3' });
+    addEventListener('pointermove', e => { dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); });
+    document.addEventListener('pointerover', e => {
+      const t = e.target.closest('a, button, [data-cursor]');
+      ring.classList.remove('is-link', 'is-label');
+      if (!t) return;
+      const c = t.getAttribute('data-cursor');
+      if (c && c !== 'link') { label.textContent = c; ring.classList.add('is-label'); }
+      else ring.classList.add('is-link');
+    });
+  }
+
+  /* ---------- static fallback: animation library unavailable ---------- */
+  if (!hasGsap) {
+    document.documentElement.classList.add('rm');
+    $('#loader').style.display = 'none';
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+
+  /* ---------- Lenis smooth scroll ---------- */
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ lerp: .09, wheelMultiplier: 1 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  /* ---------- progress + header hide ---------- */
+  const header = $('#siteHeader');
+  ScrollTrigger.create({
+    start: 0, end: 'max',
+    onUpdate: self => {
+      gsap.set('.progress', { scaleX: self.progress });
+      header.classList.toggle('hide', self.direction === 1 && self.scroll() > 200 && !menuOpen);
     }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  /* ---------- scramble labels ---------- */
+  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#/+';
+  function scramble(el) {
+    const final = el.dataset.text || (el.dataset.text = el.textContent);
+    let f = 0; const total = 22;
+    const tick = () => {
+      el.textContent = [...final].map((c, i) => i < (f / total) * final.length ? c : GLYPHS[Math.random() * GLYPHS.length | 0]).join('');
+      if (++f <= total) requestAnimationFrame(tick); else el.textContent = final;
+    };
+    tick();
+  }
+  $$('[data-scramble]').forEach(el => ScrollTrigger.create({ trigger: el, start: 'top 88%', onEnter: () => scramble(el) }));
 
-document.querySelectorAll('.timeline-item').forEach((item, i) => {
-  item.style.opacity = '0';
-  item.style.transform = 'translateX(-30px)';
-  item.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-left-color 0.4s, box-shadow 0.4s';
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateX(0)';
-        }, i * 100);
-      }
+  /* ---------- intro (loader → hero) ---------- */
+  const heroChars = [...$('.l1')._chars, ...$('.l2')._chars];
+  gsap.set(heroChars, { yPercent: 115, rotate: 6 });
+  gsap.set('#heroGhost', { opacity: 0 });
+  gsap.set('#heroPhoto', { clipPath: 'inset(0% 0% 100% 0%)' });
+  gsap.set('#heroPhoto img', { scale: 1.35 });
+  gsap.set('.hero-top, .hero-bottom', { opacity: 0, y: 20 });
+  const floorPaths = $$('.hero-floor .court > *');
+  floorPaths.forEach(p => { p.setAttribute('pathLength', 1); });
+  gsap.set(floorPaths, { strokeDasharray: 1, strokeDashoffset: 1 });
+
+  function heroIntro() {
+    return gsap.timeline()
+      .to('#heroPhoto', { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.inOut' }, 0)
+      .to('#heroPhoto img', { scale: 1.08, duration: 2.4, ease: 'expo.out' }, 0)
+      .to(heroChars, { yPercent: 0, rotate: 0, duration: 1.4, ease: 'expo.out', stagger: .045 }, .35)
+      .to(floorPaths, { strokeDashoffset: 0, duration: 2, ease: 'power3.inOut', stagger: .05 }, 0)
+      .to('.hero-top, .hero-bottom', { opacity: 1, y: 0, duration: 1, ease: 'expo.out', stagger: .1 }, .5)
+      .to('#heroGhost', { opacity: 1, duration: 1.2 }, .8);
+  }
+
+  const counter = { v: 0 };
+  const intro = gsap.timeline({ onComplete: () => { $('#loader').style.display = 'none'; ScrollTrigger.refresh(); } });
+  lenis && lenis.stop();
+  intro
+    .to(counter, {
+      v: 100, duration: 1.6, ease: 'power2.inOut',
+      onUpdate: () => { $('#loaderNum').textContent = String(Math.round(counter.v)).padStart(3, '0'); $('#loaderBar').style.transform = `scaleX(${counter.v / 100})`; }
+    })
+    .to('.loader-center', { yPercent: -30, opacity: 0, duration: .5, ease: 'power3.in' }, '+=.1')
+    .to('.loader-panel.top', { yPercent: -100, duration: 1.1, ease: 'expo.inOut' }, '-=.15')
+    .to('.loader-panel.bot', { yPercent: 100, duration: 1.1, ease: 'expo.inOut' }, '<')
+    .add(() => lenis && lenis.start(), '<.5')
+    .add(heroIntro(), '<.35');
+
+  /* hero mouse parallax + scroll-out */
+  const gx = gsap.quickTo('#heroGhost', 'x', { duration: 1, ease: 'power3' });
+  const gy = gsap.quickTo('#heroGhost', 'y', { duration: 1, ease: 'power3' });
+  addEventListener('pointermove', e => { gx((e.clientX / innerWidth - .5) * -40); gy((e.clientY / innerHeight - .5) * -24); });
+  gsap.to('#heroMain', { yPercent: -18, scale: .94, opacity: .15, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.fromTo('#heroPhoto img', { yPercent: 0, scale: 1.08 }, { yPercent: 6, scale: 1.22, ease: 'none', immediateRender: false, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero-floor', { yPercent: 20, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+  /* ---------- scroll speed feeds the hero shader ---------- */
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: self => { glState.energy = Math.max(glState.energy, Math.abs(self.getVelocity()) / 2500); } });
+
+  /* ---------- line reveals ---------- */
+  $$('[data-reveal]').forEach(el => gsap.from(el, { yPercent: 105, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: el.parentElement, start: 'top 90%' } }));
+
+  /* ---------- about: characters light up with scroll ---------- */
+  gsap.fromTo(aboutChars, { opacity: .16 }, { opacity: 1, stagger: .02, ease: 'none', scrollTrigger: { trigger: '#aboutBody', start: 'top 78%', end: 'bottom 45%', scrub: .6 } });
+
+  /* ---------- clip reveals + inner parallax ---------- */
+  $$('[data-clip]').forEach(el => gsap.fromTo(el, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.inOut', scrollTrigger: { trigger: el, start: 'top 88%' } }));
+  $$('[data-parallax]').forEach(el => {
+    const amt = +el.dataset.parallax * 100;
+    gsap.fromTo(el, { yPercent: -amt / 2 }, { yPercent: amt / 2, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+
+  /* ---------- career: quick stagger in, ball rolls down the rail (no pinning) ---------- */
+  $$('.tl-era').forEach(era => {
+    gsap.from(era.querySelector('h3'), { x: -30, opacity: 0, duration: .7, ease: 'expo.out', scrollTrigger: { trigger: era, start: 'top 88%' } });
+    gsap.from(era.querySelectorAll('.tl-row'), { x: -40, opacity: 0, duration: .7, ease: 'expo.out', stagger: .07, scrollTrigger: { trigger: era, start: 'top 85%' } });
+  });
+  const tlRail = $('.tl-rail'), ball = $('#ball');
+  ScrollTrigger.create({
+    trigger: '#timeline', start: 'top 75%', end: 'bottom 55%',
+    onUpdate: self => {
+      const y = self.progress * (tlRail.clientHeight - 24);
+      gsap.to(ball, { y, rotation: (y / 12) * (180 / Math.PI), duration: .4, ease: 'power3', overwrite: true });
+      gsap.to('#tlFill', { scaleY: self.progress, duration: .4, ease: 'power3', overwrite: true });
+    }
+  });
+
+  /* ---------- sponsor price: fade in only ---------- */
+  $$('[data-fade]').forEach(el => gsap.from(el, { opacity: 0, y: 24, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } }));
+
+  /* ---------- profile: count-ups + pitch drawing ---------- */
+  $$('[data-count]').forEach(el => {
+    const end = +el.dataset.count, o = { v: end > 1000 ? end - 40 : 0 };
+    gsap.to(o, {
+      v: end, duration: 2, ease: 'expo.out',
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      onUpdate: () => { const v = Math.round(o.v); el.textContent = v; }
     });
-  }, { threshold: 0.2 });
-  obs.observe(item);
-});
+  });
+  const pitchLines = $$('.pitch .court > *:not(.spot), .pitch [data-draw]');
+  pitchLines.forEach(p => p.setAttribute('pathLength', 1));
+  gsap.timeline({ scrollTrigger: { trigger: '.pitch', start: 'top 80%' } })
+    .fromTo(pitchLines.filter(p => !p.hasAttribute('data-draw')), { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.6, ease: 'power3.inOut', stagger: .06 })
+    .fromTo('.pitch [data-draw]', { strokeDasharray: '1 1', strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1, ease: 'power2.out', stagger: .2, onComplete() { this.targets().forEach(t => { t.removeAttribute('pathLength'); t.style.strokeDasharray = ''; t.style.strokeDashoffset = ''; }); } }, '-=.4')
+    .from('.pitch .me', { scale: 0, transformOrigin: 'center', transformBox: 'fill-box', duration: .6, ease: 'back.out(3)' }, '-=.6');
+
+  /* ---------- sponsor: 3D tilt + spotlight ---------- */
+  $$('[data-tilt]').forEach(card => {
+    gsap.from(card, { y: 80, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: card, start: 'top 90%' } });
+    if (!fine) return;
+    const rx = gsap.quickTo(card, 'rotationX', { duration: .6, ease: 'power3' });
+    const ry = gsap.quickTo(card, 'rotationY', { duration: .6, ease: 'power3' });
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      card.style.setProperty('--mx', px * 100 + '%'); card.style.setProperty('--my', py * 100 + '%');
+      rx((.5 - py) * 10); ry((px - .5) * 12);
+    });
+    card.addEventListener('pointerleave', () => { rx(0); ry(0); });
+  });
+
+  /* ---------- magnetic CTA ---------- */
+  $$('[data-magnetic]').forEach(wrap => {
+    const btn = wrap.querySelector('.mag-btn'), label = btn.querySelector('span');
+    const bx = gsap.quickTo(btn, 'x', { duration: .8, ease: 'elastic.out(1, .35)' }), by = gsap.quickTo(btn, 'y', { duration: .8, ease: 'elastic.out(1, .35)' });
+    const lx = gsap.quickTo(label, 'x', { duration: .8, ease: 'elastic.out(1, .35)' }), ly = gsap.quickTo(label, 'y', { duration: .8, ease: 'elastic.out(1, .35)' });
+    wrap.addEventListener('pointermove', e => {
+      const r = wrap.getBoundingClientRect(), x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+      bx(x * .35); by(y * .35); lx(x * .15); ly(y * .15);
+    });
+    wrap.addEventListener('pointerleave', () => { bx(0); by(0); lx(0); ly(0); });
+  });
+
+  /* ---------- touch / scroll-driven motion (phones) ---------- */
+  // hero: letters spread apart and tilt as you scroll away (starts after the intro so it picks up the settled letters)
+  const heroScatter = () => gsap.to(heroChars, {
+    yPercent: i => (i % 2 ? -1 : 1) * 40, rotate: i => (i % 3 - 1) * 14, opacity: .3, ease: 'none',
+    stagger: { each: .02, from: 'center' },
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: .5 }
+  });
+  if (intro.progress() === 1) heroScatter(); else intro.eventCallback('onComplete', () => { $('#loader').style.display = 'none'; heroScatter(); ScrollTrigger.refresh(); });
+  // section headings: skew with scroll speed
+  const skewers = $$('.h-display');
+  const setSk = skewers.map(el => gsap.quickTo(el, 'skewY', { duration: .6, ease: 'power3' }));
+  if (fine) ScrollTrigger.create({ start: 0, end: 'max', onUpdate: self => { const v = gsap.utils.clamp(-6, 6, self.getVelocity() / -400); setSk.forEach(f => f(v)); } });
+  // gallery tiles: rotate/scale in as they cross the screen
+  $$('.g-item').forEach((el, i) => gsap.fromTo(el, { rotate: i % 2 ? 3 : -3, scale: .88 }, { rotate: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'center 55%', scrub: true } }));
+  // stats rows slide in from alternating sides
+  $$('.stat').forEach((el, i) => gsap.from(el, { x: i % 2 ? 40 : -40, opacity: 0, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%' } }));
+
+  if (touch) {
+    // hero outline layer drifts on its own
+    gsap.to('#heroGhost', { x: 14, y: -10, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    gsap.to('#heroPhoto', { xPercent: -3, duration: 9, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 3 });
+    // sponsor cards: tilt + spotlight driven by scroll position
+    $$('[data-tilt]').forEach(card => {
+      gsap.fromTo(card, { rotationX: 16, rotationY: -8 }, { rotationX: -10, rotationY: 6, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true } });
+      ScrollTrigger.create({ trigger: card, start: 'top bottom', end: 'bottom top', onUpdate: self => { card.style.setProperty('--my', (self.progress * 140 - 20) + '%'); card.style.setProperty('--mx', (30 + Math.sin(self.progress * 6) * 30) + '%'); } });
+      card.classList.add('lit');
+    });
+    // CTA: pulsing rings around the button
+    gsap.fromTo('.mag-ring', { scale: 1, opacity: .8 }, { scale: 1.9, opacity: 0, duration: 2, ease: 'power2.out', stagger: 1, repeat: -1 });
+    gsap.to('.mag-btn', { scale: 1.06, duration: .9, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    // tap ripple
+    addEventListener('pointerdown', e => {
+      if (e.pointerType === 'mouse') return;
+      const d = document.createElement('span'); d.className = 'tap'; d.style.left = e.clientX + 'px'; d.style.top = e.clientY + 'px';
+      document.body.appendChild(d);
+      gsap.fromTo(d, { scale: 0, opacity: 1 }, { scale: 6, opacity: 0, duration: .7, ease: 'expo.out', onComplete: () => d.remove() });
+      glState.energy = 1; glState.mx = e.clientX / innerWidth; glState.my = e.clientY / innerHeight; glState.lastTouch = performance.now();
+    }, { passive: true });
+  }
+
+  /* ---------- footer wordmark ---------- */
+  gsap.from($('[data-foot]')._chars, { yPercent: 100, duration: 1.4, ease: 'expo.out', stagger: .06, scrollTrigger: { trigger: 'footer.site', start: 'top 85%' } });
+
+  addEventListener('load', () => ScrollTrigger.refresh());
+  document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
+})();
 </script>
 </body>
 </html>
